@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField]
-    float velocidad;
+    
+
+    [Header("Configuración")]
     [SerializeField]
     float sensibilidad;
 
@@ -14,18 +15,22 @@ public class PlayerController : MonoBehaviour
 
     float movimientoX, movimientoZ;
 
+    [Header("Stats")]
+    [SerializeField]
+    float velocidad;
+    [SerializeField]
+    int vida;
+    [SerializeField]
+    float altura;
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
-
-
-
-
-
+        vida = 100;
+        altura = transform.localScale.y;
     }
 
     void FixedUpdate(){
@@ -37,7 +42,9 @@ public class PlayerController : MonoBehaviour
     {
         PlayerRotation();
 
-
+        if(Input.GetKey(KeyCode.K)){
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
+        }
 
 
     }
@@ -80,6 +87,16 @@ public class PlayerController : MonoBehaviour
         rotacionY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensibilidad * -1;
 
         transform.Rotate(0, rotacionX, 0, Space.World);
+
         transform.Rotate(rotacionY, 0, 0, Space.Self);
+
+        Vector3 rotation = transform.rotation.eulerAngles;
+        float rX = Mathf.Min(rotation.x, 40f);
+        print(rX);
+        Vector3 newRotation = new Vector3(rX, rotation.y, rotation.z);
+
+        transform.rotation = Quaternion.Euler(newRotation);
+
+
     }
 }

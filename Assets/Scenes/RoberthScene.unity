@@ -430,8 +430,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee361b6b181494f4fb54aaebcc05a4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 10
   sensibilidad: 600
+  velocidad: 20
+  vida: 0
+  altura: 0
 --- !u!1 &1583018091
 GameObject:
   m_ObjectHideFlags: 0
