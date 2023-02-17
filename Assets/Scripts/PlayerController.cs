@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    
+    [Header("Referencias")]
+    [SerializeField]
+    Camera camara;
 
     [Header("Configuración")]
     [SerializeField]
@@ -86,16 +88,31 @@ public class PlayerController : MonoBehaviour
         rotacionX = Input.GetAxis("Mouse X") * Time.deltaTime * sensibilidad;
         rotacionY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensibilidad * -1;
 
-        transform.Rotate(0, rotacionX, 0, Space.World);
 
-        transform.Rotate(rotacionY, 0, 0, Space.Self);
+        Vector3 rotacionJugador = new Vector3(transform.eulerAngles.x, rotacionX+transform.eulerAngles.y, transform.eulerAngles.z);
+        Vector3 rotacionCamara = new Vector3(Mathf.Clamp(camara.transform.eulerAngles.x+rotacionY,-70,70), transform.eulerAngles.y, camara.transform.eulerAngles.z);
 
-        Vector3 rotation = transform.rotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(rotacionJugador);
+        camara.transform.rotation = Quaternion.Euler(rotacionCamara);
+
+
+        //transform.Rotate(0, rotacionX, 0, Space.World);
+
+        //camara.transform.Rotate(rotacionY, 0, 0, Space.Self);
+
+        /*Vector3 rotacion = new Vector3(Mathf.Clamp(rotacionY, -70, 70), transform.eulerAngles.y, transform.eulerAngles.z);
+
+        print(rotacionY);
+
+        camara.transform.localRotation = Quaternion.e;*/
+
+
+        /*Vector3 rotation = transform.rotation.eulerAngles;
         float rX = Mathf.Min(rotation.x, 40f);
         print(rX);
         Vector3 newRotation = new Vector3(rX, rotation.y, rotation.z);
 
-        transform.rotation = Quaternion.Euler(newRotation);
+        transform.rotation = Quaternion.Euler(newRotation);*/
 
 
     }
