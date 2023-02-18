@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5053179914897065354}
   - component: {fileID: 5053179914897065353}
   - component: {fileID: 5053179914897065352}
-  - component: {fileID: 5053179914897065358}
+  - component: {fileID: 5852337524115760849}
   m_Layer: 0
   m_Name: Auto
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5053179914897065357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5053179914897065358
+--- !u!114 &5852337524115760849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,11 +93,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5053179914897065357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 923ae314576fab343bd36ba804cc39a8, type: 3}
+  m_Script: {fileID: 11500000, guid: f08c92815ced7624c9057c3fecd568b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 7335763105056745259, guid: 313cf126888bdcb4aaf9e46f436bb506, type: 3}
-  chargerMaxAmmo: 10
+  loaderMaxAmmo: 10
   loadTime: 2
+  fireRate: 0.2
+  damage: 10
+  auto: 1
   zoom: 1
-  fireRate: 0.05

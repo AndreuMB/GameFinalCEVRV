@@ -130,8 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd74df8a7e28d245b8e31bae6c904ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 2
-  speed: 5
+  life: 20
   bullet: {fileID: 7335763105056745259, guid: 20c8b7b1a16fa574ba6ff894e4c93c0d, type: 3}
   fireRate: 0.5
 --- !u!195 &5856548179842957248

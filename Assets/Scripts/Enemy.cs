@@ -39,8 +39,8 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag=="Bullet")
         {
             GameObject playerWeapon = GameObject.FindWithTag("PlayerWeapon");
-            // playerWeapon.GetComponent<Auto>()
-            life--;
+            float damageWeapon = playerWeapon.GetComponent<Weapon>().getDamage();
+            life = life-damageWeapon;
             print("life = " + life);
             if (life <= 0)
             {

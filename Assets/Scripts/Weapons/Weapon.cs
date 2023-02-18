@@ -76,4 +76,8 @@ public class Weapon : MonoBehaviour
     public float getZoom(){
         return zoom;
     }
+
+    public float getDamage(){
+        return damage;
+    }
 }
