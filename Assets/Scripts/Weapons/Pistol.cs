@@ -13,7 +13,7 @@ public class Pistol : MonoBehaviour
     [SerializeField] float zoom = 1;
     [SerializeField] float fireRate = 0.2f;
     float fireStart;
-
+    [SerializeField] float damage = 10;
     // Start is called before the first frame update
     void Start()
     {

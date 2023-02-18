@@ -5,9 +5,9 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float life = 2;
+    [SerializeField] float life = 20;
     Transform player;
-    [SerializeField] float speed = 10;
+    // [SerializeField] float speed = 10;
     Rigidbody rb;
     [SerializeField] GameObject bullet;
     [SerializeField] float fireRate = 0.5f;
@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter(Collision other){
         if (other.gameObject.tag=="Bullet")
         {
+            GameObject playerWeapon = GameObject.FindWithTag("PlayerWeapon");
+            // playerWeapon.GetComponent<Auto>()
             life--;
             print("life = " + life);
             if (life <= 0)
