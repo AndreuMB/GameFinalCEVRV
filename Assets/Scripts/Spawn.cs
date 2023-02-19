@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Spawn : MonoBehaviour
 {
     [SerializeField] GameObject[] enemiesArray;
+    public static UnityEvent spawnEnemyEvent = new UnityEvent();
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +16,13 @@ public class Spawn : MonoBehaviour
     IEnumerator spawnEnemy(){
         while (isActiveAndEnabled)
         {
-            GameObject enemy = enemiesArray[Random.Range(0,enemiesArray.Length)];
             yield return new WaitForSeconds(Random.Range(1,3));
-            Instantiate(enemy, transform.position, Quaternion.identity);
+            if (WaveManager.spawn)
+            {
+                GameObject enemy = enemiesArray[Random.Range(0,enemiesArray.Length)];
+                Instantiate(enemy, transform.position, Quaternion.identity);
+                spawnEnemyEvent.Invoke();
+            }
         }
         yield break;
     }
