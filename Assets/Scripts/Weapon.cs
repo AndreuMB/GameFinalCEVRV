@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject[] bullets;
+    GameObject bullet;
     // 6 pistol
     // 10 auto
     [SerializeField] float loaderMaxAmmo;
@@ -32,10 +33,10 @@ public class Weapon : MonoBehaviour
     {
         loaderAmmo = loaderMaxAmmo;
         loadSw = false;
-        print("transform.parent.GetComponent<Enemy>() = "+transform.parent.GetComponent<Enemy>());
         if (transform.parent.GetComponent<Enemy>())
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
+            bullet = bullets[1];
         }
         // PlayerController.triggerFire.AddListener(fire); trigger from player
     }
