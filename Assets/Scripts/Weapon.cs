@@ -37,6 +37,9 @@ public class Weapon : MonoBehaviour
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
             bullet = bullets[1];
+        }else
+        {
+            bullet = bullets[0];
         }
         // PlayerController.triggerFire.AddListener(fire); trigger from player
     }
@@ -44,7 +47,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKey(KeyCode.Space) && auto) || (Input.GetKeyDown(KeyCode.Space) && !auto) || enemyFire){
+        if ((Input.GetMouseButtonDown(0) && auto) || (Input.GetMouseButtonDown(0) && !auto) || enemyFire){
             if (loaderAmmo <= 0){
                 StartCoroutine(load());
             }else{
