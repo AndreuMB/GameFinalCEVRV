@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     float rangeToFire;
     RaycastHit raycast;
     public static UnityEvent death = new UnityEvent();
+    public UnityEvent fireEvent = new UnityEvent();
     [SerializeField] float weaponDamage = 10;
     // Start is called before the first frame update
     void Start()
@@ -76,16 +77,17 @@ public class Enemy : MonoBehaviour
                 {
                     // rb.velocity = Vector3.zero;
                     // rb.constraints = RigidbodyConstraints.FreezePosition;
-                    
-                    if (Time.time > fireStart + fireRate) {
-                        fireStart = Time.time;
-                        fire();
-                    }
+                    fireEvent.Invoke();
+                    // if (Time.time > fireStart + fireRate) {
+                    //     fireStart = Time.time;
+                    //     fire();
+                    // }
                     if (distancePlayer<rangeToFire){
                         agent.isStopped=true;
                     }
                 }
                 }else{
+                    fireEvent.Invoke();
                     agent.isStopped=false;
                 }
             // }

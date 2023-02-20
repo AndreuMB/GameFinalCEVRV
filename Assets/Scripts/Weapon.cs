@@ -25,19 +25,25 @@ public class Weapon : MonoBehaviour
     float loaderAmmo;
     float fireStart;
     bool loadSw;
+    bool enemyFire;
 
     // Start is called before the first frame update
     void Start()
     {
         loaderAmmo = loaderMaxAmmo;
         loadSw = false;
+        print("transform.parent.GetComponent<Enemy>() = "+transform.parent.GetComponent<Enemy>());
+        if (transform.parent.GetComponent<Enemy>())
+        {
+            transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
+        }
         // PlayerController.triggerFire.AddListener(fire); trigger from player
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKey(KeyCode.Space) && auto) || (Input.GetKeyDown(KeyCode.Space) && !auto)){
+        if ((Input.GetKey(KeyCode.Space) && auto) || (Input.GetKeyDown(KeyCode.Space) && !auto) || enemyFire){
             if (loaderAmmo <= 0){
                 StartCoroutine(load());
             }else{
@@ -80,5 +86,9 @@ public class Weapon : MonoBehaviour
 
     public float getDamage(){
         return damage;
+    }
+
+    void swAutoFire(){
+        enemyFire = !enemyFire;
     }
 }
