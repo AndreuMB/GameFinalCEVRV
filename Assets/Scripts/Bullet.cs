@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Bullet : MonoBehaviour
 {
     public static UnityEvent hit = new UnityEvent();
+    float weaponDamage;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +31,13 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
         yield break;
+    }
+
+    public void setWeaponDamage(float weaponDamageSet){
+        weaponDamage = weaponDamageSet;
+    }
+
+    public float getWeaponDamage(){
+        return weaponDamage;
     }
 }

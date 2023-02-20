@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] float life = 20;
     Transform player;
+    Transform nexus;
+    Transform target;
     // [SerializeField] float speed = 10;
     Rigidbody rb;
     [SerializeField] GameObject bullet;
@@ -17,16 +19,17 @@ public class Enemy : MonoBehaviour
     float rangeToFire;
     RaycastHit raycast;
     public static UnityEvent death = new UnityEvent();
+    [SerializeField] float weaponDamage = 10;
     // Start is called before the first frame update
     void Start()
     {
         // Bullet.hit.AddListener(damage);
         player = GameObject.Find("Player").transform;
+        nexus = GameObject.Find("Nexus").transform;
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         // StartCoroutine(randomRange());
         rangeToFire = Random.Range(15,30);
-        agent.SetDestination(player.position);
     }
 
     void damage(){
@@ -40,8 +43,9 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter(Collision other){
         if (other.gameObject.tag=="Bullet")
         {
-            GameObject playerWeapon = GameObject.FindWithTag("PlayerWeapon");
-            float damageWeapon = playerWeapon.GetComponent<Weapon>().getDamage();
+            // GameObject playerWeapon = GameObject.FindWithTag("PlayerWeapon");
+            // float damageWeapon = playerWeapon.GetComponent<Weapon>().getDamage();
+            float damageWeapon = other.gameObject.GetComponent<Bullet>().getWeaponDamage();
             life = life-damageWeapon;
             print("life = " + life);
             if (life <= 0)
@@ -55,16 +59,20 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(player);
         float distancePlayer = Vector3.Distance (gameObject.transform.position, player.transform.position);
+        float distanceNexus = Vector3.Distance (gameObject.transform.position, nexus.transform.position);
+
+        target = (distancePlayer>distanceNexus+(distanceNexus*20/100)) ? nexus : player;
+
+        transform.LookAt(target);
         
         if (distancePlayer<rangeToFire+20)
         {
             // agent.isStopped=true;
             // rb.velocity = Vector3.zero;
             // rb.constraints = RigidbodyConstraints.FreezePosition;
-            if(Physics.Linecast(transform.position,player.position, out raycast)){
-                if (raycast.transform.tag == "Player") // if not object between
+            if(Physics.Linecast(transform.position,target.position, out raycast)){
+                if (raycast.transform.tag == target.tag) // if not object between
                 {
                     // rb.velocity = Vector3.zero;
                     // rb.constraints = RigidbodyConstraints.FreezePosition;
@@ -83,7 +91,7 @@ public class Enemy : MonoBehaviour
             // }
            
         }else{
-            agent.SetDestination(player.position);
+            agent.SetDestination(target.position);
             // rb.constraints = RigidbodyConstraints.None;
             // rb.constraints = RigidbodyConstraints.FreezeRotationX;
             // rb.velocity = transform.forward * speed;
@@ -111,5 +119,9 @@ public class Enemy : MonoBehaviour
             instance.GetComponent<Rigidbody>().AddForce(transform.forward * 200, ForceMode.VelocityChange);
             // chargerAmmo--;
         // }
+    }
+
+    public float getWeaponDamage(){
+        return weaponDamage;
     }
 }

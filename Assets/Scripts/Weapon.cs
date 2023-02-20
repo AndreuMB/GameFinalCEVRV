@@ -57,6 +57,7 @@ public class Weapon : MonoBehaviour
         if (!loadSw)
         {
             GameObject instance = Instantiate(bullet, transform.position, transform.rotation);
+            instance.GetComponent<Bullet>().setWeaponDamage(damage);
             instance.GetComponent<Rigidbody>().AddForce(transform.forward * 200, ForceMode.VelocityChange);
             loaderAmmo--;
         }
