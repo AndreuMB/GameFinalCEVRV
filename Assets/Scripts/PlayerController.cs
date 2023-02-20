@@ -25,21 +25,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float altura;
 
+    [Header("Variables")]
+    const float LIMIT_ANGLE = 45;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         vida = 100;
         altura = transform.localScale.y;
+
+        //Bloqueo del cursor al centro e invisible cuando el juego esta en primera instancia
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void FixedUpdate(){
         PlayerMovement();
     }
 
-    // Update is called once per frame
     void Update()
     {
         PlayerRotation();
@@ -53,67 +55,39 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
+        //Variables donde se captura y guarda los desplazamientos
         movimientoX = Input.GetAxis("Horizontal") * Time.deltaTime * velocidad;
         movimientoZ = Input.GetAxis("Vertical") * Time.deltaTime * velocidad;
 
-        //transform.localPosition += new Vector3(movimientoX, 0, movimientoZ); Normalizar
-        Vector3 aux = new Vector3(transform.forward.x, 0, transform.forward.z);
-        Vector3 ver = aux * movimientoZ;
+        //Vectores donde transladaremos al personaje segun su rotación.
+        Vector3 ver = new Vector3(transform.forward.x, 0, transform.forward.z) * movimientoZ;
         Vector3 hor = transform.right * movimientoX;
+
+        //Movimiento del personaje
         transform.localPosition += hor * velocidad * Time.deltaTime;
         transform.position += ver * velocidad * Time.deltaTime;
-
-        
-        /*if(Input.GetKey(KeyCode.W))
-        {
-            transform.localPosition += transform. * velocidad * Time.deltaTime;
-        }
-        else if(Input.GetKey(KeyCode.S))
-        {
-            transform.localPosition -= transform.forward * velocidad * Time.deltaTime;
-        }
-        if(Input.GetKey(KeyCode.D))
-        {
-            transform.localPosition += transform.right * velocidad * Time.deltaTime;
-        }
-        else if(Input.GetKey(KeyCode.A))
-        {
-            transform.localPosition -= transform.right * velocidad * Time.deltaTime;
-        }*/
-
-
     }
     void PlayerRotation()
     {
+        //Variables donde se captura y guardan las rotaciones
         rotacionX = Input.GetAxis("Mouse X") * Time.deltaTime * sensibilidad;
-        rotacionY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensibilidad * -1;
+        rotacionY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensibilidad * -1;
 
+        //Quaternion donde guardamos la rotación en el eje X desde la captura
+        Quaternion q = Quaternion.AngleAxis(rotacionY, Vector3.right);
 
+        //Prevision del angulo en el eje X antes de moverlo
+        float prevAngleX = Quaternion.Angle(transform.rotation, Camera.main.transform.rotation * q);
+
+        //Rotamos la camara en vertical si esta dentro del rango permitido
+        if (prevAngleX < LIMIT_ANGLE)
+        {
+            camara.transform.rotation *= q;
+        }
+
+        //Rotamos al personaje en el eje Y
         Vector3 rotacionJugador = new Vector3(transform.eulerAngles.x, rotacionX+transform.eulerAngles.y, transform.eulerAngles.z);
-        Vector3 rotacionCamara = new Vector3(Mathf.Clamp(camara.transform.eulerAngles.x+rotacionY,-70,70), transform.eulerAngles.y, camara.transform.eulerAngles.z);
-
         transform.rotation = Quaternion.Euler(rotacionJugador);
-        camara.transform.rotation = Quaternion.Euler(rotacionCamara);
-
-
-        //transform.Rotate(0, rotacionX, 0, Space.World);
-
-        //camara.transform.Rotate(rotacionY, 0, 0, Space.Self);
-
-        /*Vector3 rotacion = new Vector3(Mathf.Clamp(rotacionY, -70, 70), transform.eulerAngles.y, transform.eulerAngles.z);
-
-        print(rotacionY);
-
-        camara.transform.localRotation = Quaternion.e;*/
-
-
-        /*Vector3 rotation = transform.rotation.eulerAngles;
-        float rX = Mathf.Min(rotation.x, 40f);
-        print(rX);
-        Vector3 newRotation = new Vector3(rX, rotation.y, rotation.z);
-
-        transform.rotation = Quaternion.Euler(newRotation);*/
-
 
     }
 }
