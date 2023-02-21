@@ -1254,6 +1254,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8841399460400380835, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
+      propertyPath: enemiesArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 5856548179842957255, guid: 87a1b3449abb46c4bab833bb1fff24ca, type: 3}
     - target: {fileID: 8841399460400380836, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
       propertyPath: m_Name
       value: Spawn

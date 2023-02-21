@@ -37,6 +37,8 @@ public class Weapon : MonoBehaviour
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
             bullet = bullets[1];
+        }else{
+            bullet = bullets[0];
         }
         // PlayerController.triggerFire.AddListener(fire); trigger from player
     }
