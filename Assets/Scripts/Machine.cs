@@ -11,7 +11,8 @@ public class Machine : MonoBehaviour
     void Start()
     {
         shopUI = GameObject.Find("ShopUI");
-        shopUI.GetComponent<Image>().enabled = false;
+        // shopUI.GetComponent<Image>().enabled = false;
+        shopUI.SetActive(false);
         player = GameObject.FindWithTag("Player");
         // PlayerController.openMachine.AddListener(openMachine());
     }
@@ -20,15 +21,15 @@ public class Machine : MonoBehaviour
         float playerDistance = Vector3.Distance(transform.position,player.transform.position);
         if (playerDistance <= 5)
         {
-            // shopUI.SetActive(true);
-            shopUI.GetComponent<Image>().enabled = true;
+            shopUI.SetActive(!shopUI.activeInHierarchy);
+            // shopUI.GetComponent<Image>().enabled = true;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.E)) // move to playercontroller add event "openMachine"
+        if (Input.GetKeyDown(KeyCode.E)) // move to playercontroller add event "openMachine"
         {
             openMachine();
         }

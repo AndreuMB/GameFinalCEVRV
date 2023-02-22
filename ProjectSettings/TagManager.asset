@@ -10,6 +10,7 @@ TagManager:
   - PlayerWeapon
   - Nexus
   - Machine
+  - WeaponSlot
   layers:
   - Default
   - TransparentFX

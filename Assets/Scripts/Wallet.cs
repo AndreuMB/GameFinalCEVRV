@@ -15,7 +15,7 @@ public class Wallet : MonoBehaviour
     IEnumerator income(float fr){
         while (isActiveAndEnabled)
         {
-            print(money);
+            // print(money = money);
             money+= fr;
             yield return new WaitForSeconds(1);
         }

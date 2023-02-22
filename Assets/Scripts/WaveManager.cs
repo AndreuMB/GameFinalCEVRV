@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaveManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] public static int wave;
     [SerializeField] float secBtwWaves = 5;
     [SerializeField] public static bool spawn;
+    public static UnityEvent waveChange = new UnityEvent();
     int enemiesWave;
     int enemiesScene;
     // Start is called before the first frame update
@@ -46,6 +48,7 @@ public class WaveManager : MonoBehaviour
     // }
 
     IEnumerator nextWave(){
+        waveChange.Invoke();
         yield return new WaitForSeconds(secBtwWaves);
         wave++;
         enemiesWaveStart+=enemiesWaveScale;
