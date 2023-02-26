@@ -7,6 +7,7 @@ public class Machine : MonoBehaviour
 {
     GameObject shopUI;
     GameObject player;
+    public bool randomizeWeapon;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,7 @@ public class Machine : MonoBehaviour
         shopUI.SetActive(false);
         player = GameObject.FindWithTag("Player");
         // PlayerController.openMachine.AddListener(openMachine());
+        WaveManager.waveChange.AddListener(checkRandomize);
     }
 
     void openMachine(){
@@ -33,5 +35,9 @@ public class Machine : MonoBehaviour
         {
             openMachine();
         }
+    }
+
+    void checkRandomize(){
+        if(WaveManager.wave%5==0) randomizeWeapon = true;
     }
 }

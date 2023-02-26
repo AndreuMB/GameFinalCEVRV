@@ -11,21 +11,24 @@ public class Shop : MonoBehaviour
     void Start()
     {
         // WaveManager.waveChange.AddListener(randomizeWeapons);
+        print("enter start shop");
         randomizeWeapons();
     }
 
     public void randomizeWeapons(){
-        if(WaveManager.wave%5!=0) return;
-        GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag("WeaponSlot");
-        print("weaponSlots.Length = "+weaponSlots.Length);
-        foreach (GameObject weaponSlot in weaponSlots)
-        {
-            weaponSlot.GetComponentInChildren<Text>().text = weapons[Random.Range(0,weapons.Length)].name;
+        bool WeaponUMR = GameObject.Find("WeaponUM").GetComponent<Machine>().randomizeWeapon;
+        if(WeaponUMR){
+            GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag("WeaponSlot");
+            print("weaponSlots.Length = "+weaponSlots.Length);
+            GameObject weapon;
+            foreach (GameObject weaponSlot in weaponSlots)
+            {
+                weapon = weapons[Random.Range(0,weapons.Length)];
+                weaponSlot.GetComponentInChildren<Text>().text = weapon.name;
+                weaponSlot.GetComponent<Button>().onClick.AddListener(() => buyWeapon(weapon));
+            }
+            WeaponUMR = false;
         }
-        // if (weaponSlots.Length != 0)
-        // {
-        //     swR = false; 
-        // }
     }
 
     
@@ -34,8 +37,11 @@ public class Shop : MonoBehaviour
         // randomizeWeapons();
     }
 
-    void buyWeapon(){
-        
+    void buyWeapon(GameObject weapon){
+        GameObject weaponObj = Instantiate(weapon);
+        weaponObj.transform.parent = GameObject.Find("Player").transform;
+        weaponObj.transform.localPosition = new Vector3(-1,0,0);
+        weaponObj.transform.localRotation=Quaternion.identity;
     }
 
     // Update is called once per frame
