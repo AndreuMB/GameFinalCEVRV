@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Shop : MonoBehaviour
 {
     [SerializeField] GameObject[] weapons;
     bool swR;
+    // List<GameObject> weaponsLink = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +22,17 @@ public class Shop : MonoBehaviour
         if(WeaponUMR){
             GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag("WeaponSlot");
             print("weaponSlots.Length = "+weaponSlots.Length);
-            GameObject weapon;
+            
+            
             foreach (GameObject weaponSlot in weaponSlots)
             {
-                weapon = weapons[Random.Range(0,weapons.Length)];
+                int inx = Random.Range(0,weapons.Length);
+                GameObject weapon = weapons[inx];
+                // weaponsLink.Add(weapon);
+                print("weapon = " + weapon);
                 weaponSlot.GetComponentInChildren<Text>().text = weapon.name;
                 weaponSlot.GetComponent<Button>().onClick.AddListener(() => buyWeapon(weapon));
+
             }
             WeaponUMR = false;
         }
@@ -38,9 +45,18 @@ public class Shop : MonoBehaviour
     }
 
     void buyWeapon(GameObject weapon){
+        // string wname = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
         GameObject weaponObj = Instantiate(weapon);
-        weaponObj.transform.parent = GameObject.Find("Player").transform;
-        weaponObj.transform.localPosition = new Vector3(-1,0,0);
+        GameObject player = GameObject.Find("Player");
+        for (var i = player.transform.childCount - 1; i >= 0; i--)
+        {
+            if (player.transform.GetChild(i).tag == "Weapon")
+            {
+                Destroy(player.transform.GetChild(i).gameObject);
+            }
+        }
+        weaponObj.transform.parent = player.transform;
+        weaponObj.transform.localPosition = new Vector3(1,0,0);
         weaponObj.transform.localRotation=Quaternion.identity;
     }
 
