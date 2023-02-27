@@ -6,7 +6,31 @@ using UnityEngine.Events;
 public class Bullet : MonoBehaviour
 {
     public static UnityEvent hit = new UnityEvent();
-    float weaponDamage;
+
+    // GameObject owner;
+
+    // public bool isFromEnemy => owner.TryGetComponent<Enemy>(out Enemy _);
+
+    // PROIPIEDADES COMPLETO
+    // float _weaponDamage;
+    // public float weaponDamage
+    // {
+    //     get
+    //     {
+    //         return _weaponDamage;
+    //     }
+
+    //     set
+    //     {
+    //         _weaponDamage = value;
+    //     }
+    // }
+
+    // PROPIEDADES ABREVIADA
+    // public float weaponDamage { get; private set; }
+
+    public float weaponDamage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +44,7 @@ public class Bullet : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other){
-        if (other.gameObject.tag=="Enemy" && gameObject.tag != "EnemyBullet")
+        if (other.gameObject.tag==Tags.ENEMY && gameObject.tag != Tags.BULLET)
         {
             Destroy(gameObject);
             hit.Invoke();
