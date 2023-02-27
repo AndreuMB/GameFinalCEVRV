@@ -21,9 +21,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] float damage;
     // 0 pistol
     // 1 auto
-    [SerializeField] bool auto;
+    [SerializeField] public bool auto;
     [SerializeField] float zoom = 1;
-    float loaderAmmo;
+    public float loaderAmmo;
     float fireStart;
     bool loadSw;
     bool enemyFire;
@@ -53,7 +53,7 @@ public class Weapon : MonoBehaviour
             }else{
                 if (Time.time > fireStart + fireRate) {
                     fireStart = Time.time;
-                    fire();
+                    Fire();
                 }
             }
         }
@@ -63,7 +63,24 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void fire(){
+    public void Fire()
+    {
+
+        if (loaderAmmo <= 0){
+            StartCoroutine(load());
+        }
+        else
+        {
+            if (Time.time > fireStart + fireRate)
+            {
+                fireStart = Time.time;
+                Shoot();
+            }
+        }
+    }
+
+    void Shoot()
+    {
         const int OFFSET_BULLET = 2;
         if (!loadSw)
         {

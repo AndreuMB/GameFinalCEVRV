@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Character
 {
     [SerializeField] float life = 20;
     Transform player;
@@ -81,6 +81,9 @@ public class Enemy : MonoBehaviour
         transform.LookAt(target);
 
         manageBehaviour();
+
+        Fire();
+
         
         // if (distancePlayer<rangeToFire+OFFSET_DISTANCE_ENEMY_PLAYER)
         // {

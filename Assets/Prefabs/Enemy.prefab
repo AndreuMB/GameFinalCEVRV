@@ -131,13 +131,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd74df8a7e28d245b8e31bae6c904ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 3735155159187502498}
   life: 20
   bullet: {fileID: 7335763105056745259, guid: 20c8b7b1a16fa574ba6ff894e4c93c0d, type: 3}
   fireRate: 0.5
   fireEvent:
     m_PersistentCalls:
       m_Calls: []
-  weaponDamage: 10
 --- !u!195 &5856548179842957248
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -319,3 +320,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5053179914897065354, guid: 55a0610ece6100a4e96afde160b313de, type: 3}
   m_PrefabInstance: {fileID: 7125330314025325427}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3735155159187502498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5852337524115760849, guid: 55a0610ece6100a4e96afde160b313de, type: 3}
+  m_PrefabInstance: {fileID: 7125330314025325427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383849f62935f29459f24384acc9e86f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

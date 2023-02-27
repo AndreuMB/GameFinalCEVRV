@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Character
 {
 
     [Header("Referencias")]
@@ -48,6 +48,11 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.K)){
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
+        }
+
+        if ((Input.GetMouseButtonDown(0) && selectedWeapon.auto) || (Input.GetMouseButtonDown(0) && !selectedWeapon.auto))
+        {
+            Fire();
         }
 
 
