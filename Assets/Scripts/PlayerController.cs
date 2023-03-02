@@ -27,8 +27,7 @@ public class PlayerController : Character
 
     [Header("Variables")]
     const float LIMIT_ANGLE = 45;
-    [SerializeField]
-    List<Weapon> armas = new List<Weapon>(2);
+
 
     void Start()
     {
@@ -45,6 +44,11 @@ public class PlayerController : Character
         //Bloqueo del cursor al centro e invisible cuando el juego esta en primera instancia
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+
+
+        //Instancia de Arma
+        InstanciaArmas();
     }
 
     void FixedUpdate(){
@@ -64,6 +68,7 @@ public class PlayerController : Character
             Fire();
         }
 
+        InputCambiarArma();
 
     }
 
@@ -105,8 +110,8 @@ public class PlayerController : Character
 
     }
 
-    void PlayerChangeWeapon(){
-
+    void InputCambiarArma()
+    {
         if(Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             ChangeWeapon(1);
@@ -116,28 +121,28 @@ public class PlayerController : Character
         }
     }
 
-    void ChangeWeapon(int a){
-
-        //int aux;
-        int elegido= 0;
-
-        for(int i = 0; i < armas.Count; i++)
-        {
-            if(armas[i].gameObject.activeSelf)
-            {
-                elegido = i;
-                
-            }
-        }
-
-        if(elegido == 0 && a < 0){
-            elegido = armas.Count-1;
-        }else if(elegido == armas.Count-1 && a > 0){
-            elegido = 0;
+    void ChangeWeapon(int a)
+    {
+        selectedWeapon.gameObject.SetActive(false);
+        if(selectedIndex == 0 && a < 0){
+            selectedIndex = weapons.Count-1;
+        }else if(selectedIndex == weapons.Count-1 && a > 0){
+            selectedIndex = 0;
         }else{
-            elegido += a;
+            selectedIndex += a;
         }
-
+        selectedWeapon.gameObject.SetActive(true);
     }
+
+    void InstanciaArmas()
+    {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            weapons[i] = Instantiate(weapons[i].gameObject, transform.position, Quaternion.identity, transform).GetComponent<Weapon>();
+            weapons[i].gameObject.SetActive(false);
+        }
+        weapons[0].gameObject.SetActive(true);
+    }
+
 
 }

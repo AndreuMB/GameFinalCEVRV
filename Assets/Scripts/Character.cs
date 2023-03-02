@@ -5,11 +5,11 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
     [SerializeField]
-    List<GameObject> weapons;
+    protected List<Weapon> weapons = new List<Weapon>(2);
 
-    int selectedIndex = 0;
+    protected int selectedIndex = 0;
 
-    protected GameObject selectedWeapon => weapons[selectedIndex];
+    protected Weapon selectedWeapon => weapons[selectedIndex];
 
     void Start()
     {
@@ -20,7 +20,7 @@ public abstract class Character : MonoBehaviour
         // weaponObj.transform.localRotation=Quaternion.identity;
     }
 
-    void AddWeapon(GameObject weapon)
+    void AddWeapon(Weapon weapon)
     {
         // Comprobar max armas
         weapons.Add(weapon);
