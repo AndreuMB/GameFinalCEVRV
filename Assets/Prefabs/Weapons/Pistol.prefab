@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383849f62935f29459f24384acc9e86f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullets:
+  - {fileID: 7335763105056745259, guid: 313cf126888bdcb4aaf9e46f436bb506, type: 3}
+  - {fileID: 7335763105056745259, guid: 20c8b7b1a16fa574ba6ff894e4c93c0d, type: 3}
   bullet: {fileID: 7335763105056745259, guid: 313cf126888bdcb4aaf9e46f436bb506, type: 3}
   loaderMaxAmmo: 6
   loadTime: 3
@@ -103,3 +106,4 @@ MonoBehaviour:
   damage: 20
   auto: 0
   zoom: 1
+  loaderAmmo: 0

@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKey(KeyCode.Space) && auto) || (Input.GetKeyDown(KeyCode.Space) && !auto) || enemyFire){
+        if ((Input.GetMouseButtonDown(0) && auto) || (Input.GetMouseButtonDown(0) && !auto) || enemyFire){
             if (loaderAmmo <= 0){
                 StartCoroutine(load());
             }else{

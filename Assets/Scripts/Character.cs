@@ -4,15 +4,15 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-    [SerializeField] List<GameObject> weapons;
-    protected GameObject selectedWeapon => weapons[selectedIndex];
-    int selectedIndex = 0;
+    [SerializeField] protected List<Weapon> weapons;
+    protected Weapon selectedWeapon => weapons[selectedIndex];
+    protected int selectedIndex = 0;
 
     [Header("Stats")]
     [SerializeField] float life;
     [SerializeField] float speed;
 
-    void AddWeapon(GameObject weapon)
+    void AddWeapon(Weapon weapon)
     {
         // Comprobar max armas
         weapons.Add(weapon);
@@ -20,7 +20,7 @@ public abstract class Character : MonoBehaviour
 
     protected void Fire()
     {
-        selectedWeapon.GetComponent<Weapon>().Fire();
+        selectedWeapon.Fire();
     }
 
     protected void OnCollisionEnter(Collision other){

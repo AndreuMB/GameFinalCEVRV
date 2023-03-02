@@ -28,6 +28,7 @@ public class PlayerController : Character
     [Header("Variables")]
     const float LIMIT_ANGLE = 45;
 
+
     void Start()
     {
         // INI WEAPON
@@ -43,6 +44,11 @@ public class PlayerController : Character
         //Bloqueo del cursor al centro e invisible cuando el juego esta en primera instancia
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+
+
+        //Instancia de Arma
+        InstanciaArmas();
     }
 
     void FixedUpdate(){
@@ -62,6 +68,7 @@ public class PlayerController : Character
             Fire();
         }
 
+        InputCambiarArma();
 
     }
 
@@ -108,5 +115,40 @@ public class PlayerController : Character
         if (bullet.owner.owner.tag == Tags.ENEMY) return true;
         return false;
     }
+
+    void InputCambiarArma()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            ChangeWeapon(1);
+        }else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            ChangeWeapon(-1);
+        }
+    }
+
+    void ChangeWeapon(int a)
+    {
+        selectedWeapon.gameObject.SetActive(false);
+        if(selectedIndex == 0 && a < 0){
+            selectedIndex = weapons.Count-1;
+        }else if(selectedIndex == weapons.Count-1 && a > 0){
+            selectedIndex = 0;
+        }else{
+            selectedIndex += a;
+        }
+        selectedWeapon.gameObject.SetActive(true);
+    }
+
+    void InstanciaArmas()
+    {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            weapons[i] = Instantiate(weapons[i].gameObject, transform.position, Quaternion.identity, transform).GetComponent<Weapon>();
+            weapons[i].gameObject.SetActive(false);
+        }
+        weapons[0].gameObject.SetActive(true);
+    }
+
 
 }
