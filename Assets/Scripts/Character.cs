@@ -4,21 +4,13 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-    [SerializeField]
-    List<GameObject> weapons;
-
+    [SerializeField] List<GameObject> weapons;
+    protected GameObject selectedWeapon => weapons[selectedIndex];
     int selectedIndex = 0;
 
-    protected GameObject selectedWeapon => weapons[selectedIndex];
-
-    void Start()
-    {
-        // GameObject weaponObj = Instantiate(selectedWeapon);
-        // GameObject player = GameObject.Find(Tags.PLAYER);
-        // weaponObj.transform.parent = player.transform;
-        // weaponObj.transform.localPosition = new Vector3(1,0,0);
-        // weaponObj.transform.localRotation=Quaternion.identity;
-    }
+    [Header("Stats")]
+    [SerializeField] float life;
+    [SerializeField] float speed;
 
     void AddWeapon(GameObject weapon)
     {
@@ -29,6 +21,19 @@ public abstract class Character : MonoBehaviour
     protected void Fire()
     {
         selectedWeapon.GetComponent<Weapon>().Fire();
+    }
+
+    protected void OnCollisionEnter(Collision other){
+        if (other.gameObject.tag==Tags.BULLET)
+        {
+            if(decideDamage(other.gameObject.GetComponent<Bullet>())) takeDamage();
+        }
+    }
+
+    protected abstract bool decideDamage(Bullet bullet);
+
+    protected void takeDamage(){
+
     }
 
 }

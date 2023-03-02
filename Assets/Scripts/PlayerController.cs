@@ -102,4 +102,11 @@ public class PlayerController : Character
         transform.rotation = Quaternion.Euler(rotacionJugador);
 
     }
+
+    protected override bool decideDamage(Bullet bullet)
+    {
+        if (bullet.owner.owner.tag == Tags.ENEMY) return true;
+        return false;
+    }
+
 }

@@ -27,6 +27,7 @@ public class Weapon : MonoBehaviour
     float fireStart;
     bool loadSw;
     bool enemyFire;
+    public GameObject owner;
 
     // Start is called before the first frame update
     void Start()
