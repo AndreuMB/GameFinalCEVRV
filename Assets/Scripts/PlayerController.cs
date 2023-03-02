@@ -30,6 +30,13 @@ public class PlayerController : Character
 
     void Start()
     {
+        // INI WEAPON
+        // GameObject weaponObj = Instantiate(selectedWeapon);
+        // GameObject player = GameObject.Find(Tags.PLAYER);
+        // weaponObj.transform.parent = player.transform;
+        // weaponObj.transform.localPosition = new Vector3(1,0,0);
+        // weaponObj.transform.localRotation=Quaternion.identity;
+
         vida = 100;
         altura = transform.localScale.y;
 
@@ -50,7 +57,7 @@ public class PlayerController : Character
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
         }
 
-        if ((Input.GetMouseButtonDown(0) && selectedWeapon.auto) || (Input.GetMouseButtonDown(0) && !selectedWeapon.auto))
+        if ((Input.GetMouseButtonDown(0) && selectedWeapon.GetComponent<Weapon>().auto) || (Input.GetMouseButtonDown(0) && !selectedWeapon.GetComponent<Weapon>().auto))
         {
             Fire();
         }

@@ -57,7 +57,6 @@ public class Enemy : Character
             // float damageWeapon = playerWeapon.GetComponent<Weapon>().getDamage();
             float damageWeapon = other.gameObject.GetComponent<Bullet>().getWeaponDamage();
             life = life-damageWeapon;
-            print("life = " + life);
             if (life <= 0)
             {
                 death.Invoke();

@@ -44,7 +44,8 @@ public class Bullet : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other){
-        if (other.gameObject.tag==Tags.ENEMY && gameObject.tag != Tags.BULLET)
+        // if (other.gameObject.tag==Tags.ENEMY && gameObject.tag != Tags.BULLET)
+        if (other.gameObject.tag==Tags.ENEMY || other.gameObject.tag==Tags.PLAYER)
         {
             Destroy(gameObject);
             hit.Invoke();
