@@ -112,8 +112,10 @@ public class PlayerController : Character
 
     protected override bool decideDamage(Bullet bullet)
     {
-        if (bullet.owner.owner.tag == Tags.ENEMY) return true;
-        return false;
+        print("bullet.owner.GetType() = " + bullet.owner.GetType());
+        return (bullet.owner.GetType() == typeof(Enemy));
+        // if (bullet.owner.tag == Tags.ENEMY) return true;
+        // return false;
     }
 
     void InputCambiarArma()
