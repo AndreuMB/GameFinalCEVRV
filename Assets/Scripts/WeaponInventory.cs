@@ -33,6 +33,8 @@ public class WeaponInventory : MonoBehaviour
         //     Instantiate(arma.gameObject, transform.position, Quaternion.identity, transform);
         // }
 
+        //Instanciar arma
+
         for (int i = 0; i < armas.Count; i++)
         {
             armas[i] = Instantiate(armas[i].gameObject, transform.position, Quaternion.identity, transform).GetComponent<Weapon>();

@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Variables")]
     const float LIMIT_ANGLE = 45;
+    [SerializeField]
+    List<Weapon> armas = new List<Weapon>(2);
 
     void Start()
     {
@@ -90,4 +92,40 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(rotacionJugador);
 
     }
+
+    void PlayerChangeWeapon(){
+
+        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            ChangeWeapon(1);
+        }else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            ChangeWeapon(-1);
+        }
+    }
+
+    void ChangeWeapon(int a){
+
+        //int aux;
+        int elegido= 0;
+
+        for(int i = 0; i < armas.Count; i++)
+        {
+            if(armas[i].gameObject.activeSelf)
+            {
+                elegido = i;
+                
+            }
+        }
+
+        if(elegido == 0 && a < 0){
+            elegido = armas.Count-1;
+        }else if(elegido == armas.Count-1 && a > 0){
+            elegido = 0;
+        }else{
+            elegido += a;
+        }
+
+    }
+
 }
