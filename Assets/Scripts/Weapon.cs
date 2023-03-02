@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] GameObject[] bullets;
-    GameObject bullet;
+    [SerializeField] GameObject bullet;
     // 6 pistol
     // 10 auto
     [SerializeField] float loaderMaxAmmo;
@@ -21,9 +21,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] float damage;
     // 0 pistol
     // 1 auto
-    [SerializeField] bool auto;
+    [SerializeField] public bool auto;
     [SerializeField] float zoom = 1;
-    float loaderAmmo;
+    public float loaderAmmo;
     float fireStart;
     bool loadSw;
     bool enemyFire;
@@ -33,13 +33,13 @@ public class Weapon : MonoBehaviour
     {
         loaderAmmo = loaderMaxAmmo;
         loadSw = false;
+
         if (transform.parent.GetComponent<Enemy>())
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
-            bullet = bullets[1];
-        }else
-        {
-            bullet = bullets[0];
+            // bullet = bullets[1];
+        }else{
+            // bullet = bullets[0];
         }
         // PlayerController.triggerFire.AddListener(fire); trigger from player
     }
@@ -53,7 +53,7 @@ public class Weapon : MonoBehaviour
             }else{
                 if (Time.time > fireStart + fireRate) {
                     fireStart = Time.time;
-                    fire();
+                    Fire();
                 }
             }
         }
@@ -63,10 +63,28 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void fire(){
+    public void Fire()
+    {
+
+        if (loaderAmmo <= 0){
+            StartCoroutine(load());
+        }
+        else
+        {
+            if (Time.time > fireStart + fireRate)
+            {
+                fireStart = Time.time;
+                Shoot();
+            }
+        }
+    }
+
+    void Shoot()
+    {
+        const int OFFSET_BULLET = 2;
         if (!loadSw)
         {
-            GameObject instance = Instantiate(bullet, transform.position, transform.rotation);
+            GameObject instance = Instantiate(bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
             instance.GetComponent<Bullet>().setWeaponDamage(damage);
             instance.GetComponent<Rigidbody>().AddForce(transform.forward * 200, ForceMode.VelocityChange);
             loaderAmmo--;

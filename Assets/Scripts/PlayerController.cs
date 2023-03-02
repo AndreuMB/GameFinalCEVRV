@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Character
 {
 
     [Header("Referencias")]
@@ -32,6 +32,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        // INI WEAPON
+        // GameObject weaponObj = Instantiate(selectedWeapon);
+        // GameObject player = GameObject.Find(Tags.PLAYER);
+        // weaponObj.transform.parent = player.transform;
+        // weaponObj.transform.localPosition = new Vector3(1,0,0);
+        // weaponObj.transform.localRotation=Quaternion.identity;
+
         vida = 100;
         altura = transform.localScale.y;
 
@@ -50,6 +57,11 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.K)){
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
+        }
+
+        if ((Input.GetMouseButtonDown(0) && selectedWeapon.GetComponent<Weapon>().auto) || (Input.GetMouseButtonDown(0) && !selectedWeapon.GetComponent<Weapon>().auto))
+        {
+            Fire();
         }
 
 

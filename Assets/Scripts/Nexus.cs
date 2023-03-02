@@ -46,7 +46,7 @@ public class Nexus : MonoBehaviour
     void OnCollisionEnter(Collision other){
         if (other.gameObject.tag=="EnemyBullet")
         {
-            float damage = other.gameObject.GetComponent<Enemy>().getWeaponDamage();
+            // float damage = other.gameObject.GetComponent<Enemy>().getWeaponDamage();
         }
     }
 }

@@ -28,7 +28,7 @@ public class WaveManager : MonoBehaviour
     }
 
     void spawnCheck(){
-        enemiesScene = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        enemiesScene = GameObject.FindGameObjectsWithTag(Tags.ENEMY).Length;
 
         if (enemiesScene>=maxEnemiesScene || enemiesWave<=enemiesScene)
         {
