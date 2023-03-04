@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class Enemy : Character
 {
-    [SerializeField] float life = 20;
+    // [SerializeField] float life = 20;
     Transform player;
     Transform nexus;
     Transform target;
@@ -21,6 +21,7 @@ public class Enemy : Character
     // Start is called before the first frame update
     void Start()
     {
+        InstanciaArmas();
         // Bullet.hit.AddListener(damage);
         player = GameObject.Find("Player").transform;
         nexus = GameObject.Find("Nexus").transform;
@@ -158,8 +159,10 @@ public class Enemy : Character
 
     protected override bool decideDamage(Bullet bullet)
     {
-        if (bullet.owner.GetComponent<Weapon>().owner.tag == Tags.PLAYER) return true;
-        return false;
+        print("ENEMY bullet.owner.GetType() = " + bullet.owner.GetType());
+        return (bullet.owner.GetType() == typeof(PlayerController));
+        // if (bullet.owner.GetComponent<Weapon>().owner.tag == Tags.PLAYER) return true;
+        // return false;
     }
 
     IEnumerator randomRange(){

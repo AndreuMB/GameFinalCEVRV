@@ -63,7 +63,7 @@ public class PlayerController : Character
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
         }
 
-        if ((Input.GetMouseButtonDown(0) && selectedWeapon.GetComponent<Weapon>().auto) || (Input.GetMouseButtonDown(0) && !selectedWeapon.GetComponent<Weapon>().auto))
+        if ((Input.GetMouseButtonDown(0) && selectedWeapon.auto) || (Input.GetMouseButtonDown(0) && !selectedWeapon.auto))
         {
             Fire();
         }
@@ -112,7 +112,7 @@ public class PlayerController : Character
 
     protected override bool decideDamage(Bullet bullet)
     {
-        print("bullet.owner.GetType() = " + bullet.owner.GetType());
+        print("PLAYER bullet.owner.GetType() = " + bullet.owner.GetType());
         return (bullet.owner.GetType() == typeof(Enemy));
         // if (bullet.owner.tag == Tags.ENEMY) return true;
         // return false;
@@ -142,15 +142,15 @@ public class PlayerController : Character
         selectedWeapon.gameObject.SetActive(true);
     }
 
-    void InstanciaArmas()
-    {
-        for (int i = 0; i < weapons.Count; i++)
-        {
-            weapons[i] = Instantiate(weapons[i].gameObject, transform.position, Quaternion.identity, transform).GetComponent<Weapon>();
-            weapons[i].gameObject.SetActive(false);
-        }
-        weapons[0].gameObject.SetActive(true);
-    }
+    // void InstanciaArmas()
+    // {
+    //     for (int i = 0; i < weapons.Count; i++)
+    //     {
+    //         weapons[i] = Instantiate(weapons[i].gameObject, transform.position, Quaternion.identity, transform).GetComponent<Weapon>();
+    //         weapons[i].gameObject.SetActive(false);
+    //     }
+    //     weapons[0].gameObject.SetActive(true);
+    // }
 
 
 }

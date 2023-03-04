@@ -36,4 +36,14 @@ public abstract class Character : MonoBehaviour
 
     }
 
+    protected void InstanciaArmas()
+    {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            weapons[i] = Instantiate(weapons[i].gameObject, transform.position, Quaternion.identity, transform).GetComponent<Weapon>();
+            weapons[i].gameObject.SetActive(false);
+        }
+        weapons[0].gameObject.SetActive(true);
+    }
+
 }
