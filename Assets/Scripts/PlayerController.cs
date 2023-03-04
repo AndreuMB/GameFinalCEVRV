@@ -63,11 +63,8 @@ public class PlayerController : Character
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
         }
 
-        if ((Input.GetMouseButtonDown(0) && selectedWeapon.auto) || (Input.GetMouseButtonDown(0) && !selectedWeapon.auto))
-        {
-            Fire();
-        }
-
+        InputRecargar();
+        InputDisparar();
         InputCambiarArma();
 
     }
@@ -115,6 +112,22 @@ public class PlayerController : Character
     {
         // if is an enemy return true
         return (bullet.owner.GetType() == typeof(Enemy));
+    }
+    
+    void InputRecargar()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            selectedWeapon.ReLoad();
+        }
+    }
+
+    void InputDisparar()
+    {
+        if ((Input.GetMouseButton(0) && selectedWeapon.GetComponent<Weapon>().auto) || (Input.GetMouseButton(0) && !selectedWeapon.GetComponent<Weapon>().auto))
+        {
+            Fire();
+        }
     }
 
     void InputCambiarArma()

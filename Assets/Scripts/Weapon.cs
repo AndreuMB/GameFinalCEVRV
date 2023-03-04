@@ -48,20 +48,28 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetMouseButtonDown(0) && auto) || (Input.GetMouseButtonDown(0) && !auto) || enemyFire){
-            if (loaderAmmo <= 0){
-                StartCoroutine(load());
-            }else{
-                if (Time.time > fireStart + fireRate) {
-                    fireStart = Time.time;
-                    Fire();
-                }
-            }
-        }
+        // if ((Input.GetMouseButtonDown(0) && auto) || (Input.GetMouseButtonDown(0) && !auto) || enemyFire){
+        //     if (loaderAmmo <= 0){
+        //         StartCoroutine(load());
+        //     }else{
+        //         if (Time.time > fireStart + fireRate) {
+        //             fireStart = Time.time;
+        //             Fire();
+        //         }
+        //     }
+        // }
 
-        if (Input.GetKeyDown(KeyCode.R)){
-            StartCoroutine(load());
-        }
+
+        //TODO: Hacer recarga
+        // if (Input.GetKeyDown(KeyCode.R)){
+        //     StartCoroutine(load());
+        // }
+
+
+    }
+
+    public void ReLoad(){
+        StartCoroutine(load());
     }
 
     public void Fire()

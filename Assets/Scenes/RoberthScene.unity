@@ -301,53 +301,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1463731283
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1463731284}
-  - component: {fileID: 1463731285}
-  m_Layer: 0
-  m_Name: WeaponInventory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1463731284
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463731283}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.72, y: 0, z: 0.43}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1549500633}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1463731285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463731283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12612aa83057c3840a8ea4a12ce23165, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  armas:
-  - {fileID: 5852337524115760849, guid: 55a0610ece6100a4e96afde160b313de, type: 3}
-  - {fileID: -3479160475309700794, guid: 281c4d741cc044b4cbeb436513fbc5ec, type: 3}
 --- !u!1 &1549500629
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +343,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 235784693}
-  - {fileID: 1463731284}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -478,6 +430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee361b6b181494f4fb54aaebcc05a4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: -3479160475309700794, guid: 281c4d741cc044b4cbeb436513fbc5ec, type: 3}
+  - {fileID: 5852337524115760849, guid: 55a0610ece6100a4e96afde160b313de, type: 3}
   camara: {fileID: 235784695}
   sensibilidad: 600
   velocidad: 20
