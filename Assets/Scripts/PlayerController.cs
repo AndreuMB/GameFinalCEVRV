@@ -99,13 +99,14 @@ public class PlayerController : Character
         float prevAngleX = Quaternion.Angle(transform.rotation, Camera.main.transform.rotation * q);
 
         //Rotamos la camara en vertical si esta dentro del rango permitido
-        if (prevAngleX < LIMIT_ANGLE)
+        if (prevAngleX > LIMIT_ANGLE)
         {
-            camara.transform.rotation *= q;
+            // camara.transform.rotation *= q;
+            rotacionY = 0;
         }
 
         //Rotamos al personaje en el eje Y
-        Vector3 rotacionJugador = new Vector3(transform.eulerAngles.x, rotacionX+transform.eulerAngles.y, transform.eulerAngles.z);
+        Vector3 rotacionJugador = new Vector3(rotacionY + transform.eulerAngles.x, rotacionX+transform.eulerAngles.y, transform.eulerAngles.z);
         transform.rotation = Quaternion.Euler(rotacionJugador);
 
     }
