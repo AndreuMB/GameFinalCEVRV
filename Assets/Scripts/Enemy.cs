@@ -159,10 +159,8 @@ public class Enemy : Character
 
     protected override bool decideDamage(Bullet bullet)
     {
-        print("ENEMY bullet.owner.GetType() = " + bullet.owner.GetType());
+        // if is a player return true
         return (bullet.owner.GetType() == typeof(PlayerController));
-        // if (bullet.owner.GetComponent<Weapon>().owner.tag == Tags.PLAYER) return true;
-        // return false;
     }
 
     IEnumerator randomRange(){

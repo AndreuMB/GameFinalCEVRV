@@ -24,16 +24,22 @@ public abstract class Character : MonoBehaviour
     }
 
     protected void OnCollisionEnter(Collision other){
+        // if GO is a bullet
         if (other.gameObject.tag==Tags.BULLET)
         {
-            if(decideDamage(other.gameObject.GetComponent<Bullet>())) takeDamage();
+            Bullet bullet = other.gameObject.GetComponent<Bullet>();
+            // if isn't friendly fire takeDamage
+            if(decideDamage(bullet)) takeDamage(bullet);
         }
     }
 
     protected abstract bool decideDamage(Bullet bullet);
 
-    protected void takeDamage(){
-
+    protected void takeDamage(Bullet bullet){
+        // update character life
+        life = life - bullet.weapon.getDamage();
+        print("life = " + life);
+        if (life <= 0) Destroy(gameObject);
     }
 
     protected void InstanciaArmas()
@@ -41,6 +47,7 @@ public abstract class Character : MonoBehaviour
         for (int i = 0; i < weapons.Count; i++)
         {
             weapons[i] = Instantiate(weapons[i].gameObject, transform.position, Quaternion.identity, transform).GetComponent<Weapon>();
+            weapons[i].owner = this;
             weapons[i].gameObject.SetActive(false);
         }
         weapons[0].gameObject.SetActive(true);
