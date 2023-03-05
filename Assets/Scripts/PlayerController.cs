@@ -52,11 +52,12 @@ public class PlayerController : Character
     }
 
     void FixedUpdate(){
-        PlayerMovement();
+        
     }
 
     void Update()
     {
+        PlayerMovement();
         PlayerRotation();
 
         if(Input.GetKey(KeyCode.K)){
@@ -151,7 +152,7 @@ public class PlayerController : Character
     {
         for (int i = 0; i < weapons.Count; i++)
         {
-            weapons[i] = Instantiate(weapons[i].gameObject, transform.position, Quaternion.identity, transform).GetComponent<Weapon>();
+            weapons[i] = Instantiate(weapons[i].gameObject, transform.GetChild(0).transform.GetChild(0).transform.position, Quaternion.identity, transform.GetChild(0).transform.GetChild(0).transform).GetComponent<Weapon>();
             weapons[i].gameObject.SetActive(false);
         }
         weapons[0].gameObject.SetActive(true);
