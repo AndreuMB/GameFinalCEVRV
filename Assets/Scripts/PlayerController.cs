@@ -124,7 +124,7 @@ public class PlayerController : Character
 
     void InputDisparar()
     {
-        if ((Input.GetMouseButton(0) && selectedWeapon.GetComponent<Weapon>().auto) || (Input.GetMouseButton(0) && !selectedWeapon.GetComponent<Weapon>().auto))
+        if ((Input.GetMouseButton(0) && selectedWeapon.weaponData.auto) || (Input.GetMouseButton(0) && !selectedWeapon.weaponData.auto))
         {
             Fire();
         }

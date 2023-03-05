@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beafa218366eec9429efe56683510630, type: 3}
-  m_Name: Oleada2
+  m_Script: {fileID: 11500000, guid: 8e90e604fd1654b48952a58aa06d9bb3, type: 3}
+  m_Name: Auto
   m_EditorClassIdentifier: 
-  waveID: 2
-  numEnemies: 12
-  curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  wName: Auto
+  bullet: {fileID: 7335763105056745259, guid: 313cf126888bdcb4aaf9e46f436bb506, type: 3}
+  loaderMaxAmmo: 16
+  loadTime: 3
+  fireRate: 0.2
+  damage: 10
+  auto: 1
+  zoom: 1
