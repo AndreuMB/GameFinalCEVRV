@@ -85,6 +85,8 @@ public class Weapon : MonoBehaviour
     }
 
     IEnumerator load(){
+        //TODO: extraer el if, y las variables fuera, ya que la variable al cambiar el arma se bugea y hace que no se pueda volver a usar el arma
+        //Quitar !loadSW del if, no tiene sentido que esté ahi
         if (!loadSw && loaderAmmo!=weaponData.loaderMaxAmmo)
         {
             loadSw = true;
