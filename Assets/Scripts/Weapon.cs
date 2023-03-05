@@ -5,33 +5,17 @@ using UnityEngine.Events;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] GameObject[] bullets;
-    [SerializeField] GameObject bullet;
-    // 6 pistol
-    // 10 auto
-    [SerializeField] float loaderMaxAmmo;
-    // 1 pistol
-    // 2 auto
-    [SerializeField] float loadTime;
-    // 0.5f pistol
-    // 0.2f auto
-    [SerializeField] float fireRate;
-    // 15 pistol
-    // 10 auto
-    [SerializeField] float damage;
-    // 0 pistol
-    // 1 auto
-    [SerializeField] public bool auto;
-    [SerializeField] float zoom = 1;
-    public float loaderAmmo;
+    public WeaponSO weaponData;
+    float loaderAmmo;
     float fireStart;
     bool loadSw;
     bool enemyFire;
+    [System.NonSerialized] public Character owner;
 
     // Start is called before the first frame update
     void Start()
     {
-        loaderAmmo = loaderMaxAmmo;
+        loaderAmmo = weaponData.loaderMaxAmmo;
         loadSw = false;
 
         if (transform.parent.GetComponent<Enemy>())
@@ -79,7 +63,7 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            if (Time.time > fireStart + fireRate)
+            if (Time.time > fireStart + weaponData.fireRate)
             {
                 fireStart = Time.time;
                 Shoot();
@@ -92,30 +76,31 @@ public class Weapon : MonoBehaviour
         const int OFFSET_BULLET = 2;
         if (!loadSw)
         {
-            GameObject instance = Instantiate(bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
-            instance.GetComponent<Bullet>().setWeaponDamage(damage);
+            GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
+            // instance.GetComponent<Bullet>().setWeaponDamage(damage);
+            instance.GetComponent<Bullet>().weapon = this;
             instance.GetComponent<Rigidbody>().AddForce(transform.forward * 200, ForceMode.VelocityChange);
             loaderAmmo--;
         }
     }
 
     IEnumerator load(){
-        if (!loadSw && loaderAmmo!=loaderMaxAmmo)
+        if (!loadSw && loaderAmmo!=weaponData.loaderMaxAmmo)
         {
             loadSw = true;
-            yield return new WaitForSeconds(loadTime);
-            loaderAmmo = loaderMaxAmmo;
+            yield return new WaitForSeconds(weaponData.loadTime);
+            loaderAmmo = weaponData.loaderMaxAmmo;
             loadSw = false;
         }
         yield break;
     }
 
     public float getZoom(){
-        return zoom;
+        return weaponData.zoom;
     }
 
     public float getDamage(){
-        return damage;
+        return weaponData.damage;
     }
 
     void swAutoFire(){

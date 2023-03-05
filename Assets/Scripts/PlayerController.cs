@@ -97,17 +97,24 @@ public class PlayerController : Character
         float prevAngleX = Quaternion.Angle(transform.rotation, Camera.main.transform.rotation * q);
 
         //Rotamos la camara en vertical si esta dentro del rango permitido
-        if (prevAngleX < LIMIT_ANGLE)
+        if (prevAngleX > LIMIT_ANGLE)
         {
-            camara.transform.rotation *= q;
+            // camara.transform.rotation *= q;
+            rotacionY = 0;
         }
 
         //Rotamos al personaje en el eje Y
-        Vector3 rotacionJugador = new Vector3(transform.eulerAngles.x, rotacionX+transform.eulerAngles.y, transform.eulerAngles.z);
+        Vector3 rotacionJugador = new Vector3(rotacionY + transform.eulerAngles.x, rotacionX+transform.eulerAngles.y, transform.eulerAngles.z);
         transform.rotation = Quaternion.Euler(rotacionJugador);
 
     }
 
+    protected override bool decideDamage(Bullet bullet)
+    {
+        // if is an enemy return true
+        return (bullet.owner.GetType() == typeof(Enemy));
+    }
+    
     void InputRecargar()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -118,7 +125,7 @@ public class PlayerController : Character
 
     void InputDisparar()
     {
-        if ((Input.GetMouseButton(0) && selectedWeapon.GetComponent<Weapon>().auto) || (Input.GetMouseButton(0) && !selectedWeapon.GetComponent<Weapon>().auto))
+        if ((Input.GetMouseButton(0) && selectedWeapon.weaponData.auto) || (Input.GetMouseButton(0) && !selectedWeapon.weaponData.auto))
         {
             Fire();
         }

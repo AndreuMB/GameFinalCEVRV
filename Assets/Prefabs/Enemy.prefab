@@ -132,10 +132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 2648893348669642494}
+  - {fileID: 5852337524115760849, guid: 55a0610ece6100a4e96afde160b313de, type: 3}
   life: 20
-  bullet: {fileID: 7335763105056745259, guid: 20c8b7b1a16fa574ba6ff894e4c93c0d, type: 3}
-  fireRate: 0.5
+  speed: 0
   fireEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -318,10 +317,5 @@ PrefabInstance:
 --- !u!4 &2648893348669642489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5053179914897065354, guid: 55a0610ece6100a4e96afde160b313de, type: 3}
-  m_PrefabInstance: {fileID: 7125330314025325427}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2648893348669642494 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5053179914897065357, guid: 55a0610ece6100a4e96afde160b313de, type: 3}
   m_PrefabInstance: {fileID: 7125330314025325427}
   m_PrefabAsset: {fileID: 0}

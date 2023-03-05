@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class Bullet : MonoBehaviour
 {
     public static UnityEvent hit = new UnityEvent();
+    public Weapon weapon;
+    public Character owner => weapon.owner;
 
     // GameObject owner;
 

@@ -6,16 +6,13 @@ using UnityEngine.Events;
 
 public class Enemy : Character
 {
-    [SerializeField] float life = 20;
+    // [SerializeField] float life = 20;
     Transform player;
     Transform nexus;
     Transform target;
     // [SerializeField] float speed = 10;
     Rigidbody rb;
-    [SerializeField] GameObject bullet;
-    [SerializeField] float fireRate = 0.5f;
     NavMeshAgent agent;
-    float fireStart;
     float rangeToFire;
     RaycastHit raycast;
     public static UnityEvent death = new UnityEvent();
@@ -24,6 +21,7 @@ public class Enemy : Character
     // Start is called before the first frame update
     void Start()
     {
+        InstanciaArmas();
         // Bullet.hit.AddListener(damage);
         player = GameObject.Find("Player").transform;
         nexus = GameObject.Find("Nexus").transform;
@@ -41,31 +39,31 @@ public class Enemy : Character
         // }
     }
 
-    void OnCollisionEnter(Collision other){
-        if (other.gameObject.tag==Tags.BULLET)
-        {
+    // void OnCollisionEnter(Collision other){
+    //     if (other.gameObject.tag==Tags.BULLET)
+    //     {
 
 
-            // Bullet bullet = other.gameObject.GetComponent<Bullet>();
+    //         // Bullet bullet = other.gameObject.GetComponent<Bullet>();
 
-            // if (bullet.isFromEnemy)
-            // {
+    //         // if (bullet.isFromEnemy)
+    //         // {
                 
-            // }
+    //         // }
 
-            // GameObject playerWeapon = GameObject.FindWithTag("PlayerWeapon");
-            // float damageWeapon = playerWeapon.GetComponent<Weapon>().getDamage();
-            float damageWeapon = other.gameObject.GetComponent<Bullet>().getWeaponDamage();
-            life = life-damageWeapon;
-            if (life <= 0)
-            {
-                death.Invoke();
-                Destroy(gameObject);
-                return;
-            }
+    //         // GameObject playerWeapon = GameObject.FindWithTag("PlayerWeapon");
+    //         // float damageWeapon = playerWeapon.GetComponent<Weapon>().getDamage();
+    //         float damageWeapon = other.gameObject.GetComponent<Bullet>().getWeaponDamage();
+    //         life = life-damageWeapon;
+    //         if (life <= 0)
+    //         {
+    //             death.Invoke();
+    //             Destroy(gameObject);
+    //             return;
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
     // Update is called once per frame
     void Update()
@@ -157,6 +155,12 @@ public class Enemy : Character
             agent.isStopped=true;
         }
 
+    }
+
+    protected override bool decideDamage(Bullet bullet)
+    {
+        // if is a player return true
+        return (bullet.owner.GetType() == typeof(PlayerController));
     }
 
     IEnumerator randomRange(){
