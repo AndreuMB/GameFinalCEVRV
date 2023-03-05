@@ -9,8 +9,8 @@ public abstract class Character : MonoBehaviour
     protected int selectedIndex = 0;
 
     [Header("Stats")]
-    [SerializeField] float life;
-    [SerializeField] float speed;
+    [SerializeField] protected float life;
+    [SerializeField] protected float speed;
 
     void AddWeapon(Weapon weapon)
     {
