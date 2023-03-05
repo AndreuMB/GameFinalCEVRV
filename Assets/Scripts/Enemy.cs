@@ -24,8 +24,8 @@ public class Enemy : Character
     {
         InstanciaArmas();
         // Bullet.hit.AddListener(damage);
-        player = GameObject.Find("Player").transform;
-        nexus = GameObject.Find("Nexus").transform;
+        player = GameObject.FindWithTag("Player").transform;
+        nexus = GameObject.FindWithTag("Nexus").transform;
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         // StartCoroutine(randomRange());
@@ -41,17 +41,17 @@ public class Enemy : Character
 
         // move check
 
-        const float OFFSET_DISTANCE_ENEMY_TARGET = 20f;
+        // const float OFFSET_DISTANCE_ENEMY_TARGET = 20f;
 
         float distanceTarget = Vector3.Distance (gameObject.transform.position, target.transform.position);
 
         // El jugador no está en rango
-        if (distanceTarget >= rangeToFire + OFFSET_DISTANCE_ENEMY_TARGET)
-        {
-            // get closer target and move to it
+        // if (distanceTarget >= rangeToFire + OFFSET_DISTANCE_ENEMY_TARGET)
+        // {
+            // get closer target and move to it ALWAYS
             setTarget();
-            return;
-        }
+            // return;
+        // }
 
         manageBehaviour();
        
