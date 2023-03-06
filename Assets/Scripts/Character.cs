@@ -51,7 +51,7 @@ public abstract class Character : MonoBehaviour
     {
         for (int i = 0; i < weapons.Count; i++)
         {
-            weapons[i] = Instantiate(weapons[i].gameObject, transform.GetChild(0).transform.GetChild(0).transform.position, Quaternion.identity, transform.GetChild(0).transform.GetChild(0).transform).GetComponent<Weapon>();
+            weapons[i] = Instantiate(weapons[i].gameObject, transform.GetChild(0).GetChild(0).position + weapons[i].transform.position, Quaternion.identity, transform.GetChild(0).transform.GetChild(0).transform).GetComponent<Weapon>();
             weapons[i].owner = this;
             weapons[i].gameObject.SetActive(false);
         }
