@@ -74,19 +74,20 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         const int OFFSET_BULLET = 2;
+        const int STRENGHT = 100;
         if (!loadSw)
         {
             GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
             // instance.GetComponent<Bullet>().setWeaponDamage(damage);
             instance.GetComponent<Bullet>().weapon = this;
-            instance.GetComponent<Rigidbody>().AddForce(transform.forward * 200, ForceMode.VelocityChange);
+            instance.GetComponent<Rigidbody>().AddForce(transform.forward * STRENGHT, ForceMode.VelocityChange);
             loaderAmmo--;
         }
     }
 
     IEnumerator load(){
         //TODO: extraer el if, y las variables fuera, ya que la variable al cambiar el arma se bugea y hace que no se pueda volver a usar el arma
-        //Quitar !loadSW del if, no tiene sentido que esté ahi
+        //Quitar !loadSW del if, no tiene sentido que estï¿½ ahi
         if (!loadSw && loaderAmmo!=weaponData.loaderMaxAmmo)
         {
             loadSw = true;
