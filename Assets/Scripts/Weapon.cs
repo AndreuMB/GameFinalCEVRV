@@ -6,16 +6,26 @@ using UnityEngine.Events;
 public class Weapon : MonoBehaviour
 {
     public WeaponSO weaponData;
+    //TODO cambiar float to int
     float loaderAmmo;
+    public float ammo => loaderAmmo;
+
     float fireStart;
     bool loadSw;
     bool enemyFire;
     [System.NonSerialized] public Character owner;
 
+
+    void Awake()
+    {
+        loaderAmmo = weaponData.loaderMaxAmmo;
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        loaderAmmo = weaponData.loaderMaxAmmo;
+        print(loaderAmmo);
         loadSw = false;
 
         if (transform.parent.GetComponent<Enemy>())
@@ -81,18 +91,20 @@ public class Weapon : MonoBehaviour
             instance.GetComponent<Bullet>().weapon = this;
             instance.GetComponent<Rigidbody>().AddForce(transform.forward * 200, ForceMode.VelocityChange);
             loaderAmmo--;
+            WeaponStateChanged();
         }
     }
 
     IEnumerator load(){
         //TODO: extraer el if, y las variables fuera, ya que la variable al cambiar el arma se bugea y hace que no se pueda volver a usar el arma
-        //Quitar !loadSW del if, no tiene sentido que esté ahi
+        //Quitar !loadSW del if, no tiene sentido que estï¿½ ahi
         if (!loadSw && loaderAmmo!=weaponData.loaderMaxAmmo)
         {
             loadSw = true;
             yield return new WaitForSeconds(weaponData.loadTime);
             loaderAmmo = weaponData.loaderMaxAmmo;
             loadSw = false;
+            WeaponStateChanged();
         }
         yield break;
     }
@@ -107,5 +119,13 @@ public class Weapon : MonoBehaviour
 
     void swAutoFire(){
         enemyFire = !enemyFire;
+    }
+
+    void WeaponStateChanged()
+    {
+        if (owner is PlayerController player)
+            {
+                player.OnWeaponStateChange.Invoke(this);
+            }
     }
 }

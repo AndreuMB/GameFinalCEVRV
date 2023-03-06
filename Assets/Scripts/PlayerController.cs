@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : Character
 {
@@ -26,6 +27,11 @@ public class PlayerController : Character
     [Header("Variables")]
     const float LIMIT_ANGLE = 45;
 
+    public UnityEvent<Weapon> OnWeaponStateChange = new UnityEvent<Weapon>();
+
+
+
+
 
     void Start()
     {
@@ -46,6 +52,7 @@ public class PlayerController : Character
 
         //Instancia de Arma
         InstanciaArmas();
+        OnWeaponStateChange.Invoke(selectedWeapon);
     }
 
     void FixedUpdate(){
@@ -151,6 +158,8 @@ public class PlayerController : Character
             selectedIndex += a;
         }
         selectedWeapon.gameObject.SetActive(true);
+        OnWeaponStateChange.Invoke(selectedWeapon);
+        //print(selectedWeapon.);
     }
 
 }
