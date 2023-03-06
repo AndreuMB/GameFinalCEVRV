@@ -19,7 +19,11 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         Spawn.spawnEnemyEvent.AddListener(spawnCheck);
-        Enemy.death.AddListener(checkWave);
+        // foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        // {
+        //     enemy.GetComponent<Enemy>().death.AddListener(checkWave);
+        // }
+        // Enemy.death.AddListener(checkWave);
         StartCoroutine(nextWave());
     }
 
@@ -30,7 +34,7 @@ public class WaveManager : MonoBehaviour
     }
 
     void spawnCheck(){
-        enemiesScene = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        enemiesScene = GameObject.FindGameObjectsWithTag(Tags.ENEMY).Length;
 
         if (enemiesScene>=maxEnemiesScene || enemiesWave<=enemiesScene)
         {
@@ -57,7 +61,7 @@ public class WaveManager : MonoBehaviour
         yield break;
     }
 
-    void checkWave(){
+    public void checkWave(){
         print("enter check wave " + enemiesWave);
         enemiesWave--;
         if (enemiesWave<=0)

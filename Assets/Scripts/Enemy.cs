@@ -4,101 +4,97 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Character
 {
-    [SerializeField] float life = 20;
+    // [SerializeField] float life = 20;
     Transform player;
     Transform nexus;
     Transform target;
     // [SerializeField] float speed = 10;
     Rigidbody rb;
-    [SerializeField] GameObject bullet;
-    [SerializeField] float fireRate = 0.5f;
     NavMeshAgent agent;
-    float fireStart;
     float rangeToFire;
     RaycastHit raycast;
-    public static UnityEvent death = new UnityEvent();
+    // public static UnityEvent death = new UnityEvent();
     public UnityEvent fireEvent = new UnityEvent();
-    [SerializeField] float weaponDamage = 10;
+    Transform lastTarget;
+    // [SerializeField] float weaponDamage = 10;
     // Start is called before the first frame update
     void Start()
     {
+        InstanciaArmas();
         // Bullet.hit.AddListener(damage);
-        player = GameObject.Find("Player").transform;
-        nexus = GameObject.Find("Nexus").transform;
+        player = GameObject.FindWithTag("Player").transform;
+        nexus = GameObject.FindWithTag("Nexus").transform;
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         // StartCoroutine(randomRange());
         rangeToFire = Random.Range(15,30);
-    }
-
-    void damage(){
-        // life--;
-        // if (life <= 0)
-        // {
-        //     Destroy(gameObject);
-        // }
-    }
-
-    void OnCollisionEnter(Collision other){
-        if (other.gameObject.tag=="Bullet")
-        {
-            // GameObject playerWeapon = GameObject.FindWithTag("PlayerWeapon");
-            // float damageWeapon = playerWeapon.GetComponent<Weapon>().getDamage();
-            float damageWeapon = other.gameObject.GetComponent<Bullet>().getWeaponDamage();
-            life = life-damageWeapon;
-            print("life = " + life);
-            if (life <= 0)
-            {
-                Destroy(gameObject);
-                death.Invoke();
-            }
-        }
+        setTarget();
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(target);
+
+        // move check
+
+        // const float OFFSET_DISTANCE_ENEMY_TARGET = 20f;
+
+        float distanceTarget = Vector3.Distance (gameObject.transform.position, target.transform.position);
+
+        // El jugador no está en rango
+        // if (distanceTarget >= rangeToFire + OFFSET_DISTANCE_ENEMY_TARGET)
+        // {
+            // get closer target and move to it ALWAYS
+            setTarget();
+            // return;
+        // }
+
+        manageBehaviour();
+       
+    }
+
+    void setTarget(){
+        const float PLAYER_PRIORITY = 0.2f;
+        // const float OFFSET_DISTANCE_ENEMY_PLAYER = 20f;
         float distancePlayer = Vector3.Distance (gameObject.transform.position, player.transform.position);
         float distanceNexus = Vector3.Distance (gameObject.transform.position, nexus.transform.position);
 
-        target = (distancePlayer>distanceNexus+(distanceNexus*20/100)) ? nexus : player;
-
-        transform.LookAt(target);
+        target = (distancePlayer>distanceNexus+(distanceNexus * PLAYER_PRIORITY)) ? nexus : player;
         
-        if (distancePlayer<rangeToFire+20)
-        {
-            // agent.isStopped=true;
-            // rb.velocity = Vector3.zero;
-            // rb.constraints = RigidbodyConstraints.FreezePosition;
-            if(Physics.Linecast(transform.position,target.position, out raycast)){
-                if (raycast.transform.tag == target.tag) // if not object between
-                {
-                    // rb.velocity = Vector3.zero;
-                    // rb.constraints = RigidbodyConstraints.FreezePosition;
-                    fireEvent.Invoke();
-                    // if (Time.time > fireStart + fireRate) {
-                    //     fireStart = Time.time;
-                    //     fire();
-                    // }
-                    if (distancePlayer<rangeToFire){
-                        agent.isStopped=true;
-                    }
-                }
-                }else{
-                    fireEvent.Invoke();
-                    agent.isStopped=false;
-                }
-            // }
-           
-        }else{
-            agent.SetDestination(target.position);
-            // rb.constraints = RigidbodyConstraints.None;
-            // rb.constraints = RigidbodyConstraints.FreezeRotationX;
-            // rb.velocity = transform.forward * speed;
+        // must be in update because target can move
+        agent.SetDestination(target.position);
 
+        // when target change do
+        // if (target != lastTarget)
+        // {
+        //     lastTarget = target;
+        //     manageBehaviour();
+        // }
+    }
+
+    void manageBehaviour()
+    {
+        bool directContact = Physics.Linecast(transform.position,target.position, out raycast);
+        // NO tenemos contacto directo || no es con el target
+        if(!directContact || raycast.transform.tag != target.tag)
+        {
+            agent.isStopped=false;
+            return;
         }
+
+        // all conditions done can stop and shoot
+        agent.isStopped=true;
+        Fire();
+
+    }
+
+    protected override bool decideDamage(Bullet bullet)
+    {
+        // if is a player return true
+        return (bullet.owner.GetType() == typeof(PlayerController));
     }
 
     IEnumerator randomRange(){
@@ -114,16 +110,16 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void fire(){
-        // if (!loadSw)
-        // {
-            GameObject instance = Instantiate(bullet, transform.position, transform.rotation);
-            instance.GetComponent<Rigidbody>().AddForce(transform.forward * 200, ForceMode.VelocityChange);
-            // chargerAmmo--;
-        // }
-    }
+    // void fire(){
+    //     // if (!loadSw)
+    //     // {
+    //         GameObject instance = Instantiate(bullet, transform.position, transform.rotation);
+    //         instance.GetComponent<Rigidbody>().AddForce(transform.forward * 200, ForceMode.VelocityChange);
+    //         // chargerAmmo--;
+    //     // }
+    // }
 
-    public float getWeaponDamage(){
-        return weaponDamage;
-    }
+    // public float getWeaponDamage(){
+    //     return weaponDamage;
+    // }
 }

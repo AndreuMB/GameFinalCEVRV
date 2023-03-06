@@ -9,9 +9,7 @@ TagManager:
   - EnemyBullet
   - PlayerWeapon
   - Nexus
-  - Machine
-  - WeaponSlot
-  - Weapon
+  - WaveManager
   layers:
   - Default
   - TransparentFX

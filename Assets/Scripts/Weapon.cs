@@ -5,40 +5,25 @@ using UnityEngine.Events;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] GameObject[] bullets;
-    GameObject bullet;
-    // 6 pistol
-    // 10 auto
-    [SerializeField] float loaderMaxAmmo;
-    // 1 pistol
-    // 2 auto
-    [SerializeField] float loadTime;
-    // 0.5f pistol
-    // 0.2f auto
-    [SerializeField] float fireRate;
-    // 15 pistol
-    // 10 auto
-    [SerializeField] float damage;
-    // 0 pistol
-    // 1 auto
-    [SerializeField] bool auto;
-    [SerializeField] float zoom = 1;
+    public WeaponSO weaponData;
     float loaderAmmo;
     float fireStart;
     bool loadSw;
     bool enemyFire;
+    [System.NonSerialized] public Character owner;
 
     // Start is called before the first frame update
     void Start()
     {
-        loaderAmmo = loaderMaxAmmo;
+        loaderAmmo = weaponData.loaderMaxAmmo;
         loadSw = false;
+
         if (transform.parent.GetComponent<Enemy>())
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
-            bullet = bullets[1];
+            // bullet = bullets[1];
         }else{
-            bullet = bullets[0];
+            // bullet = bullets[0];
         }
         // PlayerController.triggerFire.AddListener(fire); trigger from player
     }
@@ -46,49 +31,79 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKey(KeyCode.Space) && auto) || (Input.GetKeyDown(KeyCode.Space) && !auto) || enemyFire){
-            if (loaderAmmo <= 0){
-                StartCoroutine(load());
-            }else{
-                if (Time.time > fireStart + fireRate) {
-                    fireStart = Time.time;
-                    fire();
-                }
-            }
-        }
+        // if ((Input.GetMouseButtonDown(0) && auto) || (Input.GetMouseButtonDown(0) && !auto) || enemyFire){
+        //     if (loaderAmmo <= 0){
+        //         StartCoroutine(load());
+        //     }else{
+        //         if (Time.time > fireStart + fireRate) {
+        //             fireStart = Time.time;
+        //             Fire();
+        //         }
+        //     }
+        // }
 
-        if (Input.GetKeyDown(KeyCode.R)){
+
+        //TODO: Hacer recarga
+        // if (Input.GetKeyDown(KeyCode.R)){
+        //     StartCoroutine(load());
+        // }
+
+
+    }
+
+    public void ReLoad(){
+        StartCoroutine(load());
+    }
+
+    public void Fire()
+    {
+
+        if (loaderAmmo <= 0){
             StartCoroutine(load());
+        }
+        else
+        {
+            if (Time.time > fireStart + weaponData.fireRate)
+            {
+                fireStart = Time.time;
+                Shoot();
+            }
         }
     }
 
-    void fire(){
+    void Shoot()
+    {
+        const int OFFSET_BULLET = 2;
+        const int STRENGHT = 100;
         if (!loadSw)
         {
-            GameObject instance = Instantiate(bullet, transform.position, transform.rotation);
-            instance.GetComponent<Bullet>().setWeaponDamage(damage);
-            instance.GetComponent<Rigidbody>().AddForce(transform.forward * 200, ForceMode.VelocityChange);
+            GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
+            // instance.GetComponent<Bullet>().setWeaponDamage(damage);
+            instance.GetComponent<Bullet>().weapon = this;
+            instance.GetComponent<Rigidbody>().AddForce(transform.forward * STRENGHT, ForceMode.VelocityChange);
             loaderAmmo--;
         }
     }
 
     IEnumerator load(){
-        if (!loadSw && loaderAmmo!=loaderMaxAmmo)
+        //TODO: extraer el if, y las variables fuera, ya que la variable al cambiar el arma se bugea y hace que no se pueda volver a usar el arma
+        //Quitar !loadSW del if, no tiene sentido que est� ahi
+        if (!loadSw && loaderAmmo!=weaponData.loaderMaxAmmo)
         {
             loadSw = true;
-            yield return new WaitForSeconds(loadTime);
-            loaderAmmo = loaderMaxAmmo;
+            yield return new WaitForSeconds(weaponData.loadTime);
+            loaderAmmo = weaponData.loaderMaxAmmo;
             loadSw = false;
         }
         yield break;
     }
 
     public float getZoom(){
-        return zoom;
+        return weaponData.zoom;
     }
 
     public float getDamage(){
-        return damage;
+        return weaponData.damage;
     }
 
     void swAutoFire(){
