@@ -162,9 +162,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 5852337524115760849, guid: 55a0610ece6100a4e96afde160b313de, type: 3}
+  - {fileID: 3993779761761343947, guid: c49331a7acf875f43a650bbd3ac20b21, type: 3}
   life: 20
   speed: 0
+  death:
+    m_PersistentCalls:
+      m_Calls: []
   fireEvent:
     m_PersistentCalls:
       m_Calls: []

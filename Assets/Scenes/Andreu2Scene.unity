@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 562037401}
   m_Layer: 0
   m_Name: WaveManager
-  m_TagString: Untagged
+  m_TagString: WaveManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -488,6 +488,9 @@ MonoBehaviour:
   - {fileID: 5852337524115760849, guid: 55a0610ece6100a4e96afde160b313de, type: 3}
   life: 0
   speed: 0
+  death:
+    m_PersistentCalls:
+      m_Calls: []
   camara: {fileID: 963194227}
   sensibilidad: 200
   altura: 5

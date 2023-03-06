@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Character : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public abstract class Character : MonoBehaviour
     [Header("Stats")]
     [SerializeField] protected float life;
     [SerializeField] protected float speed;
+
+    public UnityEvent death = new UnityEvent();
 
     void AddWeapon(Weapon weapon)
     {
@@ -38,8 +41,10 @@ public abstract class Character : MonoBehaviour
     protected void takeDamage(Bullet bullet){
         // update character life
         life = life - bullet.weapon.getDamage();
-        print("life = " + life);
-        if (life <= 0) Destroy(gameObject);
+        if (life <= 0) {
+            death.Invoke();
+            Destroy(gameObject);
+        }
     }
 
     protected void InstanciaArmas()
