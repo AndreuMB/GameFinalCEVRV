@@ -44,9 +44,18 @@ public class Nexus : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other){
-        if (other.gameObject.tag=="EnemyBullet")
+        if (other.gameObject.tag==Tags.BULLET)
         {
-            // float damage = other.gameObject.GetComponent<Enemy>().getWeaponDamage();
+            Bullet bullet = other.gameObject.GetComponent<Bullet>();
+            if (bullet.owner.GetType() == typeof(Enemy)) {
+                float damage = bullet.weapon.getDamage();
+                life-=damage;
+                print("nexusLife = " + life);
+                if (life <= 0){
+                    // Destroy(gameObject);
+                    GameManager.gameOver();
+                }
+            }
         }
     }
 }
