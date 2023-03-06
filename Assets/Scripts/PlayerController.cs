@@ -19,11 +19,9 @@ public class PlayerController : Character
 
     [Header("Stats")]
     [SerializeField]
-    float velocidad;
-    [SerializeField]
-    int vida;
-    [SerializeField]
     float altura;
+    // inmortal
+    [SerializeField] bool god;
 
     [Header("Variables")]
     const float LIMIT_ANGLE = 45;
@@ -38,7 +36,6 @@ public class PlayerController : Character
         // weaponObj.transform.localPosition = new Vector3(1,0,0);
         // weaponObj.transform.localRotation=Quaternion.identity;
 
-        vida = 100;
         altura = transform.localScale.y;
 
         //Bloqueo del cursor al centro e invisible cuando el juego esta en primera instancia
@@ -73,16 +70,16 @@ public class PlayerController : Character
     void PlayerMovement()
     {
         //Variables donde se captura y guarda los desplazamientos
-        movimientoX = Input.GetAxis("Horizontal") * Time.deltaTime * velocidad;
-        movimientoZ = Input.GetAxis("Vertical") * Time.deltaTime * velocidad;
+        movimientoX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+        movimientoZ = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
         //Vectores donde transladaremos al personaje segun su rotación.
         Vector3 ver = new Vector3(transform.forward.x, 0, transform.forward.z) * movimientoZ;
         Vector3 hor = transform.right * movimientoX;
 
         //Movimiento del personaje
-        transform.localPosition += hor * velocidad * Time.deltaTime;
-        transform.position += ver * velocidad * Time.deltaTime;
+        transform.localPosition += hor * speed * Time.deltaTime;
+        transform.position += ver * speed * Time.deltaTime;
     }
     void PlayerRotation()
     {
@@ -111,6 +108,7 @@ public class PlayerController : Character
 
     protected override bool decideDamage(Bullet bullet)
     {
+        if (god) return false;
         // if is an enemy return true
         return (bullet.owner.GetType() == typeof(Enemy));
     }
