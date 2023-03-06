@@ -74,7 +74,7 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         const int OFFSET_BULLET = 2;
-        const int STRENGHT = 100;
+        const int STRENGHT = 200;
         if (!loadSw)
         {
             GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);

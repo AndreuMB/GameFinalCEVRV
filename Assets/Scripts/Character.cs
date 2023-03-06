@@ -41,9 +41,15 @@ public abstract class Character : MonoBehaviour
     protected void takeDamage(Bullet bullet){
         // update character life
         life = life - bullet.weapon.getDamage();
+        print("Characterlife = " + life);
         if (life <= 0) {
-            death.Invoke();
-            Destroy(gameObject);
+            if (gameObject.tag == Tags.PLAYER)
+            {
+                GameManager.gameOver();
+            }else{
+                death.Invoke();
+                Destroy(gameObject);
+            }
         }
     }
 
