@@ -11,6 +11,9 @@ public class Weapon : MonoBehaviour
     bool loadSw;
     bool enemyFire;
     [System.NonSerialized] public Character owner;
+    Vector3 prevPos;
+    Vector3 actualPos;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,11 @@ public class Weapon : MonoBehaviour
             // bullet = bullets[0];
         }
         // PlayerController.triggerFire.AddListener(fire); trigger from player
+    }
+
+    void OnEnable(){
+        if (!gameObject) return;
+        StartCoroutine(checkPlayerMovement());
     }
 
     // Update is called once per frame
@@ -108,5 +116,23 @@ public class Weapon : MonoBehaviour
 
     void swAutoFire(){
         enemyFire = !enemyFire;
+    }
+
+    IEnumerator checkPlayerMovement() {
+        Animator animator = GetComponent<Animator>();
+        const float MIN_MOVEMENT = 0.5f;
+        while (isActiveAndEnabled)
+        {
+            // owner error;
+            // prevPos = owner.transform.position;
+            yield return new WaitForSeconds(0.1f);
+            // actualPos = owner.transform.position;
+            // float distance = Vector3.Distance(prevPos,actualPos);
+            // if (distance<MIN_MOVEMENT) animator.SetBool("run",false);
+            // if (distance>=MIN_MOVEMENT) animator.SetBool("run",true);
+        }
+        yield break;
+        // if(owner.transform.hasChanged) print("character move");
+        // if(!owner.transform.hasChanged) print("character STOP");
     }
 }
