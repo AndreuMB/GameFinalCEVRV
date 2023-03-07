@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     [System.NonSerialized] public Character owner;
     Vector3 prevPos;
     Vector3 actualPos;
+    Animator animator;
     // Vector3 weaponOffset;
 
 
@@ -86,6 +87,9 @@ public class Weapon : MonoBehaviour
         const int STRENGHT = 200;
         if (!loadSw)
         {
+            // if (!owner) return;
+            Animator animator = GetComponent<Animator>();
+            animator.SetTrigger("fire");
             GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
             // instance.GetComponent<Bullet>().setWeaponDamage(damage);
             instance.GetComponent<Bullet>().weapon = this;
