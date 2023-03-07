@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     [System.NonSerialized] public Character owner;
     Vector3 prevPos;
     Vector3 actualPos;
+    // Vector3 weaponOffset;
 
 
     // Start is called before the first frame update
