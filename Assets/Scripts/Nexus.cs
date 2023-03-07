@@ -8,6 +8,7 @@ public class Nexus : MonoBehaviour
     // life recover x second
     [SerializeField] float regRate = 10;
     [SerializeField] float farmRate = 5;
+    [SerializeField] Material nexus2Material;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,8 @@ public class Nexus : MonoBehaviour
                 life-=damage;
                 if (life <= 0){
                     // Destroy(gameObject);
+                    Renderer m_Renderer = GetComponent<Renderer>();
+                    m_Renderer.material = nexus2Material; 
                     GameManager.gameOver();
                 }
             }
