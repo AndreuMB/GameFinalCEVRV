@@ -123,13 +123,13 @@ public class Weapon : MonoBehaviour
         const float MIN_MOVEMENT = 0.5f;
         while (isActiveAndEnabled)
         {
-            // owner error;
-            // prevPos = owner.transform.position;
+            if (!owner) break;
+            prevPos = owner.transform.position;
             yield return new WaitForSeconds(0.1f);
-            // actualPos = owner.transform.position;
-            // float distance = Vector3.Distance(prevPos,actualPos);
-            // if (distance<MIN_MOVEMENT) animator.SetBool("run",false);
-            // if (distance>=MIN_MOVEMENT) animator.SetBool("run",true);
+            actualPos = owner.transform.position;
+            float distance = Vector3.Distance(prevPos,actualPos);
+            if (distance<MIN_MOVEMENT) animator.SetBool("run",false);
+            if (distance>=MIN_MOVEMENT) animator.SetBool("run",true);
         }
         yield break;
         // if(owner.transform.hasChanged) print("character move");
