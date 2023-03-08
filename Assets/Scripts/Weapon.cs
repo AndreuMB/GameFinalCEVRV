@@ -26,11 +26,7 @@ public class Weapon : MonoBehaviour
         if (transform.parent.GetComponent<Enemy>())
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
-            // bullet = bullets[1];
-        }else{
-            // bullet = bullets[0];
         }
-        // PlayerController.triggerFire.AddListener(fire); trigger from player
     }
 
     void OnEnable(){
@@ -87,15 +83,25 @@ public class Weapon : MonoBehaviour
         const int STRENGHT = 200;
         if (!loadSw)
         {
-            // if (!owner) return;
             Animator animator = GetComponent<Animator>();
             animator.SetTrigger("fire");
             GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
-            // instance.GetComponent<Bullet>().setWeaponDamage(damage);
             instance.GetComponent<Bullet>().weapon = this;
             instance.GetComponent<Rigidbody>().AddForce(transform.forward * STRENGHT, ForceMode.VelocityChange);
             loaderAmmo--;
+            HitEnemy();
         }
+    }
+
+    void HitEnemy(){
+        print("HitEnemy");
+        Vector3 cameraCenter = Camera.main.ViewportToScreenPoint(Vector3.one * .5f);
+        //Vector3 cameraCenter = new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight,0)/2;
+        Ray ray = Camera.main.ScreenPointToRay(cameraCenter);
+
+        if(Physics.Raycast(ray, out RaycastHit hit)){
+            print(hit.collider.gameObject.name + " was hit!");
+        }        
     }
 
     IEnumerator load(){

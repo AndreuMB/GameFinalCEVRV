@@ -42,7 +42,6 @@ public class WaveManager : MonoBehaviour
         }else{
             spawn = true;
         }
-        print(spawn);
     }
 
     // void nextWave(){
