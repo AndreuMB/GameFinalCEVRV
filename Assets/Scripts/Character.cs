@@ -32,7 +32,7 @@ public abstract class Character : MonoBehaviour
         {
             Bullet bullet = other.gameObject.GetComponent<Bullet>();
             // if isn't friendly fire takeDamage
-            if(decideDamage(bullet)) takeDamage(bullet);
+            // if(decideDamage(bullet)) takeDamage(bullet);
         }
     }
 
@@ -42,6 +42,20 @@ public abstract class Character : MonoBehaviour
         // update character life
         life = life - bullet.weapon.getDamage();
         print("Characterlife = " + life);
+        if (life <= 0) {
+            if (gameObject.tag == Tags.PLAYER)
+            {
+                GameManager.gameOver();
+            }else{
+                death.Invoke();
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    public void takeDamageRayCast(Weapon weapon){
+        life = life - weapon.getDamage();
+        print("life " + GetType() + " = " + life);
         if (life <= 0) {
             if (gameObject.tag == Tags.PLAYER)
             {

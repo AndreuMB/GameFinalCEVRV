@@ -23,7 +23,6 @@ public class Enemy : Character
     void Start()
     {
         InstanciaArmas();
-        // Bullet.hit.AddListener(damage);
         player = GameObject.FindWithTag("Player").transform;
         nexus = GameObject.FindWithTag("Nexus").transform;
         agent = GetComponent<NavMeshAgent>();

@@ -60,4 +60,15 @@ public class Nexus : MonoBehaviour
             }
         }
     }
+
+    public void takeDamageRayCast(Weapon weapon){
+        float damage = weapon.getDamage();
+        life-=damage;
+        if (life <= 0){
+            // Destroy(gameObject);
+            Renderer m_Renderer = GetComponent<Renderer>();
+            m_Renderer.material = nexus2Material; 
+            GameManager.gameOver();
+        }
+    }
 }
