@@ -123,7 +123,11 @@ public class Weapon : MonoBehaviour
                     // hitPlayerEv.Invoke();
                     hit.collider.gameObject.TryGetComponent<PlayerController>(out PlayerController player);
                     hit.collider.gameObject.TryGetComponent<Nexus>(out Nexus nexus);
-                    if (player) player.takeDamageRayCast(this);
+                    if (player)
+                    {
+                        player.takeDamageRayCast(this);
+                        player.OnPlayerLifeStateChange.Invoke(player.actualLife);
+                    } 
                     if (nexus) nexus.takeDamageRayCast(this);
                 }
  
@@ -174,6 +178,7 @@ public class Weapon : MonoBehaviour
             {
                 player.OnWeaponStateChange.Invoke(this);
             }
+    }
     IEnumerator checkPlayerMovement() {
         Animator animator = GetComponent<Animator>();
         const float MIN_MOVEMENT = 0.5f;

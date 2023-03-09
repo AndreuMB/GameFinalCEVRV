@@ -7,16 +7,27 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
 
-    TMP_Text balas;
+    TMP_Text VidaPlayer;
+    TMP_Text VidaNexo;
+    TMP_Text Dinero;
+    TMP_Text NumeroOleada;
+    TMP_Text municion;
 
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        GameObject.FindObjectOfType<PlayerController>().OnWeaponStateChange.AddListener(UpdateWeaponUI);
+        PlayerController playerController = GameObject.FindObjectOfType<PlayerController>();
+        
+        playerController.OnWeaponStateChange.AddListener(UpdateWeaponUI);
+        playerController.OnPlayerLifeStateChange.AddListener(UpdatePlayerLifeUI);
+        WaveManager.waveChange.AddListener(UpdateWaveUI);
 
-        balas = transform.Find("Balas").GetComponent<TMP_Text>();
+        VidaPlayer = transform.Find("VidaPlayer").GetComponent<TMP_Text>();
+        municion = transform.Find("Municion").GetComponent<TMP_Text>();
+        NumeroOleada = transform.Find("NumOleada").GetComponent<TMP_Text>();
+        
     }
 
     // Update is called once per frame
@@ -27,9 +38,16 @@ public class UIManager : MonoBehaviour
 
     void UpdateWeaponUI(Weapon arma)
     {
-        balas.text = arma.ammo.ToString();
+        municion.text = arma.ammo.ToString();
     }
-
+    void UpdatePlayerLifeUI(float life)
+    {
+        VidaPlayer.text = life.ToString();
+    }
+    void UpdateWaveUI()
+    {
+        NumeroOleada.text = WaveManager.wave.ToString();
+    }
 
 
 }

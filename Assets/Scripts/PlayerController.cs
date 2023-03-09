@@ -27,7 +27,10 @@ public class PlayerController : Character
     [Header("Variables")]
     const float LIMIT_ANGLE = 45;
 
+    public float actualLife => life;
+
     public UnityEvent<Weapon> OnWeaponStateChange = new UnityEvent<Weapon>();
+    public UnityEvent<float> OnPlayerLifeStateChange = new UnityEvent<float>();
 
 
 
@@ -53,6 +56,7 @@ public class PlayerController : Character
         //Instancia de Arma
         InstanciaArmas();
         OnWeaponStateChange.Invoke(selectedWeapon);
+        OnPlayerLifeStateChange.Invoke(actualLife);
     }
 
     void FixedUpdate(){

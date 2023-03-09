@@ -51,10 +51,11 @@ public class WaveManager : MonoBehaviour
     // }
 
     IEnumerator nextWave(){
+        wave++;
         waveChange.Invoke();
         yield return new WaitForSeconds(secBtwWaves);
-        wave++;
         enemiesWaveStart+=enemiesWaveScale;
+        print("asdfasdfas");
         enemiesWave = enemiesWaveStart;
         spawnCheck();
         yield break;
