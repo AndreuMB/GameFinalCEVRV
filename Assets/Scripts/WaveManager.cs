@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaveManager : MonoBehaviour
 {
@@ -11,13 +12,18 @@ public class WaveManager : MonoBehaviour
     [SerializeField] public static int wave;
     [SerializeField] float secBtwWaves = 5;
     [SerializeField] public static bool spawn;
+    public static UnityEvent waveChange = new UnityEvent();
     int enemiesWave;
     int enemiesScene;
     // Start is called before the first frame update
     void Start()
     {
         Spawn.spawnEnemyEvent.AddListener(spawnCheck);
-        Enemy.death.AddListener(checkWave);
+        // foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        // {
+        //     enemy.GetComponent<Enemy>().death.AddListener(checkWave);
+        // }
+        // Enemy.death.AddListener(checkWave);
         StartCoroutine(nextWave());
     }
 
@@ -36,7 +42,6 @@ public class WaveManager : MonoBehaviour
         }else{
             spawn = true;
         }
-        print(spawn);
     }
 
     // void nextWave(){
@@ -46,6 +51,7 @@ public class WaveManager : MonoBehaviour
     // }
 
     IEnumerator nextWave(){
+        waveChange.Invoke();
         yield return new WaitForSeconds(secBtwWaves);
         wave++;
         enemiesWaveStart+=enemiesWaveScale;
@@ -54,7 +60,7 @@ public class WaveManager : MonoBehaviour
         yield break;
     }
 
-    void checkWave(){
+    public void checkWave(){
         print("enter check wave " + enemiesWave);
         enemiesWave--;
         if (enemiesWave<=0)

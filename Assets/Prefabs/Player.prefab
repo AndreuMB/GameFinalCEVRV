@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9067318893073456298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -0.18, z: 0.71}
+  m_LocalPosition: {x: 0.5, y: -0.18, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -131,10 +131,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: -3479160475309700794, guid: 281c4d741cc044b4cbeb436513fbc5ec, type: 3}
+  - {fileID: 1362106059098843087, guid: 52df1d2389f044b43965591bf3bd5a29, type: 3}
   - {fileID: 3993779761761343947, guid: c49331a7acf875f43a650bbd3ac20b21, type: 3}
   life: 100
   speed: 40
+  death:
+    m_PersistentCalls:
+      m_Calls: []
   camara: {fileID: 9067318894403790168}
   sensibilidad: 600
   altura: 5

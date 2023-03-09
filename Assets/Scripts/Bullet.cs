@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Bullet : MonoBehaviour
 {
-    public static UnityEvent hit = new UnityEvent();
+    // public static UnityEvent hit = new UnityEvent();
     public Weapon weapon;
     public Character owner => weapon.owner;
 
@@ -50,7 +50,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.tag==Tags.ENEMY || other.gameObject.tag==Tags.PLAYER)
         {
             Destroy(gameObject);
-            hit.Invoke();
+            // hit.Invoke();
         }
     }
 

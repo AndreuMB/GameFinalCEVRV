@@ -15,7 +15,7 @@ public class Enemy : Character
     NavMeshAgent agent;
     float rangeToFire;
     RaycastHit raycast;
-    public static UnityEvent death = new UnityEvent();
+    // public static UnityEvent death = new UnityEvent();
     public UnityEvent fireEvent = new UnityEvent();
     Transform lastTarget;
     // [SerializeField] float weaponDamage = 10;
@@ -23,7 +23,6 @@ public class Enemy : Character
     void Start()
     {
         InstanciaArmas();
-        // Bullet.hit.AddListener(damage);
         player = GameObject.FindWithTag("Player").transform;
         nexus = GameObject.FindWithTag("Nexus").transform;
         agent = GetComponent<NavMeshAgent>();
@@ -36,7 +35,6 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        print("target = " + target);
         transform.LookAt(target);
 
         // move check

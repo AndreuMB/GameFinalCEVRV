@@ -80,6 +80,10 @@ public class PlayerController : Character
         movimientoX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         movimientoZ = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
+        // if(movimientoX != 0 || movimientoZ != 0){
+        //     // run = true
+        // }
+
         //Vectores donde transladaremos al personaje segun su rotación.
         Vector3 ver = new Vector3(transform.forward.x, 0, transform.forward.z) * movimientoZ;
         Vector3 hor = transform.right * movimientoX;
