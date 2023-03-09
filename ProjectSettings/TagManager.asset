@@ -9,6 +9,7 @@ TagManager:
   - EnemyBullet
   - PlayerWeapon
   - Nexus
+  - WaveManager
   layers:
   - Default
   - TransparentFX

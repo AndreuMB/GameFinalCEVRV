@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Character : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public abstract class Character : MonoBehaviour
     [Header("Stats")]
     [SerializeField] protected float life;
     [SerializeField] protected float speed;
+
+    public UnityEvent death = new UnityEvent();
 
     void AddWeapon(Weapon weapon)
     {
@@ -29,7 +32,7 @@ public abstract class Character : MonoBehaviour
         {
             Bullet bullet = other.gameObject.GetComponent<Bullet>();
             // if isn't friendly fire takeDamage
-            if(decideDamage(bullet)) takeDamage(bullet);
+            // if(decideDamage(bullet)) takeDamage(bullet);
         }
     }
 
@@ -38,15 +41,42 @@ public abstract class Character : MonoBehaviour
     protected void takeDamage(Bullet bullet){
         // update character life
         life = life - bullet.weapon.getDamage();
-        print("life = " + life);
-        if (life <= 0) Destroy(gameObject);
+        print("Characterlife = " + life);
+        if (life <= 0) {
+            if (gameObject.tag == Tags.PLAYER)
+            {
+                GameManager.gameOver();
+            }else{
+                death.Invoke();
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    public void takeDamageRayCast(Weapon weapon){
+        life = life - weapon.getDamage();
+        print("life " + GetType() + " = " + life);
+        if (life <= 0) {
+            if (gameObject.tag == Tags.PLAYER)
+            {
+                GameManager.gameOver();
+            }else{
+                death.Invoke();
+                Destroy(gameObject);
+            }
+        }
     }
 
     protected void InstanciaArmas()
     {
         for (int i = 0; i < weapons.Count; i++)
         {
-            weapons[i] = Instantiate(weapons[i].gameObject, transform.GetChild(0).transform.GetChild(0).transform.position, Quaternion.identity, transform.GetChild(0).transform.GetChild(0).transform).GetComponent<Weapon>();
+            Transform slotWeapon = transform.GetChild(0).GetChild(0);
+            Animator  slotAnimator = slotWeapon.GetComponent<Animator>();
+            Animator  weaponAnimator = weapons[i].GetComponent<Animator>();
+            slotAnimator.runtimeAnimatorController = weaponAnimator.runtimeAnimatorController;
+            Vector3 offsetWeapon = weapons[i].transform.GetChild(0).position;
+            weapons[i] = Instantiate(weapons[i].gameObject, slotWeapon.position + offsetWeapon, Quaternion.identity, transform.GetChild(0).transform.GetChild(0).transform).GetComponent<Weapon>();
             weapons[i].owner = this;
             weapons[i].gameObject.SetActive(false);
         }
