@@ -76,16 +76,19 @@ public class Enemy : Character
 
     void manageBehaviour()
     {
+        Animator animator = GetComponent<Animator>();
         bool directContact = Physics.Linecast(transform.position,target.position, out raycast);
         // NO tenemos contacto directo || no es con el target
         if(!directContact || raycast.transform.tag != target.tag)
         {
             agent.isStopped=false;
+            animator.SetBool("run",true);
             return;
         }
 
         // all conditions done can stop and shoot
         agent.isStopped=true;
+        animator.SetBool("run",false);
         Fire();
 
     }

@@ -1102,7 +1102,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5d2626589a68add4ab5940cb99979376, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2162,7 +2162,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8419084801714584323}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2244,10 +2244,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8312554713757993439}
-  - component: {fileID: 2719062211874427813}
-  - component: {fileID: 8419084801975805505}
-  - component: {fileID: 8419084801975805506}
-  - component: {fileID: 8419084801975805510}
+  - component: {fileID: 6719244959846741570}
+  - component: {fileID: 3863950599450435580}
+  - component: {fileID: 5742584650103134636}
+  - component: {fileID: 3118729251471849659}
+  - component: {fileID: 7730261863003006719}
   m_Layer: 0
   m_Name: Enemigo01
   m_TagString: Enemy
@@ -2264,7 +2265,7 @@ Transform:
   m_GameObject: {fileID: 8653650006420165477}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4431483659359509644}
@@ -2273,27 +2274,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2719062211874427813
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8653650006420165477}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a34cb3909f81b804db9a15683bced15f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9c8467c66286a8d4ca57bcb243ed14ca, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &8419084801975805505
+--- !u!54 &6719244959846741570
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2307,9 +2288,29 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 10
+  m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8419084801975805506
+--- !u!95 &3863950599450435580
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8653650006420165477}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: a34cb3909f81b804db9a15683bced15f, type: 3}
+  m_Controller: {fileID: 9100000, guid: 9c8467c66286a8d4ca57bcb243ed14ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5742584650103134636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2324,14 +2325,14 @@ MonoBehaviour:
   weapons:
   - {fileID: 3993779761761343947, guid: c49331a7acf875f43a650bbd3ac20b21, type: 3}
   life: 20
-  speed: 10
+  speed: 0
   death:
     m_PersistentCalls:
       m_Calls: []
   fireEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!195 &8419084801975805510
+--- !u!195 &3118729251471849659
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2353,6 +2354,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &7730261863003006719
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8653650006420165477}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 4.786869, z: 1}
+  m_Center: {x: 0, y: -0.42366517, z: 0}
 --- !u!1 &8843090533221795649
 GameObject:
   m_ObjectHideFlags: 0
