@@ -7,10 +7,10 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
 
-    TMP_Text VidaPlayer;
-    TMP_Text VidaNexo;
-    TMP_Text Dinero;
-    TMP_Text NumeroOleada;
+    TMP_Text vidaPlayer;
+    TMP_Text vidaNexo;
+    TMP_Text dinero;
+    TMP_Text numeroOleada;
     TMP_Text municion;
 
 
@@ -19,14 +19,18 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         PlayerController playerController = GameObject.FindObjectOfType<PlayerController>();
+        Nexus nexusRef = GameObject.FindObjectOfType<Nexus>();
         
         playerController.OnWeaponStateChange.AddListener(UpdateWeaponUI);
         playerController.OnPlayerLifeStateChange.AddListener(UpdatePlayerLifeUI);
+        nexusRef.OnNexusLifeChange.AddListener(UpdateNexusLifeUI);
         WaveManager.waveChange.AddListener(UpdateWaveUI);
 
-        VidaPlayer = transform.Find("VidaPlayer").GetComponent<TMP_Text>();
-        municion = transform.Find("Municion").GetComponent<TMP_Text>();
-        NumeroOleada = transform.Find("NumOleada").GetComponent<TMP_Text>();
+        vidaPlayer = transform.Find("LifeContainer").Find("VidaPlayer").GetComponent<TMP_Text>();
+        municion = transform.Find("AmmoContainer").Find("Municion").GetComponent<TMP_Text>();
+        numeroOleada = transform.Find("WaveContainer").Find("NumOleada").GetComponent<TMP_Text>();
+        vidaNexo = transform.Find("NexoContainer").Find("VidaNexo").GetComponent<TMP_Text>();
+        dinero = transform.Find("DineroContainer").Find("Dinero").GetComponent<TMP_Text>();
         
     }
 
@@ -40,13 +44,17 @@ public class UIManager : MonoBehaviour
     {
         municion.text = arma.ammo.ToString();
     }
+    void UpdateNexusLifeUI(float life)
+    {
+        vidaNexo.text = life.ToString();
+    }
     void UpdatePlayerLifeUI(float life)
     {
-        VidaPlayer.text = life.ToString();
+        vidaPlayer.text = life.ToString();
     }
     void UpdateWaveUI()
     {
-        NumeroOleada.text = WaveManager.wave.ToString();
+        numeroOleada.text = WaveManager.wave.ToString();
     }
 
 

@@ -31,11 +31,7 @@ public class PlayerController : Character
 
     public UnityEvent<Weapon> OnWeaponStateChange = new UnityEvent<Weapon>();
     public UnityEvent<float> OnPlayerLifeStateChange = new UnityEvent<float>();
-
-
-
-
-
+    
     void Start()
     {
         // INI WEAPON

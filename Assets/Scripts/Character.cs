@@ -82,5 +82,4 @@ public abstract class Character : MonoBehaviour
         }
         weapons[0].gameObject.SetActive(true);
     }
-
 }
