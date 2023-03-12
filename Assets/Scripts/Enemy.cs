@@ -41,7 +41,7 @@ public class Enemy : Character
 
         // const float OFFSET_DISTANCE_ENEMY_TARGET = 20f;
 
-        float distanceTarget = Vector3.Distance (gameObject.transform.position, target.transform.position);
+        // float distanceTarget = Vector3.Distance (gameObject.transform.position, target.transform.position);
 
         // El jugador no está en rango
         // if (distanceTarget >= rangeToFire + OFFSET_DISTANCE_ENEMY_TARGET)
@@ -78,6 +78,15 @@ public class Enemy : Character
     {
         Animator animator = GetComponent<Animator>();
         bool directContact = Physics.Linecast(transform.position,target.position, out raycast);
+        float distanceTarget = Vector3.Distance (gameObject.transform.position, target.transform.position);
+
+        if (distanceTarget>rangeToFire)
+        {
+            agent.isStopped=false;
+            animator.SetBool("run",true);
+            return;
+        }
+
         // NO tenemos contacto directo || no es con el target
         if(!directContact || raycast.transform.tag != target.tag)
         {
