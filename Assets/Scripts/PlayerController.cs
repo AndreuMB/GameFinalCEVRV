@@ -27,6 +27,12 @@ public class PlayerController : Character
     [Header("Variables")]
     const float LIMIT_ANGLE = 45;
 
+    //Velocidad extra cuando sprintamos
+    const float SPRINT_SPEED = 2;
+
+    [SerializeField]
+    float movementSpeed;
+
     public float actualLife => life;
 
     public UnityEvent<Weapon> OnWeaponStateChange = new UnityEvent<Weapon>();
@@ -47,7 +53,8 @@ public class PlayerController : Character
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-
+        //Velocidad del Jugador = velocidad del Character
+        movementSpeed = speed;
 
         //Instancia de Arma
         InstanciaArmas();
@@ -56,13 +63,12 @@ public class PlayerController : Character
     }
 
     void FixedUpdate(){
-        
+        PlayerMovement();
+
     }
 
     void Update()
     {
-        PlayerMovement();
-        PlayerRotation();
 
         if(Input.GetKey(KeyCode.K)){
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
@@ -74,11 +80,26 @@ public class PlayerController : Character
 
     }
 
+    void LateUpdate()
+    {
+        PlayerRotation();
+    }
+
     void PlayerMovement()
     {
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            movementSpeed = speed + SPRINT_SPEED;
+        }else
+        {
+            movementSpeed = speed;
+        }
         //Variables donde se captura y guarda los desplazamientos
-        movimientoX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        movimientoZ = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        movimientoX = Input.GetAxis("Horizontal") * movementSpeed;
+        movimientoZ = Input.GetAxis("Vertical") * movementSpeed;
+
+        Rigidbody rb = GetComponent<Rigidbody>();
 
         // if(movimientoX != 0 || movimientoZ != 0){
         //     // run = true
@@ -89,14 +110,21 @@ public class PlayerController : Character
         Vector3 hor = transform.right * movimientoX;
 
         //Movimiento del personaje
-        transform.localPosition += hor * speed * Time.deltaTime;
-        transform.position += ver * speed * Time.deltaTime;
+        // transform.position += hor * speed * Time.deltaTime;
+        // transform.position += ver * speed * Time.deltaTime;
+
+
+        //Movimiento a partir de RigidBody
+        Vector3 aux = (hor + ver) * speed * Time.fixedDeltaTime;// new Vector3(hor, 0, ver) * speed * Time.deltaTime;
+
+        rb.MovePosition(transform.position+aux);
+
     }
     void PlayerRotation()
     {
         //Variables donde se captura y guardan las rotaciones
         rotacionX = Input.GetAxis("Mouse X") * Time.deltaTime * sensibilidad;
-        rotacionY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensibilidad * -1;
+        rotacionY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensibilidad * -1;
 
         //Quaternion donde guardamos la rotación en el eje X desde la captura
         Quaternion q = Quaternion.AngleAxis(rotacionY, Vector3.right);
@@ -115,6 +143,8 @@ public class PlayerController : Character
         Vector3 rotacionJugador = new Vector3(transform.eulerAngles.x, rotacionX+transform.eulerAngles.y, transform.eulerAngles.z);
         transform.rotation = Quaternion.Euler(rotacionJugador);
 
+        //transform.rotation.
+
     }
 
     protected override bool decideDamage(Bullet bullet)
@@ -126,7 +156,7 @@ public class PlayerController : Character
     
     void InputRecargar()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyUp(KeyCode.R))
         {
             selectedWeapon.ReLoad();
         }

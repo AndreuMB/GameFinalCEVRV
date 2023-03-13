@@ -155,7 +155,7 @@ MonoBehaviour:
   - {fileID: 1362106059098843087, guid: 52df1d2389f044b43965591bf3bd5a29, type: 3}
   - {fileID: 3993779761761343947, guid: c49331a7acf875f43a650bbd3ac20b21, type: 3}
   life: 100
-  speed: 40
+  speed: 2
   death:
     m_PersistentCalls:
       m_Calls: []
@@ -163,6 +163,7 @@ MonoBehaviour:
   sensibilidad: 600
   altura: 5
   god: 1
+  movementSpeed: 0
   OnWeaponStateChange:
     m_PersistentCalls:
       m_Calls: []
@@ -198,7 +199,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &9067318894403790171
 GameObject:
   m_ObjectHideFlags: 0
