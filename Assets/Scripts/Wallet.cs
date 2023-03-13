@@ -5,6 +5,7 @@ using UnityEngine;
 public class Wallet : MonoBehaviour
 {
     float money;
+    public float actualMoney => money;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +25,6 @@ public class Wallet : MonoBehaviour
 
     public void setMoney(float moneySet){
         money=moneySet;
-    }
-    
-    public float getMoney(){
-        return money;
     }
 
     // Update is called once per frame

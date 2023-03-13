@@ -6,7 +6,10 @@ using UnityEngine.Events;
 public class Weapon : MonoBehaviour
 {
     public WeaponSO weaponData;
+    //TODO cambiar float to int
     float loaderAmmo;
+    public float ammo => loaderAmmo;
+
     float fireStart;
     bool loadSw;
     bool enemyFire;
@@ -19,10 +22,17 @@ public class Weapon : MonoBehaviour
     public UnityEvent hitPlayerEv = new UnityEvent();
 
 
+
+    void Awake()
+    {
+        loaderAmmo = weaponData.loaderMaxAmmo;
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        loaderAmmo = weaponData.loaderMaxAmmo;
+        print(loaderAmmo);
         loadSw = false;
 
         if (transform.parent.GetComponent<Enemy>())
@@ -91,6 +101,7 @@ public class Weapon : MonoBehaviour
             instance.GetComponent<Bullet>().weapon = this;
             instance.GetComponent<Rigidbody>().AddForce(transform.forward * STRENGHT, ForceMode.VelocityChange);
             loaderAmmo--;
+            WeaponStateChanged();
             HitEnemy();
         }
     }
@@ -112,7 +123,11 @@ public class Weapon : MonoBehaviour
                     // hitPlayerEv.Invoke();
                     hit.collider.gameObject.TryGetComponent<PlayerController>(out PlayerController player);
                     hit.collider.gameObject.TryGetComponent<Nexus>(out Nexus nexus);
-                    if (player) player.takeDamageRayCast(this);
+                    if (player)
+                    {
+                        player.takeDamageRayCast(this);
+                        player.OnPlayerLifeStateChange.Invoke(player.actualLife);
+                    } 
                     if (nexus) nexus.takeDamageRayCast(this);
                 }
  
@@ -140,6 +155,7 @@ public class Weapon : MonoBehaviour
             yield return new WaitForSeconds(weaponData.loadTime);
             loaderAmmo = weaponData.loaderMaxAmmo;
             loadSw = false;
+            WeaponStateChanged();
         }
         yield break;
     }
@@ -156,6 +172,13 @@ public class Weapon : MonoBehaviour
         enemyFire = !enemyFire;
     }
 
+    void WeaponStateChanged()
+    {
+        if (owner is PlayerController player)
+            {
+                player.OnWeaponStateChange.Invoke(this);
+            }
+    }
     IEnumerator checkPlayerMovement() {
         Animator animator = GetComponent<Animator>();
         const float MIN_MOVEMENT = 0.5f;
