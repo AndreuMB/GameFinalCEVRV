@@ -163,7 +163,6 @@ public class PlayerController : Character
         }
         selectedWeapon.gameObject.SetActive(true);
         OnWeaponStateChange.Invoke(selectedWeapon);
-        //print(selectedWeapon.);
     }
 
 }

@@ -5,19 +5,27 @@ using UnityEngine.Events;
 
 public class Nexus : MonoBehaviour
 {
-    [SerializeField] float life = 10000;
+    [SerializeField] 
+    float life = 10000;
     // life recover x second
-    [SerializeField] float regRate = 10;
-    [SerializeField] float farmRate = 5;
-    [SerializeField] Material nexus2Material;
+    [SerializeField] 
+    float regRate = 10;
+    [SerializeField] 
+    int farmRate = 5;
+    int actualFarmRate => farmRate;
+    [SerializeField] 
+    Material nexus2Material;
 
-    float money;
+    int money;
 
     public UnityEvent<float> OnNexusLifeChange = new UnityEvent<float>();
+    public UnityEvent<int> OnNexusMoneyChange = new UnityEvent<int>();
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(income());
+        OnNexusLifeChange.Invoke(life);
+        OnNexusMoneyChange.Invoke(money);
     }
 
     // Update is called once per frame
@@ -34,7 +42,7 @@ public class Nexus : MonoBehaviour
     //     yield break;
     // }
 
-    public float getFarmRate(){
+    public int getFarmRate(){
         return farmRate;
     }
 
@@ -84,7 +92,8 @@ public class Nexus : MonoBehaviour
         while (isActiveAndEnabled)
         {
             // print(money = money);
-            money+= getFarmRate();
+            money+= actualFarmRate;
+            OnNexusMoneyChange.Invoke(money);
             yield return new WaitForSeconds(1);
         }
         yield break;

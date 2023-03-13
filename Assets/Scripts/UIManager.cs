@@ -20,17 +20,19 @@ public class UIManager : MonoBehaviour
     {
         PlayerController playerController = GameObject.FindObjectOfType<PlayerController>();
         Nexus nexusRef = GameObject.FindObjectOfType<Nexus>();
+        WaveManager waveRef = GameObject.FindObjectOfType<WaveManager>();
         
         playerController.OnWeaponStateChange.AddListener(UpdateWeaponUI);
         playerController.OnPlayerLifeStateChange.AddListener(UpdatePlayerLifeUI);
         nexusRef.OnNexusLifeChange.AddListener(UpdateNexusLifeUI);
-        WaveManager.waveChange.AddListener(UpdateWaveUI);
+        nexusRef.OnNexusMoneyChange.AddListener(UpdateNexusMoneyUI);
+        waveRef.OnWaveChange.AddListener(UpdateWaveUI);
 
         vidaPlayer = transform.Find("LifeContainer").Find("VidaPlayer").GetComponent<TMP_Text>();
         municion = transform.Find("AmmoContainer").Find("Municion").GetComponent<TMP_Text>();
         numeroOleada = transform.Find("WaveContainer").Find("NumOleada").GetComponent<TMP_Text>();
         vidaNexo = transform.Find("NexoContainer").Find("VidaNexo").GetComponent<TMP_Text>();
-        dinero = transform.Find("DineroContainer").Find("Dinero").GetComponent<TMP_Text>();
+        dinero = transform.Find("MoneyContainer").Find("Dinero").GetComponent<TMP_Text>();
         
     }
 
@@ -48,13 +50,17 @@ public class UIManager : MonoBehaviour
     {
         vidaNexo.text = life.ToString();
     }
+    void UpdateNexusMoneyUI(int money)
+    {
+        dinero.text = money.ToString();
+    }
     void UpdatePlayerLifeUI(float life)
     {
         vidaPlayer.text = life.ToString();
     }
-    void UpdateWaveUI()
+    void UpdateWaveUI(string wave)
     {
-        numeroOleada.text = WaveManager.wave.ToString();
+        numeroOleada.text = wave;
     }
 
 
