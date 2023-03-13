@@ -21,12 +21,14 @@ public class Weapon : MonoBehaviour
     public UnityEvent hitEnemyEv = new UnityEvent();
     public UnityEvent hitPlayerEv = new UnityEvent();
 
+    //Metodo por si queremos parar la corrutina desde fuera
+    //public void StopReload() => StopCoroutine(nameof(load));
+
 
 
     void Awake()
     {
         loaderAmmo = weaponData.loaderMaxAmmo;
-
     }
 
     // Start is called before the first frame update
@@ -42,8 +44,15 @@ public class Weapon : MonoBehaviour
     }
 
     void OnEnable(){
-        if (!gameObject) return;
+        //Se activa la corrutina de movimiento del arma
         StartCoroutine(checkPlayerMovement());
+    }
+
+    void OnDisable() {
+        //Se desactiva la corrutina de movimiento del arma
+        StopCoroutine(checkPlayerMovement());
+
+        if(isReloading) StopCoroutine(reloadingCoroutine);
     }
 
     // Update is called once per frame
@@ -70,14 +79,14 @@ public class Weapon : MonoBehaviour
     }
 
     public void ReLoad(){
-        StartCoroutine(load());
+        reloadingCoroutine = StartCoroutine(load());
     }
 
     public void Fire()
     {
 
         if (loaderAmmo <= 0){
-            StartCoroutine(load());
+            reloadingCoroutine = StartCoroutine(load());
         }
         else
         {
@@ -139,25 +148,23 @@ public class Weapon : MonoBehaviour
                 print(hit.collider.gameObject.name + " was hit by player!");
                 hit.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy);
                 if (enemy) enemy.takeDamageRayCast(this);
-
             }
         }
 
                 
     }
+    Coroutine reloadingCoroutine;
+    bool isReloading => reloadingCoroutine != null;
 
     IEnumerator load(){
-        //TODO: extraer el if, y las variables fuera, ya que la variable al cambiar el arma se bugea y hace que no se pueda volver a usar el arma
-        //Quitar !loadSW del if, no tiene sentido que est� ahi
-        if (!loadSw && loaderAmmo!=weaponData.loaderMaxAmmo)
-        {
-            loadSw = true;
-            yield return new WaitForSeconds(weaponData.loadTime);
-            loaderAmmo = weaponData.loaderMaxAmmo;
-            loadSw = false;
-            WeaponStateChanged();
-        }
-        yield break;
+        
+        //Si ya existe la recarga o tenemos la balas maximas salimos de la corutina
+        if (isReloading) yield break;
+        if (loaderAmmo==weaponData.loaderMaxAmmo) yield break;
+        
+        yield return new WaitForSeconds(weaponData.loadTime);
+        loaderAmmo = weaponData.loaderMaxAmmo;
+        WeaponStateChanged();
     }
 
     public float getZoom(){
