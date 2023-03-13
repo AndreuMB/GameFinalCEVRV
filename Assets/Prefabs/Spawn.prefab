@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesArray:
-  - {fileID: 8653650006420165477, guid: a3f27b690a880a6428956ade6b34abd6, type: 3}
+  - {fileID: 6245557111849199661, guid: 9b7c0702ddddaa442986dce0c52ffaf2, type: 3}

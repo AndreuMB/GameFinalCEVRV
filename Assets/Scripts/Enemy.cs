@@ -18,6 +18,8 @@ public class Enemy : Character
     // public static UnityEvent death = new UnityEvent();
     public UnityEvent fireEvent = new UnityEvent();
     Transform lastTarget;
+    Animator animator;
+    bool deathBool = false;
     // [SerializeField] float weaponDamage = 10;
     // Start is called before the first frame update
     void Start()
@@ -26,15 +28,19 @@ public class Enemy : Character
         player = GameObject.FindWithTag("Player").transform;
         nexus = GameObject.FindWithTag("Nexus").transform;
         agent = GetComponent<NavMeshAgent>();
+        death.AddListener(enemyDeath);
         rb = GetComponent<Rigidbody>();
         // StartCoroutine(randomRange());
         rangeToFire = Random.Range(15,30);
         setTarget();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // if enemy doing death animation not fire
+        if (deathBool) return;
         transform.LookAt(target);
 
         // move check
@@ -76,7 +82,6 @@ public class Enemy : Character
 
     void manageBehaviour()
     {
-        Animator animator = GetComponent<Animator>();
         bool directContact = Physics.Linecast(transform.position,target.position, out raycast);
         float distanceTarget = Vector3.Distance (gameObject.transform.position, target.transform.position);
 
@@ -116,10 +121,19 @@ public class Enemy : Character
         }
         yield break;
     }
-
-    void FixedUpdate(){
-
+    // run animation
+    void enemyDeath(){
+        deathBool = true;
+        animator.SetTrigger("death");
     }
+
+    // event trigger when death animation end
+    public void endDeathAnimation()
+    {
+        Destroy(gameObject);
+    }
+
+    
 
     // void fire(){
     //     // if (!loadSw)

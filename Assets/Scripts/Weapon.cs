@@ -20,8 +20,7 @@ public class Weapon : MonoBehaviour
     // Vector3 weaponOffset;
     public UnityEvent hitEnemyEv = new UnityEvent();
     public UnityEvent hitPlayerEv = new UnityEvent();
-
-
+    [SerializeField] ParticleSystem ps;
 
     void Awake()
     {
@@ -129,6 +128,7 @@ public class Weapon : MonoBehaviour
                         player.OnPlayerLifeStateChange.Invoke(player.actualLife);
                     } 
                     if (nexus) nexus.takeDamageRayCast(this);
+
                 }
  
         }
@@ -139,11 +139,36 @@ public class Weapon : MonoBehaviour
                 print(hit.collider.gameObject.name + " was hit by player!");
                 hit.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy);
                 if (enemy) enemy.takeDamageRayCast(this);
-
+                // instantiate particles when hit raycast
+                instantiateParticles(hit);
             }
         }
 
                 
+    }
+
+    void instantiateParticles(RaycastHit hit){
+        // set and choose color of particles
+        Color color = Color.blue;
+        if (hit.collider.GetComponentInChildren<MeshRenderer>()){
+            Renderer renderer = hit.collider.GetComponentInChildren<MeshRenderer>();
+            Texture2D texture2D = renderer.material.mainTexture as Texture2D;
+            Vector2 pCoord = hit.textureCoord;
+            if (!texture2D) return;
+            pCoord.x *= texture2D.width;
+            pCoord.y *= texture2D.height;
+
+            if (texture2D.isReadable)
+            {
+                Vector2 tiling = renderer.material.mainTextureScale;
+                color = texture2D.GetPixel(Mathf.FloorToInt(pCoord.x * tiling.x) , Mathf.FloorToInt(pCoord.y * tiling.y));
+            }
+        }
+       
+
+        ParticleSystem psi=Instantiate(ps,hit.point,Quaternion.identity);
+        var main = psi.main;
+        main.startColor = color;
     }
 
     IEnumerator load(){

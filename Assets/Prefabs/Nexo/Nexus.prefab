@@ -114,3 +114,9 @@ MonoBehaviour:
   regRate: 10
   farmRate: 5
   nexus2Material: {fileID: 2100000, guid: 6d29be06eeb5cda4b869c4011e0cbef1, type: 2}
+  OnNexusLifeChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNexusMoneyChange:
+    m_PersistentCalls:
+      m_Calls: []
