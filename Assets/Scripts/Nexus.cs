@@ -42,10 +42,6 @@ public class Nexus : MonoBehaviour
     //     yield break;
     // }
 
-    public int getFarmRate(){
-        return farmRate;
-    }
-
     IEnumerator regenerationLife(){
         while (isActiveAndEnabled){
             if (life <= life - regRate)

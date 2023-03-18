@@ -11,7 +11,6 @@ public class Weapon : MonoBehaviour
     public float ammo => loaderAmmo;
 
     float fireStart;
-    bool loadSw;
     bool enemyFire;
     [System.NonSerialized] public Character owner;
     Vector3 prevPos;
@@ -35,7 +34,6 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         print(loaderAmmo);
-        loadSw = false;
 
         if (transform.parent.GetComponent<Enemy>())
         {
@@ -50,9 +48,10 @@ public class Weapon : MonoBehaviour
 
     void OnDisable() {
         //Se desactiva la corrutina de movimiento del arma
-        StopCoroutine(checkPlayerMovement());
+        //StopCoroutine(checkPlayerMovement());
 
-        if(isReloading) StopCoroutine(reloadingCoroutine);
+        //if(isReloading) StopCoroutine(reloadingCoroutine);
+        StopAllCoroutines();
     }
 
     // Update is called once per frame
@@ -102,7 +101,8 @@ public class Weapon : MonoBehaviour
     {
         const int OFFSET_BULLET = 2;
         const int STRENGHT = 200;
-        if (!loadSw)
+        print(reloadingCoroutine);
+        if (!isReloading)
         {
             Animator animator = GetComponent<Animator>();
             animator.SetTrigger("fire");
@@ -157,14 +157,17 @@ public class Weapon : MonoBehaviour
     bool isReloading => reloadingCoroutine != null;
 
     IEnumerator load(){
-        
+        print("PreRecarga");
         //Si ya existe la recarga o tenemos la balas maximas salimos de la corutina
         if (isReloading) yield break;
         if (loaderAmmo==weaponData.loaderMaxAmmo) yield break;
-        
+        print("recargando");
+        WeaponReload();
         yield return new WaitForSeconds(weaponData.loadTime);
         loaderAmmo = weaponData.loaderMaxAmmo;
         WeaponStateChanged();
+        yield break;
+        print("no deberia estar aqui");
     }
 
     public float getZoom(){
@@ -177,6 +180,13 @@ public class Weapon : MonoBehaviour
 
     void swAutoFire(){
         enemyFire = !enemyFire;
+    }
+    void WeaponReload()
+    {
+        if(owner is PlayerController player)
+        {
+            player.OnReloadWeapon.Invoke(this);
+        }
     }
 
     void WeaponStateChanged()
