@@ -117,7 +117,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 736ed7a2fa2a1764097fc21e73214c4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -165,6 +165,9 @@ MonoBehaviour:
   god: 1
   movementSpeed: 0
   OnWeaponStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnReloadWeapon:
     m_PersistentCalls:
       m_Calls: []
   OnPlayerLifeStateChange:
