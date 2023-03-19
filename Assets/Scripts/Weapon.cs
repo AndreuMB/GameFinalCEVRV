@@ -23,7 +23,8 @@ public class Weapon : MonoBehaviour
     //Metodo por si queremos parar la corrutina desde fuera
     //public void StopReload() => StopCoroutine(nameof(load));
 
-
+    Coroutine reloadingCoroutine;
+    bool isReloading => reloadingCoroutine != null;
 
     void Awake()
     {
@@ -48,10 +49,17 @@ public class Weapon : MonoBehaviour
 
     void OnDisable() {
         //Se desactiva la corrutina de movimiento del arma
-        //StopCoroutine(checkPlayerMovement());
+        StopCoroutine(checkPlayerMovement());
 
+        //Como unity no quiere parar las corutinas con un Yield return Wait For Secons, lo paro manualmente, son las 4:19 de la mañana y estoy hasta el huevo
+        if (reloadingCoroutine != null)
+        {
+            //En teoria este StopCoroutine hace menos que yo un dia de resaca
+            StopCoroutine(reloadingCoroutine);
+            reloadingCoroutine = null;
+        }
         //if(isReloading) StopCoroutine(reloadingCoroutine);
-        StopAllCoroutines();
+        //StopAllCoroutines();
     }
 
     // Update is called once per frame
@@ -77,17 +85,22 @@ public class Weapon : MonoBehaviour
 
     }
 
-    public void ReLoad(){
-        reloadingCoroutine = StartCoroutine(load());
+    public void ReLoad()
+    {
+        if (!isReloading) 
+        {
+            reloadingCoroutine = StartCoroutine(load());
+        }
     }
 
     public void Fire()
     {
 
-        if (loaderAmmo <= 0){
+        if (loaderAmmo <= 0 && !isReloading){
             reloadingCoroutine = StartCoroutine(load());
+            
         }
-        else
+        else if (!isReloading)
         {
             if (Time.time > fireStart + weaponData.fireRate)
             {
@@ -101,7 +114,6 @@ public class Weapon : MonoBehaviour
     {
         const int OFFSET_BULLET = 2;
         const int STRENGHT = 200;
-        print(reloadingCoroutine);
         if (!isReloading)
         {
             Animator animator = GetComponent<Animator>();
@@ -153,8 +165,7 @@ public class Weapon : MonoBehaviour
 
                 
     }
-    Coroutine reloadingCoroutine;
-    bool isReloading => reloadingCoroutine != null;
+
 
     IEnumerator load(){
         print("PreRecarga");
@@ -166,8 +177,7 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(weaponData.loadTime);
         loaderAmmo = weaponData.loaderMaxAmmo;
         WeaponStateChanged();
-        yield break;
-        print("no deberia estar aqui");
+        reloadingCoroutine = null;
     }
 
     public float getZoom(){

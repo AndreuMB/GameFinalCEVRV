@@ -79,7 +79,7 @@ public class UIManager : MonoBehaviour
     {
         indicatorTimer = 0;
         maxIndicatorTimer = arma.weaponData.loadTime;
-        while (indicatorTimer < MAX_PROGRESS_BAR)
+        while (indicatorTimer < MAX_PROGRESS_BAR && arma.isActiveAndEnabled)
         {
             indicatorTimer += (MAX_PROGRESS_BAR / maxIndicatorTimer) * Time.deltaTime;
             reloadProgressBar.enabled = true;
@@ -94,6 +94,7 @@ public class UIManager : MonoBehaviour
             }
             yield return new WaitForEndOfFrame();
         }
+        reloadProgressBar.enabled = false;
         yield break;
     }
 }
