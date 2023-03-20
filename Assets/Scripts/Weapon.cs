@@ -56,7 +56,7 @@ public class Weapon : MonoBehaviour
         if (reloadingCoroutine != null)
         {
             //En teoria este StopCoroutine hace menos que yo un dia de resaca
-            StopCoroutine(load());
+            // StopCoroutine(load());
             reloadingCoroutine = null;
         }
         //if(isReloading) StopCoroutine(reloadingCoroutine);
