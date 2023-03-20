@@ -14,7 +14,7 @@ public class PlayerController : Character
     [SerializeField]
     float sensibilidad;
 
-    float rotacionX, rotacionY;
+    float mouseX, mouseY, xRotation;
 
     float movimientoX, movimientoZ;
 
@@ -27,27 +27,32 @@ public class PlayerController : Character
     [Header("Variables")]
     const float LIMIT_ANGLE = 45;
 
+    //Velocidad extra cuando sprintamos
+    const float SPRINT_SPEED = 2;
+
+    [SerializeField]
+    float movementSpeed;
+
     public float actualLife => life;
 
     public UnityEvent<Weapon> OnWeaponStateChange = new UnityEvent<Weapon>();
+    public UnityEvent<Weapon> OnReloadWeapon = new UnityEvent<Weapon>();
     public UnityEvent<float> OnPlayerLifeStateChange = new UnityEvent<float>();
-    
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 144;
+    }
     void Start()
     {
-        // INI WEAPON
-        // GameObject weaponObj = Instantiate(selectedWeapon);
-        // GameObject player = GameObject.Find(Tags.PLAYER);
-        // weaponObj.transform.parent = player.transform;
-        // weaponObj.transform.localPosition = new Vector3(1,0,0);
-        // weaponObj.transform.localRotation=Quaternion.identity;
-
         altura = transform.localScale.y;
 
         //Bloqueo del cursor al centro e invisible cuando el juego esta en primera instancia
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-
+        //Velocidad del Jugador = velocidad del Character
+        movementSpeed = speed;
 
         //Instancia de Arma
         InstanciaArmas();
@@ -55,16 +60,19 @@ public class PlayerController : Character
         OnPlayerLifeStateChange.Invoke(actualLife);
     }
 
-    void FixedUpdate(){
-        
+    void FixedUpdate()
+    {
+        PlayerMovement();
+
     }
 
     void Update()
     {
-        PlayerMovement();
+
         PlayerRotation();
 
-        if(Input.GetKey(KeyCode.K)){
+        if (Input.GetKey(KeyCode.K))
+        {
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
         }
 
@@ -74,47 +82,42 @@ public class PlayerController : Character
 
     }
 
+    void LateUpdate()
+    {
+    }
+
     void PlayerMovement()
     {
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            movementSpeed = speed + SPRINT_SPEED;
+        }else
+        {
+            movementSpeed = speed;
+        }
         //Variables donde se captura y guarda los desplazamientos
-        movimientoX = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        movimientoZ = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        movimientoX = Input.GetAxis("Horizontal") * movementSpeed;
+        movimientoZ = Input.GetAxis("Vertical") * movementSpeed;
 
-        // if(movimientoX != 0 || movimientoZ != 0){
-        //     // run = true
-        // }
+        Rigidbody rb = GetComponent<Rigidbody>();
 
-        //Vectores donde transladaremos al personaje segun su rotación.
-        Vector3 ver = new Vector3(transform.forward.x, 0, transform.forward.z) * movimientoZ;
-        Vector3 hor = transform.right * movimientoX;
+        Vector3 move = transform.right * movimientoX + transform.forward * movimientoZ;
 
-        //Movimiento del personaje
-        transform.localPosition += hor * speed * Time.deltaTime;
-        transform.position += ver * speed * Time.deltaTime;
+        rb.MovePosition(transform.position+move * Time.fixedDeltaTime);
     }
+
     void PlayerRotation()
     {
         //Variables donde se captura y guardan las rotaciones
-        rotacionX = Input.GetAxis("Mouse X") * Time.deltaTime * sensibilidad;
-        rotacionY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensibilidad * -1;
+        mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensibilidad;
+        mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensibilidad;
 
-        //Quaternion donde guardamos la rotación en el eje X desde la captura
-        Quaternion q = Quaternion.AngleAxis(rotacionY, Vector3.right);
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        //Prevision del angulo en el eje X antes de moverlo
-        float prevAngleX = Quaternion.Angle(transform.rotation, Camera.main.transform.rotation * q);
-
-        //Rotamos la camara en vertical si esta dentro del rango permitido
-        if (prevAngleX < LIMIT_ANGLE)
-        {
-            camara.transform.rotation *= q;
-            //rotacionY = 0;
-        }
-
-        //Rotamos al personaje en el eje Y
-        Vector3 rotacionJugador = new Vector3(transform.eulerAngles.x, rotacionX+transform.eulerAngles.y, transform.eulerAngles.z);
-        transform.rotation = Quaternion.Euler(rotacionJugador);
-
+        camara.transform.localRotation = Quaternion.Euler(xRotation , 0, 0);
+        transform.Rotate(Vector3.up * mouseX);
     }
 
     protected override bool decideDamage(Bullet bullet)
@@ -126,7 +129,7 @@ public class PlayerController : Character
     
     void InputRecargar()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyUp(KeyCode.R))
         {
             selectedWeapon.ReLoad();
         }

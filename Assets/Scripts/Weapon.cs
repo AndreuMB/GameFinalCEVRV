@@ -11,7 +11,6 @@ public class Weapon : MonoBehaviour
     public float ammo => loaderAmmo;
 
     float fireStart;
-    bool loadSw;
     bool enemyFire;
     [System.NonSerialized] public Character owner;
     Vector3 prevPos;
@@ -22,17 +21,21 @@ public class Weapon : MonoBehaviour
     public UnityEvent hitPlayerEv = new UnityEvent();
     [SerializeField] ParticleSystem ps;
 
+    //Metodo por si queremos parar la corrutina desde fuera
+    //public void StopReload() => StopCoroutine(nameof(load));
+
+    Coroutine reloadingCoroutine;
+    bool isReloading => reloadingCoroutine != null;
+
     void Awake()
     {
         loaderAmmo = weaponData.loaderMaxAmmo;
-
     }
 
     // Start is called before the first frame update
     void Start()
     {
         print(loaderAmmo);
-        loadSw = false;
 
         if (transform.parent.GetComponent<Enemy>())
         {
@@ -41,8 +44,23 @@ public class Weapon : MonoBehaviour
     }
 
     void OnEnable(){
-        if (!gameObject) return;
+        //Se activa la corrutina de movimiento del arma
         StartCoroutine(checkPlayerMovement());
+    }
+
+    void OnDisable() {
+        //Se desactiva la corrutina de movimiento del arma
+        StopCoroutine(checkPlayerMovement());
+
+        //Como unity no quiere parar las corutinas con un Yield return Wait For Secons, lo paro manualmente, son las 4:19 de la ma�ana y estoy hasta el huevo
+        if (reloadingCoroutine != null)
+        {
+            //En teoria este StopCoroutine hace menos que yo un dia de resaca
+            StopCoroutine(reloadingCoroutine);
+            reloadingCoroutine = null;
+        }
+        //if(isReloading) StopCoroutine(reloadingCoroutine);
+        //StopAllCoroutines();
     }
 
     // Update is called once per frame
@@ -68,17 +86,22 @@ public class Weapon : MonoBehaviour
 
     }
 
-    public void ReLoad(){
-        StartCoroutine(load());
+    public void ReLoad()
+    {
+        if (!isReloading) 
+        {
+            reloadingCoroutine = StartCoroutine(load());
+        }
     }
 
     public void Fire()
     {
 
-        if (loaderAmmo <= 0){
-            StartCoroutine(load());
+        if (loaderAmmo <= 0 && !isReloading){
+            reloadingCoroutine = StartCoroutine(load());
+            
         }
-        else
+        else if (!isReloading)
         {
             if (Time.time > fireStart + weaponData.fireRate)
             {
@@ -92,7 +115,7 @@ public class Weapon : MonoBehaviour
     {
         const int OFFSET_BULLET = 2;
         const int STRENGHT = 200;
-        if (!loadSw)
+        if (!isReloading)
         {
             Animator animator = GetComponent<Animator>();
             animator.SetTrigger("fire");
@@ -172,17 +195,16 @@ public class Weapon : MonoBehaviour
     }
 
     IEnumerator load(){
-        //TODO: extraer el if, y las variables fuera, ya que la variable al cambiar el arma se bugea y hace que no se pueda volver a usar el arma
-        //Quitar !loadSW del if, no tiene sentido que est� ahi
-        if (!loadSw && loaderAmmo!=weaponData.loaderMaxAmmo)
-        {
-            loadSw = true;
-            yield return new WaitForSeconds(weaponData.loadTime);
-            loaderAmmo = weaponData.loaderMaxAmmo;
-            loadSw = false;
-            WeaponStateChanged();
-        }
-        yield break;
+        print("PreRecarga");
+        //Si ya existe la recarga o tenemos la balas maximas salimos de la corutina
+        if (isReloading) yield break;
+        if (loaderAmmo==weaponData.loaderMaxAmmo) yield break;
+        print("recargando");
+        WeaponReload();
+        yield return new WaitForSeconds(weaponData.loadTime);
+        loaderAmmo = weaponData.loaderMaxAmmo;
+        WeaponStateChanged();
+        reloadingCoroutine = null;
     }
 
     public float getZoom(){
@@ -195,6 +217,13 @@ public class Weapon : MonoBehaviour
 
     void swAutoFire(){
         enemyFire = !enemyFire;
+    }
+    void WeaponReload()
+    {
+        if(owner is PlayerController player)
+        {
+            player.OnReloadWeapon.Invoke(this);
+        }
     }
 
     void WeaponStateChanged()

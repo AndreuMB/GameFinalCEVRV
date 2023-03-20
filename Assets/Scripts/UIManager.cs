@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.Apple.ReplayKit;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,8 +14,12 @@ public class UIManager : MonoBehaviour
     TMP_Text dinero;
     TMP_Text numeroOleada;
     TMP_Text municion;
+    Image reloadProgressBar;
 
-
+    //Variables para la funcionalidad de la rueda de carga
+    float indicatorTimer;
+    float maxIndicatorTimer;
+    const int MAX_PROGRESS_BAR = 1;
 
     // Start is called before the first frame update
     void Awake()
@@ -24,6 +30,7 @@ public class UIManager : MonoBehaviour
         
         playerController.OnWeaponStateChange.AddListener(UpdateWeaponUI);
         playerController.OnPlayerLifeStateChange.AddListener(UpdatePlayerLifeUI);
+        playerController.OnReloadWeapon.AddListener(UpdateReloadProgressBar);
         nexusRef.OnNexusLifeChange.AddListener(UpdateNexusLifeUI);
         nexusRef.OnNexusMoneyChange.AddListener(UpdateNexusMoneyUI);
         waveRef.OnWaveChange.AddListener(UpdateWaveUI);
@@ -33,6 +40,7 @@ public class UIManager : MonoBehaviour
         numeroOleada = transform.Find("WaveContainer").Find("NumOleada").GetComponent<TMP_Text>();
         vidaNexo = transform.Find("NexoContainer").Find("VidaNexo").GetComponent<TMP_Text>();
         dinero = transform.Find("MoneyContainer").Find("Dinero").GetComponent<TMP_Text>();
+        reloadProgressBar = transform.Find("ReloadProgressBar").GetComponent<Image>();
         
     }
 
@@ -62,6 +70,31 @@ public class UIManager : MonoBehaviour
     {
         numeroOleada.text = wave;
     }
+    void UpdateReloadProgressBar(Weapon arma)
+    {        
+        StartCoroutine(ReloadProgress(arma));
+    }
 
+    IEnumerator ReloadProgress(Weapon arma)
+    {
+        indicatorTimer = 0;
+        maxIndicatorTimer = arma.weaponData.loadTime;
+        while (indicatorTimer < MAX_PROGRESS_BAR && arma.isActiveAndEnabled)
+        {
+            indicatorTimer += (MAX_PROGRESS_BAR / maxIndicatorTimer) * Time.deltaTime;
+            reloadProgressBar.enabled = true;
+            reloadProgressBar.fillAmount = indicatorTimer;
 
+            if (indicatorTimer >= MAX_PROGRESS_BAR)
+            {
+                indicatorTimer = maxIndicatorTimer;
+                reloadProgressBar.fillAmount = indicatorTimer;
+                reloadProgressBar.enabled = false;
+                yield break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        reloadProgressBar.enabled = false;
+        yield break;
+    }
 }
