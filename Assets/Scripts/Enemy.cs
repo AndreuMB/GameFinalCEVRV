@@ -123,7 +123,15 @@ public class Enemy : Character
     }
     // run animation
     void enemyDeath(){
+        // bool to turn off enemy fire in update
         deathBool = true;
+        // stop movement enemy
+        agent.isStopped=true;
+        // disable enemy collision for bullets and other enemies
+        GetComponent<Collider>().enabled=false;
+        // remove tag for spawn to work
+        tag = Tags.UNTAGGED;
+        // run animation death
         animator.SetTrigger("death");
     }
 

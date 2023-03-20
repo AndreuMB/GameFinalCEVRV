@@ -17,8 +17,8 @@ public class Weapon : MonoBehaviour
     Vector3 actualPos;
     Animator animator;
     // Vector3 weaponOffset;
-    public UnityEvent hitEnemyEv = new UnityEvent();
-    public UnityEvent hitPlayerEv = new UnityEvent();
+    [System.NonSerialized] public UnityEvent hitEnemyEv = new UnityEvent();
+    [System.NonSerialized] public UnityEvent hitPlayerEv = new UnityEvent();
     [SerializeField] ParticleSystem ps;
 
     //Metodo por si queremos parar la corrutina desde fuera
@@ -57,7 +57,7 @@ public class Weapon : MonoBehaviour
         if (reloadingCoroutine != null)
         {
             //En teoria este StopCoroutine hace menos que yo un dia de resaca
-            StopCoroutine(reloadingCoroutine);
+            StopCoroutine(load());
             reloadingCoroutine = null;
         }
         //if(isReloading) StopCoroutine(reloadingCoroutine);
@@ -142,7 +142,7 @@ public class Weapon : MonoBehaviour
                 Vector3 fwd = owner.transform.TransformDirection(Vector3.forward);
                 if (Physics.Raycast(owner.transform.position, fwd, out RaycastHit hit, 50))
                 {
-                    print(hit.collider.gameObject.name + " was hit by enemy!");
+                    // print(hit.collider.gameObject.name + " was hit by enemy!");
                     // hitPlayerEv.Invoke();
                     hit.collider.gameObject.TryGetComponent<PlayerController>(out PlayerController player);
                     hit.collider.gameObject.TryGetComponent<Nexus>(out Nexus nexus);
@@ -160,7 +160,7 @@ public class Weapon : MonoBehaviour
         if (owner.GetType() == typeof(PlayerController))
         {
             if(Physics.Raycast(ray, out RaycastHit hit)){
-                print(hit.collider.gameObject.name + " was hit by player!");
+                // print(hit.collider.gameObject.name + " was hit by player!");
                 hit.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy);
                 if (enemy) enemy.takeDamageRayCast(this);
                 // instantiate particles when hit raycast
