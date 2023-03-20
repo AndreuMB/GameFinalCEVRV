@@ -41,7 +41,6 @@ public class Weapon : MonoBehaviour
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
         }
-        Animator animator = GetComponent<Animator>();
     }
 
     void OnEnable(){
@@ -221,7 +220,9 @@ public class Weapon : MonoBehaviour
     {
         if(owner is PlayerController player)
         {
+            Animator animator = GetComponent<Animator>();
             player.OnReloadWeapon.Invoke(this);
+            animator.SetFloat("reloadSpeed", 1/weaponData.loadTime);
             animator.SetTrigger("reload");
         }
     }
