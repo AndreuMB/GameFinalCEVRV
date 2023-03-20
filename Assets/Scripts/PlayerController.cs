@@ -21,6 +21,8 @@ public class PlayerController : Character
     [Header("Stats")]
     [SerializeField]
     float altura;
+    [SerializeField]
+    int curas;
     // inmortal
     [SerializeField] bool god;
 
@@ -29,6 +31,8 @@ public class PlayerController : Character
 
     //Velocidad extra cuando sprintamos
     const float SPRINT_SPEED = 2;
+    [SerializeField]
+    float maxPlayerLife;
 
     [SerializeField]
     float movementSpeed;
@@ -45,6 +49,7 @@ public class PlayerController : Character
     }
     void Start()
     {
+        life = maxPlayerLife;
         altura = transform.localScale.y;
 
         //Bloqueo del cursor al centro e invisible cuando el juego esta en primera instancia
@@ -70,16 +75,17 @@ public class PlayerController : Character
     {
 
         PlayerRotation();
-
-        if (Input.GetKey(KeyCode.K))
-        {
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
-        }
-
         InputRecargar();
         InputDisparar();
         InputCambiarArma();
-
+        InputCuracion();
+        
+        
+        
+        // if (Input.GetKey(KeyCode.K))
+        // {
+        //     transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
+        // }
     }
 
     void LateUpdate()
@@ -166,6 +172,18 @@ public class PlayerController : Character
         }
         selectedWeapon.gameObject.SetActive(true);
         OnWeaponStateChange.Invoke(selectedWeapon);
+    }
+
+    void InputCuracion()
+    {
+        if(Input.GetKeyDown(KeyCode.Q) && curas > 0)
+        {
+            life = maxPlayerLife;
+            curas -= 1;
+            OnPlayerLifeStateChange.Invoke(actualLife);
+        }
+
+
     }
 
 }
