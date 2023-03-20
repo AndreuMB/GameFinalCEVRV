@@ -1384,7 +1384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 3993779761761343947, guid: c49331a7acf875f43a650bbd3ac20b21, type: 3}
+  - {fileID: 8631082880459259092, guid: d5c858cb1f76b864bbb6bd0bda6fe96e, type: 3}
   life: 20
   speed: 0
   death:
