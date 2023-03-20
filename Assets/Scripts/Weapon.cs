@@ -41,6 +41,7 @@ public class Weapon : MonoBehaviour
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
         }
+        Animator animator = GetComponent<Animator>();
     }
 
     void OnEnable(){
@@ -195,11 +196,9 @@ public class Weapon : MonoBehaviour
     }
 
     IEnumerator load(){
-        print("PreRecarga");
         //Si ya existe la recarga o tenemos la balas maximas salimos de la corutina
         if (isReloading) yield break;
         if (loaderAmmo==weaponData.loaderMaxAmmo) yield break;
-        print("recargando");
         WeaponReload();
         yield return new WaitForSeconds(weaponData.loadTime);
         loaderAmmo = weaponData.loaderMaxAmmo;
@@ -223,6 +222,7 @@ public class Weapon : MonoBehaviour
         if(owner is PlayerController player)
         {
             player.OnReloadWeapon.Invoke(this);
+            animator.SetTrigger("reload");
         }
     }
 
