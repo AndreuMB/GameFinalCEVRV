@@ -56,6 +56,7 @@ public abstract class Character : MonoBehaviour
     public void takeDamageRayCast(Weapon weapon){
         life = life - weapon.getDamage();
         print("life " + GetType() + " = " + life);
+        GameObject.Find("Player").GetComponent<CameraShake>().shakecamera();
         if (life <= 0) {
             if (gameObject.tag == Tags.PLAYER)
             {
