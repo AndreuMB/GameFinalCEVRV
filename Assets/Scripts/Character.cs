@@ -56,16 +56,32 @@ public abstract class Character : MonoBehaviour
     public void takeDamageRayCast(Weapon weapon){
         life = life - weapon.getDamage();
         print("life " + GetType() + " = " + life);
-        GameObject.Find("Player").GetComponent<CameraShake>().shakecamera();
-        if (life <= 0) {
-            if (gameObject.tag == Tags.PLAYER)
-            {
+
+        // if hit player
+        if (gameObject.tag == Tags.PLAYER)
+        {
+            gameObject.GetComponentInChildren<CameraShake>().shakecamera();
+            if (life <= 0) {
                 GameManager.gameOver();
-            }else{
-                death.Invoke();
-                // Destroy(gameObject);
             }
         }
+
+        // if hit enemy
+        if (gameObject.tag == Tags.ENEMY)
+        {
+            if (life <= 0) {
+                death.Invoke();
+            }
+        }
+        // if (life <= 0) {
+        //     if (gameObject.tag == Tags.PLAYER)
+        //     {
+        //         GameManager.gameOver();
+        //     }else{
+        //         death.Invoke();
+        //         // Destroy(gameObject);
+        //     }
+        // }
     }
 
     protected void InstanciaArmas()
