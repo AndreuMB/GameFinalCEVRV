@@ -304,8 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fb679e194bd1643a3b2b78715b1bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camTransform: {fileID: 0}
-  shakeDuration: 0
+  shakeDuration: 1
   shakeAmount: 0.7
   curve:
     serializedVersion: 2

@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    // Transform of the camera to shake. Grabs the gameObject's transform
-    // if null.
-    public Transform camTransform;
-
     // How long the object should shake for.
-    public float shakeDuration = 0f;
+    [SerializeField] float shakeDuration = 1f;
+    float shakeDurationCalc;
 
     // Amplitude of the shake. A larger value shakes the camera harder.
-    public float shakeAmount = 0.7f;
+    [SerializeField] float shakeAmount = 0.7f;
     //public float decreaseFactor = 1.0f;
 
-    [SerializeField]
-    AnimationCurve curve;
+    [SerializeField] AnimationCurve curve;
 
     public static bool shaketrue= false;
 
@@ -24,30 +20,27 @@ public class CameraShake : MonoBehaviour
 
     void Awake()
     {
-        if (camTransform == null)
-        {
-            camTransform = transform;
-        }
+
     }
 
     void OnEnable()
     {
-        originalPos = camTransform.localPosition;
+        originalPos = transform.localPosition;
     }
 
     void Update()
     {
-        if (shaketrue) 
+        if (shaketrue)
         {
-            if (shakeDuration > 0) {
-                camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount * curve.Evaluate(1 - shakeDuration);
+            if (shakeDurationCalc > 0) {
+                transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount * curve.Evaluate(1 - shakeDuration);
 
                 // shakeDuration -= Time.deltaTime * decreaseFactor;
-                shakeDuration -= Time.deltaTime;
+                shakeDurationCalc -= Time.deltaTime;
                 
             } else {
-                shakeDuration = 1f;
-                camTransform.localPosition = originalPos;
+                shakeDurationCalc = shakeDuration;
+                transform.localPosition = originalPos;
                 shaketrue = false;
             }
         }
@@ -55,7 +48,8 @@ public class CameraShake : MonoBehaviour
 
     public void shakecamera()
     {
-        originalPos = camTransform.localPosition;
+        shakeDurationCalc = shakeDuration;
+        transform.localPosition = originalPos;
         shaketrue = true;
     }
 }
