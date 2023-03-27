@@ -24,6 +24,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: 81a0c7f7d668b3946bdae5debcd6610f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_d635d9e035ad483e86460296b6406096_Texture_1:
+        m_Texture: {fileID: 2800000, guid: ae671fc707256464783bd48eeac42493, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Textura_Estrellas:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Textura_Nube:
         m_Texture: {fileID: 2800000, guid: 43c39e7f75b72844db01224c9a4628a2, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -42,30 +50,36 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Brillo_Nubes: 1
+    - _Brillo_Estrellas: 1
+    - _Brillo_Nubes: 1.5
     - _Distancia_Fade: 0.8
-    - _Exponente_Cielo: 7
-    - _Exponente_Subcielo: 2
-    - _Fuerza_Fade: 25
+    - _Exponente_Dia_Cielo: 7
+    - _Exponente_Dia_Subcielo: 2
+    - _Exponente_Noche_Cielo: 7
+    - _Exponente_Noche_Subcielo: 7
+    - _Fuerza_Fade_Estrellas: 1
+    - _Fuerza_Fade_Nubes: 25
     - _Fuerza_Normales: 0.8
     - _Lejania_Nubes: 0.25
-    - _Opacidad: 1
+    - _Opacidad: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SunExponent: 1
     - _SunIntensity: 5
     - _SunRadiusA: 0.03
     - _SunRadiusB: 0.05
-    - _Tamano_Nubes: 0.5
+    - _Tamano_Nubes: 0.05
     m_Colors:
-    - _Color_Cielo: {r: 0.14702725, g: 0.30588236, b: 1, a: 1}
-    - _Color_Horizonte: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_Nubes: {r: 0, g: 0.4941177, b: 1, a: 1}
-    - _Color_Subcielo: {r: 0.000607054, g: 0.001821162, b: 0.046665065, a: 1}
+    - _Color_Dia_Cielo: {r: 0.1470273, g: 0.3058824, b: 1, a: 1}
+    - _Color_Dia_Horizonte: {r: 1, g: 1, b: 1, a: 1}
+    - _Color_Dia_Subcielo: {r: 0.000607054, g: 0.001821162, b: 0.04666509, a: 1}
+    - _Color_Noche_Cielo: {r: 0.000607054, g: 0.001821162, b: 0.04666509, a: 1}
+    - _Color_Noche_Horizonte: {r: 0.06127626, g: 0.077106, b: 0.4811321, a: 1}
+    - _Color_Noche_Subcielo: {r: 0.000607054, g: 0.001821162, b: 0.04666509, a: 1}
+    - _Color_Nubes: {r: 0.7415895, g: 0.8459673, b: 0.9528302, a: 1}
     - _Direccion: {r: 0, g: 0, b: 0, a: 0}
+    - _Direccion_Estrellas: {r: 0, g: 0, b: 0, a: 0}
     - _Intensidad_general: {r: 2, g: 2, b: 2, a: 2}
-    - _SkyColor1: {r: 0, g: 0, b: 0, a: 0}
-    - _SkyColor2: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1926065572957076364
 MonoBehaviour:
