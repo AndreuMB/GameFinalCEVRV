@@ -17,7 +17,6 @@ public class GameOver : MonoBehaviour
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        print("enter ondisable");
     }
     public static void gameOver(){
         gameOverEv.Invoke();
