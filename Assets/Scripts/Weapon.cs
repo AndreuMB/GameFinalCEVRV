@@ -27,9 +27,12 @@ public class Weapon : MonoBehaviour
     Coroutine reloadingCoroutine;
     bool isReloading => reloadingCoroutine != null;
 
+    Transform iniTransform;
+
     void Awake()
     {
         loaderAmmo = weaponData.loaderMaxAmmo;
+        iniTransform = transform;
     }
 
     // Start is called before the first frame update
@@ -46,6 +49,9 @@ public class Weapon : MonoBehaviour
     void OnEnable(){
         //Se activa la corrutina de movimiento del arma
         StartCoroutine(checkPlayerMovement());
+        // Set weapon default position
+        // print("iniTransform = " + iniTransform.position);
+        transform.position = iniTransform.position;
     }
 
     void OnDisable() {

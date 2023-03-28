@@ -96,6 +96,7 @@ public abstract class Character : MonoBehaviour
             slotAnimator.runtimeAnimatorController = weaponAnimator.runtimeAnimatorController;
             // Vector3 offsetWeapon = weapons[i].transform.GetChild(0).position;
             // weapons[i] = Instantiate(weapons[i].gameObject, slotWeapon.position + offsetWeapon, Quaternion.identity, slotWeapon.transform).GetComponent<Weapon>();
+            // print(weapons[i].name);
             weapons[i] = Instantiate(weapons[i].gameObject, slotWeapon.position, Quaternion.identity, slotWeapon.transform).GetComponent<Weapon>();
             weapons[i].owner = this;
             weapons[i].gameObject.SetActive(false);
