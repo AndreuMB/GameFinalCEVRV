@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] GameObject restartMenu;
+    bool isShowing;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,13 +16,17 @@ public class MenuManager : MonoBehaviour
 
     public void showGameOver(){
         restartMenu.SetActive(true);
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+        GameObject.Find("Resume").GetComponent<Button>().interactable = false;
+        // Cursor.lockState = CursorLockMode.Confined;
+        // Cursor.visible = true;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        if (Input.GetKeyDown("escape")) {
+            isShowing = !restartMenu.activeInHierarchy;
+            restartMenu.SetActive(isShowing);
+            if (isShowing) GameObject.Find("Restart").GetComponent<Button>().interactable = true;
+        }
     }
 }
