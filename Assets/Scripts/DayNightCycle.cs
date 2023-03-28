@@ -28,6 +28,7 @@ public class DayNightCycle : MonoBehaviour
     }
     void MovimientoNubes()
     {
-        RenderSettings.skybox.SetVector("_Direccion", (Vector2)RenderSettings.skybox.GetVector("_Direccion" + Time.deltaTime * velocidadNubes));
+        RenderSettings.skybox.SetVector("_Direccion", (Vector2)RenderSettings.skybox.GetVector("_Direccion") + Time.deltaTime * velocidadNubes);
+
     }
 }

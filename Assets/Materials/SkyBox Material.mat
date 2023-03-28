@@ -51,8 +51,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Brillo_Estrellas: 1
-    - _Brillo_Nubes: 1.5
-    - _Distancia_Fade: 0.8
+    - _Brillo_Nubes: 0.3
+    - _Distancia_Fade: 0.75
     - _Exponente_Dia_Cielo: 7
     - _Exponente_Dia_Subcielo: 2
     - _Exponente_Noche_Cielo: 7
@@ -68,7 +68,7 @@ Material:
     - _SunIntensity: 5
     - _SunRadiusA: 0.03
     - _SunRadiusB: 0.05
-    - _Tamano_Nubes: 0.05
+    - _Tamano_Nubes: 0.07
     m_Colors:
     - _Color_Dia_Cielo: {r: 0.1470273, g: 0.3058824, b: 1, a: 1}
     - _Color_Dia_Horizonte: {r: 1, g: 1, b: 1, a: 1}
@@ -77,7 +77,7 @@ Material:
     - _Color_Noche_Horizonte: {r: 0.06127626, g: 0.077106, b: 0.4811321, a: 1}
     - _Color_Noche_Subcielo: {r: 0.000607054, g: 0.001821162, b: 0.04666509, a: 1}
     - _Color_Nubes: {r: 0.7415895, g: 0.8459673, b: 0.9528302, a: 1}
-    - _Direccion: {r: 0, g: 0, b: 0, a: 0}
+    - _Direccion: {r: 19.18065, g: 19.18065, b: 0, a: 0}
     - _Direccion_Estrellas: {r: 0, g: 0, b: 0, a: 0}
     - _Intensidad_general: {r: 2, g: 2, b: 2, a: 2}
   m_BuildTextureStacks: []
