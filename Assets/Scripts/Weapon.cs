@@ -38,8 +38,6 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(loaderAmmo);
-
         if (transform.parent.GetComponent<Enemy>())
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);

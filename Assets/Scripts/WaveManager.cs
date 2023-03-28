@@ -23,6 +23,7 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        wave = 0;
         Spawn.spawnEnemyEvent.AddListener(spawnCheck);
         // foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         // {
@@ -40,7 +41,7 @@ public class WaveManager : MonoBehaviour
 
     void spawnCheck(){
         enemiesScene = GameObject.FindGameObjectsWithTag(Tags.ENEMY).Length;
-
+        print("spawn = " + spawn);
         if (enemiesScene>=maxEnemiesScene || enemiesWave<=enemiesScene)
         {
             spawn = false;
@@ -67,11 +68,13 @@ public class WaveManager : MonoBehaviour
     }
 
     public void checkWave(){
-        print("enter check wave " + enemiesWave);
+        print("enter check wave enemies = " + enemiesWave);
         enemiesWave--;
         if (enemiesWave<=0)
         {
             StartCoroutine(nextWave());
+        }else{
+            spawnCheck();
         }
     }
 }
