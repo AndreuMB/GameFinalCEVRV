@@ -26,6 +26,7 @@ public class Nexus : MonoBehaviour
         StartCoroutine(income());
         OnNexusLifeChange.Invoke(life);
         OnNexusMoneyChange.Invoke(money);
+        FindObjectOfType<AudioManager>().Play("Taladro");
     }
 
     // Update is called once per frame

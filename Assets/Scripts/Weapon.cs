@@ -27,6 +27,8 @@ public class Weapon : MonoBehaviour
     Coroutine reloadingCoroutine;
     bool isReloading => reloadingCoroutine != null;
 
+    AudioManager am;
+
     void Awake()
     {
         loaderAmmo = weaponData.loaderMaxAmmo;
@@ -39,6 +41,7 @@ public class Weapon : MonoBehaviour
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
         }
+        am = FindObjectOfType<AudioManager>();
     }
 
     void OnEnable(){
@@ -117,6 +120,7 @@ public class Weapon : MonoBehaviour
         {
             Animator animator = GetComponent<Animator>();
             animator.SetTrigger("fire");
+            am.Play(weaponData.audioFire);
             GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
             instance.GetComponent<Bullet>().weapon = this;
             instance.GetComponent<Rigidbody>().AddForce(transform.forward * STRENGHT, ForceMode.VelocityChange);
@@ -196,6 +200,7 @@ public class Weapon : MonoBehaviour
         //Si ya existe la recarga o tenemos la balas maximas salimos de la corutina
         if (isReloading) yield break;
         if (loaderAmmo==weaponData.loaderMaxAmmo) yield break;
+        am.Play(weaponData.audioReload);
         WeaponReload();
         yield return new WaitForSeconds(weaponData.loadTime);
         loaderAmmo = weaponData.loaderMaxAmmo;
