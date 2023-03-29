@@ -99,6 +99,7 @@ public class Weapon : MonoBehaviour
     {
 
         if (loaderAmmo <= 0 && !isReloading){
+            am.Play("OutAmmo");
             reloadingCoroutine = StartCoroutine(load());
             
         }

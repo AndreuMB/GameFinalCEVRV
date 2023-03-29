@@ -53,13 +53,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: DisparoAuto
     clip: {fileID: 8300000, guid: faca17b1784b49549bd248161c73889d, type: 3}
-    volume: 0.5
+    volume: 0.25
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: DisparoPistola
     clip: {fileID: 8300000, guid: faca17b1784b49549bd248161c73889d, type: 3}
-    volume: 0.5
+    volume: 0.25
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -78,6 +78,12 @@ MonoBehaviour:
   - name: OutAmmo
     clip: {fileID: 8300000, guid: 696614ed16aac6e428b419769e354ff0, type: 3}
     volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hitmarker
+    clip: {fileID: 8300000, guid: a8c28dd47f93a3f45856ce9636d7d4c9, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
