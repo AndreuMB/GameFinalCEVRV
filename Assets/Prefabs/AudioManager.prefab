@@ -50,57 +50,98 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     loop: 1
+    spatialBlend: 1
+    minDistance: 5
+    maxDistance: 50
     source: {fileID: 0}
+    owner: {fileID: 0}
   - name: DisparoAuto
     clip: {fileID: 8300000, guid: faca17b1784b49549bd248161c73889d, type: 3}
     volume: 0.25
     pitch: 1
     loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
     source: {fileID: 0}
+    owner: {fileID: 0}
   - name: DisparoPistola
     clip: {fileID: 8300000, guid: faca17b1784b49549bd248161c73889d, type: 3}
     volume: 0.25
     pitch: 1
     loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
     source: {fileID: 0}
+    owner: {fileID: 0}
   - name: RecargaAuto
     clip: {fileID: 8300000, guid: c5c76c26940577643b8884c1b6c48d14, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
     source: {fileID: 0}
+    owner: {fileID: 0}
   - name: RecargaPistola
     clip: {fileID: 8300000, guid: cc6d3c7249b2bf049b8d5142b5bb8a96, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
     source: {fileID: 0}
+    owner: {fileID: 0}
   - name: OutAmmo
     clip: {fileID: 8300000, guid: 696614ed16aac6e428b419769e354ff0, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
     source: {fileID: 0}
+    owner: {fileID: 0}
   - name: Theme
     clip: {fileID: 8300000, guid: ddddc8a04690f2c4b83fbe6410983378, type: 3}
-    volume: 0.5
+    volume: 0.2
     pitch: 1
     loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
     source: {fileID: 0}
+    owner: {fileID: 0}
   - name: EnvironmentForest
     clip: {fileID: 8300000, guid: 9cb69444752aaa04da5d337b4eaffb05, type: 3}
     volume: 0.5
     pitch: 1
     loop: 1
+    spatialBlend: 1
+    minDistance: 5
+    maxDistance: 30
     source: {fileID: 0}
+    owner: {fileID: 0}
   - name: Crystal
     clip: {fileID: 8300000, guid: 9e8077c3bde75a5428644b86806b932c, type: 3}
     volume: 0.7
     pitch: 1
     loop: 1
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+    owner: {fileID: 0}
   - name: Hitmarker
     clip: {fileID: 8300000, guid: a8c28dd47f93a3f45856ce9636d7d4c9, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
     source: {fileID: 0}
+    owner: {fileID: 0}
