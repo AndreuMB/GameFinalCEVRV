@@ -81,6 +81,23 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Theme
+    clip: {fileID: 8300000, guid: ddddc8a04690f2c4b83fbe6410983378, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: EnvironmentForest
+    clip: {fileID: 8300000, guid: 9cb69444752aaa04da5d337b4eaffb05, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Crystal
+    clip: {fileID: 8300000, guid: 9e8077c3bde75a5428644b86806b932c, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 1
   - name: Hitmarker
     clip: {fileID: 8300000, guid: a8c28dd47f93a3f45856ce9636d7d4c9, type: 3}
     volume: 1
