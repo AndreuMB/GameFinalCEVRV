@@ -62,4 +62,10 @@ public class AudioManager : MonoBehaviour
         source.minDistance = sound.minDistance;
         source.maxDistance = sound.maxDistance;
     }
+
+    public void Stop(string name){
+        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        if (sound == null ||sound.source == null) return;
+        sound.source.Stop();
+    }
 }

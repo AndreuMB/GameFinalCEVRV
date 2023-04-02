@@ -240,7 +240,7 @@ public class Weapon : MonoBehaviour
     }
     IEnumerator checkPlayerMovement() {
         Animator animator = GetComponent<Animator>();
-        const float MIN_MOVEMENT = 0.5f;
+        const float MIN_MOVEMENT = 0.1f;
         while (isActiveAndEnabled)
         {
             if (!owner) break;

@@ -155,3 +155,25 @@ MonoBehaviour:
     maxDistance: 0
     source: {fileID: 0}
     ownerTag: 0
+  - name: Walk
+    clip: {fileID: 8300000, guid: ab04c79f019298949be555dd9ee4d707, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    autoplay: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+    ownerTag: 0
+  - name: Run
+    clip: {fileID: 8300000, guid: ab04c79f019298949be555dd9ee4d707, type: 3}
+    volume: 1
+    pitch: 2
+    loop: 1
+    autoplay: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+    ownerTag: 0
