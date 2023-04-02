@@ -17,4 +17,5 @@ public enum TagsEnum
     Bullet,
     Player,
     Nexus,
+    ForestEnvironment
 }

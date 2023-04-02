@@ -116,7 +116,7 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         const int OFFSET_BULLET = 2;
-        const int STRENGHT = 10;
+        const int STRENGHT = 100;
         if (!isReloading)
         {
             Animator animator = GetComponent<Animator>();

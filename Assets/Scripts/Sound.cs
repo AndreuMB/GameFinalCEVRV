@@ -11,6 +11,7 @@ public class Sound
     [Range(0f,3f)]
     public float pitch;
     public bool loop;
+    public bool autoplay;
     public bool spatialBlend;
     [Header("3d options")]
     public float minDistance;

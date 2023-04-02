@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8841399460400380836, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
@@ -676,9 +676,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1020219917}
-  - component: {fileID: 1020219916}
   - component: {fileID: 1020219919}
   - component: {fileID: 1020219918}
+  - component: {fileID: 1020219920}
   m_Layer: 0
   m_Name: AudioBox
   m_TagString: ForestEnvironment
@@ -686,18 +686,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1020219916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020219915}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658800e2c57037d4bb6035db0bc0b286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1020219917
 Transform:
   m_ObjectHideFlags: 0
@@ -763,6 +751,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020219915}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1020219920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020219915}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658800e2c57037d4bb6035db0bc0b286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1104752046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1090,18 +1090,6 @@ PrefabInstance:
     - target: {fileID: 7064090776996282058, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7064090776996282059, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
-      propertyPath: sounds.Array.data[0].owner
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7064090776996282059, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
-      propertyPath: sounds.Array.data[7].owner
-      value: 
-      objectReference: {fileID: 1020219915}
-    - target: {fileID: 7064090776996282059, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
-      propertyPath: sounds.Array.data[0].ownerTag
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7064090776996282060, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
       propertyPath: m_Name
