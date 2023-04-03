@@ -28,6 +28,7 @@ public class Weapon : MonoBehaviour
     bool isReloading => reloadingCoroutine != null;
 
     Transform iniTransform;
+    AudioManager am;
 
     void Awake()
     {
@@ -42,6 +43,7 @@ public class Weapon : MonoBehaviour
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
         }
+        am = FindObjectOfType<AudioManager>();
     }
 
     void OnEnable(){
@@ -102,6 +104,7 @@ public class Weapon : MonoBehaviour
     {
 
         if (loaderAmmo <= 0 && !isReloading){
+            am.Play("OutAmmo");
             reloadingCoroutine = StartCoroutine(load());
             
         }
@@ -118,11 +121,12 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         const int OFFSET_BULLET = 2;
-        const int STRENGHT = 200;
+        const int STRENGHT = 100;
         if (!isReloading)
         {
             Animator animator = GetComponent<Animator>();
             animator.SetTrigger("fire");
+            am.Play(weaponData.audioFire);
             GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
             instance.GetComponent<Bullet>().weapon = this;
             instance.GetComponent<Rigidbody>().AddForce(transform.forward * STRENGHT, ForceMode.VelocityChange);
@@ -202,6 +206,7 @@ public class Weapon : MonoBehaviour
         //Si ya existe la recarga o tenemos la balas maximas salimos de la corutina
         if (isReloading) yield break;
         if (loaderAmmo==weaponData.loaderMaxAmmo) yield break;
+        am.Play(weaponData.audioReload);
         WeaponReload();
         yield return new WaitForSeconds(weaponData.loadTime);
         loaderAmmo = weaponData.loaderMaxAmmo;
@@ -240,7 +245,7 @@ public class Weapon : MonoBehaviour
     }
     IEnumerator checkPlayerMovement() {
         Animator animator = GetComponent<Animator>();
-        const float MIN_MOVEMENT = 0.5f;
+        const float MIN_MOVEMENT = 0.1f;
         while (isActiveAndEnabled)
         {
             if (!owner) break;

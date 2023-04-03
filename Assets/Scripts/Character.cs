@@ -69,6 +69,8 @@ public abstract class Character : MonoBehaviour
         // if hit enemy
         if (gameObject.tag == Tags.ENEMY)
         {
+            AudioManager am = FindObjectOfType<AudioManager>();
+            am.Play("Hitmarker");
             if (life <= 0) {
                 death.Invoke();
             }

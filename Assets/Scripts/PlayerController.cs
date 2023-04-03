@@ -42,6 +42,11 @@ public class PlayerController : Character
     public UnityEvent<Weapon> OnWeaponStateChange = new UnityEvent<Weapon>();
     public UnityEvent<Weapon> OnReloadWeapon = new UnityEvent<Weapon>();
     public UnityEvent<float> OnPlayerLifeStateChange = new UnityEvent<float>();
+    string mode = "";
+    string modeBk = "";
+    Vector3 prevPos;
+    Vector3 actualPos;
+    AudioManager am;
 
     private void Awake()
     {
@@ -63,6 +68,8 @@ public class PlayerController : Character
         InstanciaArmas();
         OnWeaponStateChange.Invoke(selectedWeapon);
         OnPlayerLifeStateChange.Invoke(actualLife);
+        StartCoroutine(checkPlayerMovement());
+        am = GameObject.FindObjectOfType<AudioManager>();
     }
 
     void FixedUpdate()
@@ -94,13 +101,16 @@ public class PlayerController : Character
 
     void PlayerMovement()
     {
-
+        AudioManager am = GameObject.FindObjectOfType<AudioManager>();
+        
         if(Input.GetKey(KeyCode.LeftShift))
         {
             movementSpeed = speed + SPRINT_SPEED;
+            mode = "Run";
         }else
-        {
+        { 
             movementSpeed = speed;
+            mode = "Walk";
         }
         //Variables donde se captura y guarda los desplazamientos
         movimientoX = Input.GetAxis("Horizontal") * movementSpeed;
@@ -111,6 +121,31 @@ public class PlayerController : Character
         Vector3 move = transform.right * movimientoX + transform.forward * movimientoZ;
 
         rb.MovePosition(transform.position+move * Time.fixedDeltaTime);
+
+    }
+
+    IEnumerator checkPlayerMovement() {
+        const float MIN_MOVEMENT = 0.1f;
+        while (isActiveAndEnabled)
+        {
+            prevPos = transform.position;
+            yield return new WaitForSeconds(0.1f);
+            actualPos = transform.position;
+            float distance = Vector3.Distance(prevPos,actualPos);
+            if (distance<MIN_MOVEMENT){
+                am.Stop(mode);
+                modeBk = "";
+            }
+            if (distance>=MIN_MOVEMENT){
+                if (mode != modeBk)
+                {
+                    am.Stop(modeBk);
+                    modeBk = mode;
+                    am.Play(mode);
+                }
+            };
+        }
+        yield break;
     }
 
     void PlayerRotation()
@@ -162,6 +197,7 @@ public class PlayerController : Character
 
     void ChangeWeapon(int a)
     {
+        am.Play("SwapWeapon");
         selectedWeapon.gameObject.SetActive(false);
         if(selectedIndex == 0 && a < 0){
             selectedIndex = weapons.Count-1;

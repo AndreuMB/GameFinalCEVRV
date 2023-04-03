@@ -20,3 +20,5 @@ MonoBehaviour:
   damage: 20
   auto: 0
   zoom: 1
+  audioFire: DisparoAuto
+  audioReload: RecargaPistola
