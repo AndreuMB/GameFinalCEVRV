@@ -72,6 +72,7 @@ public abstract class Character : MonoBehaviour
             AudioManager am = FindObjectOfType<AudioManager>();
             am.Play("Hitmarker");
             if (life <= 0) {
+                Nexus.money += WaveManager.moneyDropByEnemies;
                 death.Invoke();
             }
         }

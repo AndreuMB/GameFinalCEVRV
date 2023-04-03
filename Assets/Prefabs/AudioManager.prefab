@@ -177,3 +177,14 @@ MonoBehaviour:
     maxDistance: 0
     source: {fileID: 0}
     ownerTag: 0
+  - name: SwapWeapon
+    clip: {fileID: 8300000, guid: 975a396d29b79dc40b5538c7b91a2b3c, type: 3}
+    volume: 1
+    pitch: 2
+    loop: 0
+    autoplay: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+    ownerTag: 0

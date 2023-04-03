@@ -44,8 +44,8 @@ public class Weapon : MonoBehaviour
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
         }
         am = FindObjectOfType<AudioManager>();
-        print("1/weaponData.fireRate = " + 1/weaponData.fireRate);
-        animator.SetFloat("fireSpeed", 1/weaponData.fireRate);
+        // print("1/weaponData.fireRate = " + 1/weaponData.fireRate);
+        // animator.SetFloat("fireSpeed", 1/weaponData.fireRate);
     }
 
     void OnEnable(){

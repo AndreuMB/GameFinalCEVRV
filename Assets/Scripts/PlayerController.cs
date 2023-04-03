@@ -34,7 +34,7 @@ public class PlayerController : Character
     [SerializeField]
     float maxPlayerLife;
 
-    [SerializeField]
+    // [SerializeField]
     float movementSpeed;
 
     public float actualLife => life;

@@ -34,6 +34,7 @@ public class Enemy : Character
         rangeToFire = Random.Range(15,30);
         setTarget();
         animator = GetComponent<Animator>();
+        life = WaveManager.enemiesLife;
     }
 
     // Update is called once per frame

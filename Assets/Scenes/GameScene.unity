@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8841399460400380834, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8841399460400380834, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -177,10 +177,6 @@ PrefabInstance:
     - target: {fileID: 8841399460400380836, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
       propertyPath: m_Name
       value: Spawn
-      objectReference: {fileID: 0}
-    - target: {fileID: 8841399460400380836, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
@@ -617,6 +613,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 240342790, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
+      propertyPath: shakeAmount
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 240342790, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
+      propertyPath: shakeDuration
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067318893570583666, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9067318893570583670, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1090,30 +1098,6 @@ PrefabInstance:
     - target: {fileID: 7064090776996282058, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7064090776996282059, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
-      propertyPath: sounds.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 7064090776996282059, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
-      propertyPath: sounds.Array.data[12].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 975a396d29b79dc40b5538c7b91a2b3c, type: 3}
-    - target: {fileID: 7064090776996282059, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
-      propertyPath: sounds.Array.data[12].loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7064090776996282059, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
-      propertyPath: sounds.Array.data[12].name
-      value: SwapWeapon
-      objectReference: {fileID: 0}
-    - target: {fileID: 7064090776996282059, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
-      propertyPath: sounds.Array.data[12].pitch
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7064090776996282059, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
-      propertyPath: sounds.Array.data[12].volume
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7064090776996282060, guid: c1cfb9141bc67934c943d8ccb607d8b5, type: 3}
       propertyPath: m_Name

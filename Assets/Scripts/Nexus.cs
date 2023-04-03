@@ -16,7 +16,7 @@ public class Nexus : MonoBehaviour
     [SerializeField] 
     Material nexus2Material;
 
-    int money;
+    public static int money;
 
     public UnityEvent<float> OnNexusLifeChange = new UnityEvent<float>();
     public UnityEvent<int> OnNexusMoneyChange = new UnityEvent<int>();
