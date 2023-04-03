@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
         
         foreach (Sound sound in sounds)
         {
@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
 
     void Start(){
         Scene scene = SceneManager.GetActiveScene();
-        if (scene.rootCount == 0)
+        if (scene.buildIndex == 0)
         {
             Play("ThemeMM");
         }

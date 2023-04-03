@@ -46,6 +46,7 @@ public class PlayerController : Character
     string modeBk = "";
     Vector3 prevPos;
     Vector3 actualPos;
+    AudioManager am;
 
     private void Awake()
     {
@@ -68,6 +69,7 @@ public class PlayerController : Character
         OnWeaponStateChange.Invoke(selectedWeapon);
         OnPlayerLifeStateChange.Invoke(actualLife);
         StartCoroutine(checkPlayerMovement());
+        am = GameObject.FindObjectOfType<AudioManager>();
     }
 
     void FixedUpdate()
@@ -123,7 +125,6 @@ public class PlayerController : Character
     }
 
     IEnumerator checkPlayerMovement() {
-        AudioManager am = GameObject.FindObjectOfType<AudioManager>();
         const float MIN_MOVEMENT = 0.1f;
         while (isActiveAndEnabled)
         {
@@ -196,6 +197,7 @@ public class PlayerController : Character
 
     void ChangeWeapon(int a)
     {
+        am.Play("SwapWeapon");
         selectedWeapon.gameObject.SetActive(false);
         if(selectedIndex == 0 && a < 0){
             selectedIndex = weapons.Count-1;
