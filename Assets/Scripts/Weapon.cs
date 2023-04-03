@@ -44,6 +44,8 @@ public class Weapon : MonoBehaviour
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
         }
         am = FindObjectOfType<AudioManager>();
+        print("1/weaponData.fireRate = " + 1/weaponData.fireRate);
+        animator.SetFloat("fireSpeed", 1/weaponData.fireRate);
     }
 
     void OnEnable(){
@@ -65,8 +67,15 @@ public class Weapon : MonoBehaviour
             // StopCoroutine(load());
             reloadingCoroutine = null;
         }
+
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
+        transform.localPosition = new Vector3(0,0,0);
+        animator.enabled = true;
         //if(isReloading) StopCoroutine(reloadingCoroutine);
         //StopAllCoroutines();
+
+
     }
 
     // Update is called once per frame
@@ -231,6 +240,7 @@ public class Weapon : MonoBehaviour
         {
             Animator animator = GetComponent<Animator>();
             player.OnReloadWeapon.Invoke(this);
+            print(" 1/weaponData.loadTime" +  1/weaponData.loadTime);
             animator.SetFloat("reloadSpeed", 1/weaponData.loadTime);
             animator.SetTrigger("reload");
         }
