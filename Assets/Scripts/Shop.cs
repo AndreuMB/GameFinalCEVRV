@@ -60,6 +60,14 @@ public class Shop : MonoBehaviour
         weaponObj.transform.localRotation=Quaternion.identity;
     }
 
+    public void UpgradeLife(){
+        print("UpgradeLife");
+    }
+
+    public void BuyPotion(){
+        print("BuyPotion");
+    }
+
     // Update is called once per frame
     void Update()
     {

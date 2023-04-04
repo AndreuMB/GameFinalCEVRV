@@ -86,6 +86,7 @@ public class PlayerController : Character
         InputDisparar();
         InputCambiarArma();
         InputCuracion();
+        InputTienda();
         
         
         
@@ -220,6 +221,15 @@ public class PlayerController : Character
         }
 
 
+    }
+
+    void InputTienda(){
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            life = maxPlayerLife;
+            curas -= 1;
+            OnPlayerLifeStateChange.Invoke(actualLife);
+        }
     }
 
 }
