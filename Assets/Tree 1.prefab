@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2332485863470098373
+--- !u!1 &8665454338224654079
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6536647042064805684}
-  - component: {fileID: 8203006378986782823}
-  - component: {fileID: 8192432552842528717}
-  - component: {fileID: 1756538665906063247}
+  - component: {fileID: 4632772884363813083}
+  - component: {fileID: 7359424668644317179}
+  - component: {fileID: 1352299163027188119}
+  - component: {fileID: 7164780043636985764}
   m_Layer: 0
   m_Name: Tree 1
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6536647042064805684
+--- !u!4 &4632772884363813083
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2332485863470098373}
+  m_GameObject: {fileID: 8665454338224654079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,30 +34,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!193 &8203006378986782823
+--- !u!193 &7359424668644317179
 Tree:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2332485863470098373}
+  m_GameObject: {fileID: 8665454338224654079}
   m_SpeedTreeWindAsset: {fileID: 0}
-  m_TreeData: {fileID: -6084395668245859562}
---- !u!33 &8192432552842528717
+  m_TreeData: {fileID: -5483309626556658413}
+--- !u!33 &1352299163027188119
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2332485863470098373}
-  m_Mesh: {fileID: 1277488804299407422}
---- !u!23 &1756538665906063247
+  m_GameObject: {fileID: 8665454338224654079}
+  m_Mesh: {fileID: -231824991358279166}
+--- !u!23 &7164780043636985764
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2332485863470098373}
+  m_GameObject: {fileID: 8665454338224654079}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7103396638301571212}
+  - {fileID: 947450113272691792}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,15 +93,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!21 &-7103396638301571212
+--- !u!21 &-6817244252384698280
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Optimized Bark Material
-  m_Shader: {fileID: 10604, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Optimized Leaf Material
+  m_Shader: {fileID: 10605, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -121,6 +121,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: cf10576df8fb3334b84239701a46a550, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ShadowTex:
+        m_Texture: {fileID: 2800000, guid: 3a53b1ec9b29fc34bba6781ed3355c4c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TranslucencyMap:
         m_Texture: {fileID: 2800000, guid: 2d055aeadc426194d99077208fd22a4b, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -128,14 +132,17 @@ Material:
     m_Ints: []
     m_Floats:
     - _Cutoff: 0.3
+    - _ShadowOffsetScale: 1
+    - _ShadowStrength: 0.8
     - _SquashAmount: 1
+    - _TranslucencyViewDependency: 0.7
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _TranslucencyColor: {r: 0.73, g: 0.85, b: 0.40999997, a: 1}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &-6084395668245859562
+--- !u!114 &-5483309626556658413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -665,11 +672,11 @@ MonoBehaviour:
     parentID: 2
     groupID: 3
     _uniqueID: 4
-  mesh: {fileID: 1277488804299407422}
-  optimizedSolidMaterial: {fileID: -7103396638301571212}
-  optimizedCutoutMaterial: {fileID: 5853594792816408090}
+  mesh: {fileID: -231824991358279166}
+  optimizedSolidMaterial: {fileID: 947450113272691792}
+  optimizedCutoutMaterial: {fileID: -6817244252384698280}
   isInPreviewMode: 0
---- !u!43 &1277488804299407422
+--- !u!43 &-231824991358279166
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -833,15 +840,15 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!21 &5853594792816408090
+--- !u!21 &947450113272691792
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Optimized Leaf Material
-  m_Shader: {fileID: 10605, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Optimized Bark Material
+  m_Shader: {fileID: 10604, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -861,10 +868,6 @@ Material:
         m_Texture: {fileID: 2800000, guid: cf10576df8fb3334b84239701a46a550, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _ShadowTex:
-        m_Texture: {fileID: 2800000, guid: 3a53b1ec9b29fc34bba6781ed3355c4c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _TranslucencyMap:
         m_Texture: {fileID: 2800000, guid: 2d055aeadc426194d99077208fd22a4b, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -872,13 +875,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _Cutoff: 0.3
-    - _ShadowOffsetScale: 1
-    - _ShadowStrength: 0.8
     - _SquashAmount: 1
-    - _TranslucencyViewDependency: 0.7
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _TranslucencyColor: {r: 0.73, g: 0.85, b: 0.40999997, a: 1}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
