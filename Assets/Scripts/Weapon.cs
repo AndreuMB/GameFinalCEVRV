@@ -27,9 +27,13 @@ public class Weapon : MonoBehaviour
     Coroutine reloadingCoroutine;
     bool isReloading => reloadingCoroutine != null;
 
+    Transform iniTransform;
+    AudioManager am;
+
     void Awake()
     {
         loaderAmmo = weaponData.loaderMaxAmmo;
+        iniTransform = transform;
     }
 
     // Start is called before the first frame update
@@ -39,11 +43,17 @@ public class Weapon : MonoBehaviour
         {
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
         }
+        am = FindObjectOfType<AudioManager>();
+        // print("1/weaponData.fireRate = " + 1/weaponData.fireRate);
+        // animator.SetFloat("fireSpeed", 1/weaponData.fireRate);
     }
 
     void OnEnable(){
         //Se activa la corrutina de movimiento del arma
         StartCoroutine(checkPlayerMovement());
+        // Set weapon default position
+        // print("iniTransform = " + iniTransform.position);
+        transform.position = iniTransform.position;
     }
 
     void OnDisable() {
@@ -57,8 +67,15 @@ public class Weapon : MonoBehaviour
             // StopCoroutine(load());
             reloadingCoroutine = null;
         }
+
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
+        transform.localPosition = new Vector3(0,0,0);
+        animator.enabled = true;
         //if(isReloading) StopCoroutine(reloadingCoroutine);
         //StopAllCoroutines();
+
+
     }
 
     // Update is called once per frame
@@ -96,6 +113,7 @@ public class Weapon : MonoBehaviour
     {
 
         if (loaderAmmo <= 0 && !isReloading){
+            am.Play("OutAmmo");
             reloadingCoroutine = StartCoroutine(load());
             
         }
@@ -112,11 +130,12 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         const int OFFSET_BULLET = 2;
-        const int STRENGHT = 200;
+        const int STRENGHT = 100;
         if (!isReloading)
         {
             Animator animator = GetComponent<Animator>();
             animator.SetTrigger("fire");
+            am.Play(weaponData.audioFire);
             GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
             instance.GetComponent<Bullet>().weapon = this;
             instance.GetComponent<Rigidbody>().AddForce(transform.forward * STRENGHT, ForceMode.VelocityChange);
@@ -196,6 +215,7 @@ public class Weapon : MonoBehaviour
         //Si ya existe la recarga o tenemos la balas maximas salimos de la corutina
         if (isReloading) yield break;
         if (loaderAmmo==weaponData.loaderMaxAmmo) yield break;
+        am.Play(weaponData.audioReload);
         WeaponReload();
         yield return new WaitForSeconds(weaponData.loadTime);
         loaderAmmo = weaponData.loaderMaxAmmo;
@@ -220,6 +240,7 @@ public class Weapon : MonoBehaviour
         {
             Animator animator = GetComponent<Animator>();
             player.OnReloadWeapon.Invoke(this);
+            print(" 1/weaponData.loadTime" +  1/weaponData.loadTime);
             animator.SetFloat("reloadSpeed", 1/weaponData.loadTime);
             animator.SetTrigger("reload");
         }
@@ -234,7 +255,7 @@ public class Weapon : MonoBehaviour
     }
     IEnumerator checkPlayerMovement() {
         Animator animator = GetComponent<Animator>();
-        const float MIN_MOVEMENT = 0.5f;
+        const float MIN_MOVEMENT = 0.1f;
         while (isActiveAndEnabled)
         {
             if (!owner) break;

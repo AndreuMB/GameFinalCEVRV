@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField] int enemiesWaveStart;
+    int enemiesWaveStart = 0;
     // number of enemies extra x round
     [SerializeField] int enemiesWaveScale;
     [SerializeField] int maxEnemiesScene;
@@ -16,9 +16,11 @@ public class WaveManager : MonoBehaviour
     public static UnityEvent waveChange = new UnityEvent();
     int enemiesWave;
     int enemiesScene;
+    public static float enemiesLife = 10;
+    public static int moneyDropByEnemies = 50;
 
     //Evento para actualizar el HUD
-    public UnityEvent<string> OnWaveChange = new UnityEvent<string>();
+    [System.NonSerialized] public UnityEvent<string> OnWaveChange = new UnityEvent<string>();
     NumbersToRoman romanConverter = new NumbersToRoman();
     // Start is called before the first frame update
     void Start()
@@ -58,6 +60,7 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator nextWave(){
         wave++;
+        enemiesLife+=10;
         OnWaveChange.Invoke(romanConverter.IntToRoman(wave));
         yield return new WaitForSeconds(secBtwWaves);
         waveChange.Invoke();

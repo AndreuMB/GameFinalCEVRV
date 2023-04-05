@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesWaveStart: 0
-  enemiesWaveScale: 1
-  maxEnemiesScene: 3
-  secBtwWaves: 2
+  enemiesWaveScale: 5
+  maxEnemiesScene: 6
+  secBtwWaves: 10

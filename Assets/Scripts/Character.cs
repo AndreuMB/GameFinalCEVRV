@@ -69,7 +69,10 @@ public abstract class Character : MonoBehaviour
         // if hit enemy
         if (gameObject.tag == Tags.ENEMY)
         {
+            AudioManager am = FindObjectOfType<AudioManager>();
+            am.Play("Hitmarker");
             if (life <= 0) {
+                Nexus.money += WaveManager.moneyDropByEnemies;
                 death.Invoke();
             }
         }
@@ -96,6 +99,7 @@ public abstract class Character : MonoBehaviour
             slotAnimator.runtimeAnimatorController = weaponAnimator.runtimeAnimatorController;
             // Vector3 offsetWeapon = weapons[i].transform.GetChild(0).position;
             // weapons[i] = Instantiate(weapons[i].gameObject, slotWeapon.position + offsetWeapon, Quaternion.identity, slotWeapon.transform).GetComponent<Weapon>();
+            // print(weapons[i].name);
             weapons[i] = Instantiate(weapons[i].gameObject, slotWeapon.position, Quaternion.identity, slotWeapon.transform).GetComponent<Weapon>();
             weapons[i].owner = this;
             weapons[i].gameObject.SetActive(false);
