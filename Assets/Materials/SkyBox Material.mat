@@ -77,7 +77,7 @@ Material:
     - _Color_Noche_Horizonte: {r: 0.086500466, g: 0.07227186, b: 0.5394797, a: 1}
     - _Color_Noche_Subcielo: {r: 0.06480328, g: 0.11443538, b: 0.47932023, a: 1}
     - _Color_Nubes: {r: 0.7415895, g: 0.8459673, b: 0.9528302, a: 1}
-    - _Direccion: {r: 432.8248, g: 433.63303, b: 0, a: 0}
+    - _Direccion: {r: 429.99924, g: 435.73227, b: 0, a: 0}
     - _Direccion_Estrellas: {r: 0, g: 0, b: 0, a: 0}
     - _Intensidad_general: {r: 2, g: 2, b: 2, a: 2}
   m_BuildTextureStacks: []
