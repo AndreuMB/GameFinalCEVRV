@@ -73,11 +73,11 @@ Material:
     - _Color_Dia_Cielo: {r: 0.042052314, g: 0.990566, b: 0.70074236, a: 1}
     - _Color_Dia_Horizonte: {r: 1, g: 1, b: 1, a: 1}
     - _Color_Dia_Subcielo: {r: 0.029556843, g: 0.06301003, b: 1, a: 1}
-    - _Color_Noche_Cielo: {r: 0.1470273, g: 0.07227186, b: 0.4072403, a: 1}
-    - _Color_Noche_Horizonte: {r: 0.086500466, g: 0.07227186, b: 0.5394797, a: 1}
-    - _Color_Noche_Subcielo: {r: 0.06480328, g: 0.11443538, b: 0.47932023, a: 1}
+    - _Color_Noche_Cielo: {r: 0.004411765, g: 0.0019607844, b: 0.012745098, a: 1}
+    - _Color_Noche_Horizonte: {r: 0.021568628, g: 0.01764706, b: 0.13529412, a: 1}
+    - _Color_Noche_Subcielo: {r: 0.0010416667, g: 0.0017769608, b: 0.00747549, a: 1}
     - _Color_Nubes: {r: 0.7415895, g: 0.8459673, b: 0.9528302, a: 1}
-    - _Direccion: {r: 429.99924, g: 435.73227, b: 0, a: 0}
+    - _Direccion: {r: 431.69034, g: 437.42337, b: 0, a: 0}
     - _Direccion_Estrellas: {r: 0, g: 0, b: 0, a: 0}
     - _Intensidad_general: {r: 2, g: 2, b: 2, a: 2}
   m_BuildTextureStacks: []

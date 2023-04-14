@@ -49,16 +49,16 @@ Material:
     m_Floats:
     - _Cantidad_Espuma: 1
     - _Distancia_Espuma: 4
-    - _Escala_Agua: 10
+    - _Escala_Agua: 5
     - _Escala_Detalle: 5
-    - _Escala_Distorsion: 5
+    - _Escala_Distorsion: 0
     - _Escala_Espuma: 100
     - _Fuerza_Distorsion: 0.033
     - _Profundidad_Agua: 2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Suavizado_Detalle: 7.5
-    - _Velocidad_Agua: 0.5
+    - _Velocidad_Agua: 0.2
     - _Velocidad_Detalle: 1
     - _Velocidad_Distorsion: 0.5
     - _Velocidad_Espuma: 1
