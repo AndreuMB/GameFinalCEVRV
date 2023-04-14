@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Cristal
   m_EditorClassIdentifier: 
   wName: Pistol
-  bullet: {fileID: 7335763105056745259, guid: 313cf126888bdcb4aaf9e46f436bb506, type: 3}
+  bullet: {fileID: 7335763105056745259, guid: ef52ccca67df5f541afc32f3ee9c8749, type: 3}
   loaderMaxAmmo: 6
   loadTime: 1
   fireRate: 0.5
   damage: 10
   auto: 0
   zoom: 1
+  audioFire: DisparoAuto
+  audioReload: RecargaAuto

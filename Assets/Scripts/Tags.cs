@@ -9,3 +9,13 @@ public static class Tags
     public const string BULLET = "Bullet";
     public const string PLAYER = "Player";
 }
+
+public enum TagsEnum
+{
+    Untagged,
+    Enemy,
+    Bullet,
+    Player,
+    Nexus,
+    ForestEnvironment
+}

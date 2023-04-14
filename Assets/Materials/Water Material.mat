@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-595518690022501466
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Water Material
+  m_Shader: {fileID: -6465566751694194690, guid: 964b315a3f9b02e45ba54a82d194bab1, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Cantidad_Espuma: 1
+    - _Distancia_Espuma: 4
+    - _Escala_Agua: 10
+    - _Escala_Detalle: 5
+    - _Escala_Distorsion: 5
+    - _Escala_Espuma: 100
+    - _Fuerza_Distorsion: 0.033
+    - _Profundidad_Agua: 2
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Suavizado_Detalle: 7.5
+    - _Velocidad_Agua: 0.5
+    - _Velocidad_Detalle: 1
+    - _Velocidad_Distorsion: 0.5
+    - _Velocidad_Espuma: 1
+    m_Colors:
+    - _Color_Agua_Dia: {r: 0.05490196, g: 0.7411765, b: 0.9254903, a: 1}
+    - _Color_Agua_Noche: {r: 0.01223745, g: 0.08430666, b: 0.1037736, a: 1}
+    - _Color_Agua_Poco_Profunda: {r: 0.04705883, g: 0.6, b: 0.882353, a: 1}
+    - _Color_Agua_Profunda: {r: 0, g: 0.1568628, b: 0.3921569, a: 1}
+    - _Color_Detalle: {r: 1, g: 1, b: 1, a: 1}
+    - _Color_Distorsion_Dia: {r: 0, g: 0.6795426, b: 0.9822509, a: 1}
+    - _Color_Distorsion_Noche: {r: 0, g: 0.195933, b: 0.4528302, a: 1}
+    - _Color_Espuma: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

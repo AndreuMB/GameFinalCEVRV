@@ -52,16 +52,16 @@ Material:
     m_Floats:
     - _Brillo_Estrellas: 1
     - _Brillo_Nubes: 0.3
-    - _Distancia_Fade: 0.75
+    - _Distancia_Fade: 0.5
     - _Exponente_Dia_Cielo: 7
     - _Exponente_Dia_Subcielo: 2
     - _Exponente_Noche_Cielo: 7
     - _Exponente_Noche_Subcielo: 7
     - _Fuerza_Fade_Estrellas: 1
-    - _Fuerza_Fade_Nubes: 25
+    - _Fuerza_Fade_Nubes: 0.25
     - _Fuerza_Normales: 0.8
     - _Lejania_Nubes: 0.25
-    - _Opacidad: 0.5
+    - _Opacidad: 0.7
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SunExponent: 1
@@ -70,14 +70,14 @@ Material:
     - _SunRadiusB: 0.05
     - _Tamano_Nubes: 0.07
     m_Colors:
-    - _Color_Dia_Cielo: {r: 0.1470273, g: 0.3058824, b: 1, a: 1}
+    - _Color_Dia_Cielo: {r: 0.042052314, g: 0.990566, b: 0.70074236, a: 1}
     - _Color_Dia_Horizonte: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_Dia_Subcielo: {r: 0.000607054, g: 0.001821162, b: 0.04666509, a: 1}
-    - _Color_Noche_Cielo: {r: 0.000607054, g: 0.001821162, b: 0.04666509, a: 1}
-    - _Color_Noche_Horizonte: {r: 0.06127626, g: 0.077106, b: 0.4811321, a: 1}
-    - _Color_Noche_Subcielo: {r: 0.000607054, g: 0.001821162, b: 0.04666509, a: 1}
+    - _Color_Dia_Subcielo: {r: 0.029556843, g: 0.06301003, b: 1, a: 1}
+    - _Color_Noche_Cielo: {r: 0.1470273, g: 0.07227186, b: 0.4072403, a: 1}
+    - _Color_Noche_Horizonte: {r: 0.086500466, g: 0.07227186, b: 0.5394797, a: 1}
+    - _Color_Noche_Subcielo: {r: 0.06480328, g: 0.11443538, b: 0.47932023, a: 1}
     - _Color_Nubes: {r: 0.7415895, g: 0.8459673, b: 0.9528302, a: 1}
-    - _Direccion: {r: 19.18065, g: 19.18065, b: 0, a: 0}
+    - _Direccion: {r: 429.99924, g: 435.73227, b: 0, a: 0}
     - _Direccion_Estrellas: {r: 0, g: 0, b: 0, a: 0}
     - _Intensidad_general: {r: 2, g: 2, b: 2, a: 2}
   m_BuildTextureStacks: []

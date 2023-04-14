@@ -23,4 +23,6 @@ public class WeaponSO : ScriptableObject
     // 1 auto
     public bool auto;
     public float zoom = 1;
+    public string audioFire = "DisparoAuto";
+    public string audioReload = "RecargaAuto";
 }
