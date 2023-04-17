@@ -22,3 +22,4 @@ MonoBehaviour:
   zoom: 1
   audioFire: DisparoAuto
   audioReload: RecargaAuto
+  price: 600

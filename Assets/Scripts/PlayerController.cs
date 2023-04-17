@@ -86,7 +86,7 @@ public class PlayerController : Character
         InputDisparar();
         InputCambiarArma();
         InputCuracion();
-        InputTienda();
+        // InputTienda();
         
         
         
@@ -218,18 +218,30 @@ public class PlayerController : Character
             life = maxPlayerLife;
             curas -= 1;
             OnPlayerLifeStateChange.Invoke(actualLife);
+            print("curas = " + curas);
         }
 
 
     }
 
-    void InputTienda(){
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            life = maxPlayerLife;
-            curas -= 1;
-            OnPlayerLifeStateChange.Invoke(actualLife);
-        }
+    // void InputTienda(){
+    //     if(Input.GetKeyDown(KeyCode.F))
+    //     {
+    //         life = maxPlayerLife;
+    //         curas -= 1;
+    //         OnPlayerLifeStateChange.Invoke(actualLife);
+    //     }
+    // }
+
+    public void upgradeHealth(int upgradeValue){
+        maxPlayerLife += upgradeValue;
+        life = maxPlayerLife;
+        OnPlayerLifeStateChange.Invoke(actualLife);
+        // actualLife = life;
+    }
+
+    public void addPotions(int potionsNumber){
+        curas += potionsNumber;
     }
 
 }

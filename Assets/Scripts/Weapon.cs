@@ -15,7 +15,6 @@ public class Weapon : MonoBehaviour
     [System.NonSerialized] public Character owner;
     Vector3 prevPos;
     Vector3 actualPos;
-    Animator animator;
     // Vector3 weaponOffset;
     [System.NonSerialized] public UnityEvent hitEnemyEv = new UnityEvent();
     [System.NonSerialized] public UnityEvent hitPlayerEv = new UnityEvent();
@@ -68,7 +67,7 @@ public class Weapon : MonoBehaviour
             reloadingCoroutine = null;
         }
 
-        animator = GetComponent<Animator>();
+        Animator animator = GetComponent<Animator>();
         animator.enabled = false;
         transform.localPosition = new Vector3(0,0,0);
         animator.enabled = true;
@@ -249,9 +248,9 @@ public class Weapon : MonoBehaviour
     void WeaponStateChanged()
     {
         if (owner is PlayerController player)
-            {
-                player.OnWeaponStateChange.Invoke(this);
-            }
+        {
+            player.OnWeaponStateChange.Invoke(this);
+        }
     }
     IEnumerator checkPlayerMovement() {
         Animator animator = GetComponent<Animator>();

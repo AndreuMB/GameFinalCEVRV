@@ -18,6 +18,7 @@ public class WaveManager : MonoBehaviour
     int enemiesScene;
     public static float enemiesLife = 10;
     public static int moneyDropByEnemies = 50;
+    public static bool shopRandomize = true;
 
     //Evento para actualizar el HUD
     [System.NonSerialized] public UnityEvent<string> OnWaveChange = new UnityEvent<string>();
@@ -60,6 +61,7 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator nextWave(){
         wave++;
+        if (wave%5 == 0) shopRandomize = true;
         enemiesLife+=10;
         OnWaveChange.Invoke(romanConverter.IntToRoman(wave));
         yield return new WaitForSeconds(secBtwWaves);
