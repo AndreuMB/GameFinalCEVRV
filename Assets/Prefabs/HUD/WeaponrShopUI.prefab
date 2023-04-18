@@ -64,7 +64,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -129,17 +129,29 @@ MonoBehaviour:
     name: 
     price: 1500
     value: 30
+    triggerEvent:
+      m_PersistentCalls:
+        m_Calls: []
   potions:
     name: 
     price: 250
     value: 3
+    triggerEvent:
+      m_PersistentCalls:
+        m_Calls: []
   products:
   - name: upgradeHealth
     price: 1500
     value: 30
+    triggerEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - name: potions
     price: 250
     value: 3
+    triggerEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &202381692444759103
 GameObject:
   m_ObjectHideFlags: 0

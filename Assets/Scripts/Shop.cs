@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public enum ShopTypeEnum
 {
@@ -16,8 +17,8 @@ public class Shop : MonoBehaviour
     bool swR;
     public ShopTypeEnum shopType;
     // [SerializeField] Product upgradeHealth = new Product(2500, 20);
-    [SerializeField] Product upgradeHealth = new Product();
-    [SerializeField] Product potions = new Product();
+    // [SerializeField] Product upgradeHealth = new Product();
+    // [SerializeField] Product potions = new Product();
     public Product[] products;
     // public bool shopRandomize;
     // List<GameObject> weaponsLink = new List<GameObject>();
@@ -125,18 +126,19 @@ public class Shop : MonoBehaviour
     }
 
     public void UpgradeLife(){
-        if (Nexus.money < upgradeHealth.price) return;
-        Nexus.money -= upgradeHealth.price;
-        PlayerController player = FindObjectOfType<PlayerController>();
-        player.upgradeHealth(upgradeHealth.value);
+        print("UpgradeLife");
+        // if (Nexus.money < upgradeHealth.price) return;
+        // Nexus.money -= upgradeHealth.price;
+        // PlayerController player = FindObjectOfType<PlayerController>();
+        // player.upgradeHealth(upgradeHealth.value);
     }
 
     public void BuyPotion(){
         print("BuyPotion");
-        if (Nexus.money < potions.price) return;
-        Nexus.money -= potions.price;
-        PlayerController player = FindObjectOfType<PlayerController>();
-        player.addPotions(potions.value);
+        // if (Nexus.money < potions.price) return;
+        // Nexus.money -= potions.price;
+        // PlayerController player = FindObjectOfType<PlayerController>();
+        // player.addPotions(potions.value);
     }
 
     
@@ -162,12 +164,26 @@ public class Shop : MonoBehaviour
 
     void setPlayerShop(){
         GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
-        // foreach (GameObject productSlot in productSlots)
-        // {
-        //     productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
-        //     productSlot.GetComponentsInChildren<Text>()[1].text = weapon.GetComponent<Weapon>().weaponData.price.ToString();
-        // }
-        productSlots[0].GetComponentsInChildren<Text>()[0].text = upgradeHealth.name;
-        productSlots[0].GetComponentsInChildren<Text>()[1].text = upgradeHealth.price.ToString();
+        int i = 0;
+        foreach (GameObject productSlot in productSlots)
+        {
+            if (i >= products.Length) {
+                productSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
+                productSlot.GetComponent<Button>().interactable = false;
+                return;
+            }
+            print("i = " + i);
+            print("products[i].triggerEvent = " + products[i].triggerEvent.ToString());
+            productSlot.GetComponentsInChildren<Text>()[0].text = products[i].name;
+            productSlot.GetComponentsInChildren<Text>()[1].text = products[i].price.ToString();
+            UnityEvent prodFunction = products[i].triggerEvent;
+            productSlot.GetComponent<Button>().onClick.RemoveAllListeners();
+            productSlot.GetComponent<Button>().onClick.AddListener(() => prodFunction.Invoke());
+            productSlot.GetComponent<Button>().interactable = true;
+
+            i++;
+        }
+        // productSlots[0].GetComponentsInChildren<Text>()[0].text = upgradeHealth.name;
+        // productSlots[0].GetComponentsInChildren<Text>()[1].text = upgradeHealth.price.ToString();
     }
 }
