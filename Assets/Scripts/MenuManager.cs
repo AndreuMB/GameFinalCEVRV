@@ -24,6 +24,20 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown("escape")) {
+            Canvas[] canvasOvjects = GameObject.FindObjectsOfType<Canvas>();
+            const string HUD = "HUD";
+            foreach (var canvas in canvasOvjects)
+            {
+                if (canvas.gameObject.tag == HUD) break;
+
+                
+
+                if (canvas.gameObject.activeInHierarchy){
+                    canvas.gameObject.SetActive(false);
+                    return;
+                }
+            }
+
             isShowing = !restartMenu.activeInHierarchy;
             restartMenu.SetActive(isShowing);
             if (isShowing) GameObject.Find("Restart").GetComponent<Button>().interactable = true;

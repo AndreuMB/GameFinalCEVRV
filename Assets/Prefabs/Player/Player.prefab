@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 699671316}
   m_Layer: 0
   m_Name: SlotArma
-  m_TagString: Untagged
+  m_TagString: SlotArma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   - {fileID: 1362106059098843087, guid: 52df1d2389f044b43965591bf3bd5a29, type: 3}
   - {fileID: 3993779761761343947, guid: c49331a7acf875f43a650bbd3ac20b21, type: 3}
   life: 0
-  speed: 4
+  speed: 6
   death:
     m_PersistentCalls:
       m_Calls: []
@@ -304,8 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50fb679e194bd1643a3b2b78715b1bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeDuration: 1
-  shakeAmount: 0.7
+  shakeDuration: 0.6
+  shakeAmount: 0.6
   curve:
     serializedVersion: 2
     m_Curve:

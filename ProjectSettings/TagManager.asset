@@ -12,6 +12,10 @@ TagManager:
   - WaveManager
   - Weapon
   - SlotArma
+  - ForestEnvironment
+  - HUD
+  - SlotWeaponShop
+  - SlotProduct
   layers:
   - Default
   - TransparentFX

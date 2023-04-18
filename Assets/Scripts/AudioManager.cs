@@ -23,6 +23,8 @@ public class AudioManager : MonoBehaviour
         {
             // if (!sound.owner) sound.owner = gameObject;
             if (sound.ownerTag != TagsEnum.Untagged){
+                // if tag not exist return
+                if (GameObject.FindGameObjectsWithTag(sound.ownerTag.ToString()).Length == 0) return;
                 foreach (GameObject owner in GameObject.FindGameObjectsWithTag(sound.ownerTag.ToString()))
                 {
                     sound.source = owner.AddComponent<AudioSource>();

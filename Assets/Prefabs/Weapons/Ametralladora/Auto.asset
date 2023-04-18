@@ -20,3 +20,6 @@ MonoBehaviour:
   damage: 10
   auto: 1
   zoom: 1
+  audioFire: DisparoAuto
+  audioReload: RecargaAuto
+  price: 1000

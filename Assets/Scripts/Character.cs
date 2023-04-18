@@ -5,9 +5,9 @@ using UnityEngine.Events;
 
 public abstract class Character : MonoBehaviour
 {
-    [SerializeField] protected List<Weapon> weapons;
-    protected Weapon selectedWeapon => weapons[selectedIndex];
-    protected int selectedIndex = 0;
+    [SerializeField] public List<Weapon> weapons;
+    public Weapon selectedWeapon => weapons[selectedIndex];
+    public int selectedIndex = 0;
 
     [Header("Stats")]
     [SerializeField] protected float life;
