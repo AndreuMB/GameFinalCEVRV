@@ -21,6 +21,7 @@ public class Spawn : MonoBehaviour
         while (isActiveAndEnabled)
         {
             yield return new WaitForSeconds(Random.Range(minSecondsSpawn,maxSecondsSpawn));
+            print("enter spawn enemy" + WaveManager.spawn);
             if (WaveManager.spawn)
             {
                 GameObject enemy = enemiesArray[Random.Range(0,enemiesArray.Length)];
