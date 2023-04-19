@@ -151,6 +151,9 @@ public class PlayerController : Character
 
     void PlayerRotation()
     {
+        // if shop open not move camera
+        if (FindObjectOfType<Shop>()) return;
+        
         //Variables donde se captura y guardan las rotaciones
         mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensibilidad;
         mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensibilidad;
@@ -234,6 +237,7 @@ public class PlayerController : Character
     // }
 
     public void upgradeHealth(int upgradeValue){
+        print("enter upgradeHelath player");
         maxPlayerLife += upgradeValue;
         life = maxPlayerLife;
         OnPlayerLifeStateChange.Invoke(actualLife);

@@ -20,11 +20,13 @@ public class Shop : MonoBehaviour
     // [SerializeField] Product upgradeHealth = new Product();
     // [SerializeField] Product potions = new Product();
     public Product[] products;
+    PlayerController player;
     // public bool shopRandomize;
     // List<GameObject> weaponsLink = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<PlayerController>();
         // WaveManager.waveChange.AddListener(randomizeWeapons);
         
     }
@@ -41,13 +43,13 @@ public class Shop : MonoBehaviour
                 // addButtonsListener();
                 break;
         }
-        Time.timeScale = 0;
+        // Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
 
     void OnDisable(){
-        Time.timeScale = 1;
+        // Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -85,7 +87,6 @@ public class Shop : MonoBehaviour
         Nexus.money -= weapon.GetComponent<Weapon>().weaponData.price;
         // string wname = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
         GameObject weaponObj = Instantiate(weapon);
-        GameObject player = GameObject.FindWithTag("Player");
         GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
         int weaponIndex = 0;
         // get player weapons
@@ -108,8 +109,8 @@ public class Shop : MonoBehaviour
         weaponObj.transform.localPosition = new Vector3(1,0,0);
         weaponObj.transform.localRotation=Quaternion.identity;
         weaponObj.GetComponent<Weapon>().owner = player.GetComponent<PlayerController>();
-        player.GetComponent<PlayerController>().selectedIndex = 0;
-        player.GetComponent<PlayerController>().weapons[0] = weaponObj.GetComponent<Weapon>();
+        player.selectedIndex = 0;
+        player.weapons[0] = weaponObj.GetComponent<Weapon>();
         // player.GetComponent<PlayerController>().OnWeaponStateChange.Invoke(weaponObj.GetComponent<Weapon>());
 
 
@@ -125,20 +126,19 @@ public class Shop : MonoBehaviour
         // player.GetComponent<PlayerController>().weapons[1] = weaponObj.GetComponent<Weapon>();
     }
 
-    public void UpgradeLife(){
-        print("UpgradeLife");
-        // if (Nexus.money < upgradeHealth.price) return;
-        // Nexus.money -= upgradeHealth.price;
-        // PlayerController player = FindObjectOfType<PlayerController>();
-        // player.upgradeHealth(upgradeHealth.value);
+    public void buyProduct(Product product){
+        print(product.name);
+        if (Nexus.money < product.price) return;
+        Nexus.money -= product.price;
+        product.triggerEvent.Invoke(product.value);
     }
 
-    public void BuyPotion(){
-        print("BuyPotion");
-        // if (Nexus.money < potions.price) return;
-        // Nexus.money -= potions.price;
-        // PlayerController player = FindObjectOfType<PlayerController>();
-        // player.addPotions(potions.value);
+    public void UpgradeLife(int value){
+        player.upgradeHealth(value);
+    }
+
+    public void BuyPotion(int value){
+        player.addPotions(value);
     }
 
     
@@ -172,13 +172,21 @@ public class Shop : MonoBehaviour
                 productSlot.GetComponent<Button>().interactable = false;
                 return;
             }
-            print("i = " + i);
-            print("products[i].triggerEvent = " + products[i].triggerEvent.ToString());
-            productSlot.GetComponentsInChildren<Text>()[0].text = products[i].name;
-            productSlot.GetComponentsInChildren<Text>()[1].text = products[i].price.ToString();
-            UnityEvent prodFunction = products[i].triggerEvent;
+
+            Product product = products[i];
+
+            // if (product.specialSlot)
+            // {
+            //     GameObject specialSlot = GameObject.FindGameObjectWithTag("SlotProductSpecial");
+            // }
+
+            productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
+            productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
+            // UnityEvent prodFunction = products[i].triggerEvent;
+            
             productSlot.GetComponent<Button>().onClick.RemoveAllListeners();
-            productSlot.GetComponent<Button>().onClick.AddListener(() => prodFunction.Invoke());
+            // productSlot.GetComponent<Button>().onClick.AddListener(() => prodFunction.Invoke());
+            productSlot.GetComponent<Button>().onClick.AddListener(() => buyProduct(product));
             productSlot.GetComponent<Button>().interactable = true;
 
             i++;

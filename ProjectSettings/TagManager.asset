@@ -16,6 +16,7 @@ TagManager:
   - HUD
   - SlotWeaponShop
   - SlotProduct
+  - SlotProductSpecial
   layers:
   - Default
   - TransparentFX
