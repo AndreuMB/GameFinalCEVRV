@@ -47,28 +47,28 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Cantidad_Espuma: 1
+    - _Cantidad_Espuma: 0.25
     - _Distancia_Espuma: 4
     - _Escala_Agua: 5
     - _Escala_Detalle: 5
     - _Escala_Distorsion: 0
     - _Escala_Espuma: 100
     - _Fuerza_Distorsion: 0.033
-    - _Profundidad_Agua: 2
+    - _Profundidad_Agua: 0.41
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Suavizado_Detalle: 7.5
+    - _Suavizado_Detalle: 15
     - _Velocidad_Agua: 0.2
     - _Velocidad_Detalle: 1
     - _Velocidad_Distorsion: 0.5
     - _Velocidad_Espuma: 1
     m_Colors:
-    - _Color_Agua_Dia: {r: 0.05490196, g: 0.7411765, b: 0.9254903, a: 1}
-    - _Color_Agua_Noche: {r: 0.01223745, g: 0.08430666, b: 0.1037736, a: 1}
+    - _Color_Agua_Dia: {r: 0.033224855, g: 0.007843137, b: 0.11764706, a: 1}
+    - _Color_Agua_Noche: {r: 0.0024509805, g: 0.00036764707, b: 0.0031862746, a: 1}
     - _Color_Agua_Poco_Profunda: {r: 0.04705883, g: 0.6, b: 0.882353, a: 1}
-    - _Color_Agua_Profunda: {r: 0, g: 0.1568628, b: 0.3921569, a: 1}
+    - _Color_Agua_Profunda: {r: 0.11239033, g: 0, b: 0.39215687, a: 1}
     - _Color_Detalle: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_Distorsion_Dia: {r: 0, g: 0.6795426, b: 0.9822509, a: 1}
-    - _Color_Distorsion_Noche: {r: 0, g: 0.195933, b: 0.4528302, a: 1}
+    - _Color_Distorsion_Dia: {r: 0.3503603, g: 0, b: 0.98039216, a: 1}
+    - _Color_Distorsion_Noche: {r: 0.22352941, g: 0, b: 0.4509804, a: 1}
     - _Color_Espuma: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

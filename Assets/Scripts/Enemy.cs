@@ -108,11 +108,11 @@ public class Enemy : Character
 
     }
 
-    protected override bool decideDamage(Bullet bullet)
+    /* protected override bool decideDamage(Bullet bullet)
     {
         // if is a player return true
         return (bullet.owner.GetType() == typeof(PlayerController));
-    }
+    } */
 
     IEnumerator randomRange(){
         while (isActiveAndEnabled)

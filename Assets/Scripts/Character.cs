@@ -36,7 +36,7 @@ public abstract class Character : MonoBehaviour
         }
     }
 
-    protected abstract bool decideDamage(Bullet bullet);
+    /* protected abstract bool decideDamage(Bullet bullet); */
 
     // protected void takeDamage(Bullet bullet){
     //     // update character life

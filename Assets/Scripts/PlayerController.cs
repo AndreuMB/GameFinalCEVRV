@@ -162,12 +162,12 @@ public class PlayerController : Character
         transform.Rotate(Vector3.up * mouseX);
     }
 
-    protected override bool decideDamage(Bullet bullet)
+    /* protected override bool decideDamage(Bullet bullet)
     {
         if (god) return false;
         // if is an enemy return true
         return (bullet.owner.GetType() == typeof(Enemy));
-    }
+    } */
     
     void InputRecargar()
     {
