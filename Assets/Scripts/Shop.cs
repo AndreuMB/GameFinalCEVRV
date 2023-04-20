@@ -103,7 +103,6 @@ public class Shop : MonoBehaviour
                 // 
             }
         }
-        print("weaponIndex = " + weaponIndex);
         Destroy(slotArma.transform.GetChild(weaponIndex).gameObject);
         weaponObj.transform.parent = slotArma.transform;
         weaponObj.transform.localPosition = new Vector3(1,0,0);
@@ -127,7 +126,6 @@ public class Shop : MonoBehaviour
     }
 
     public void buyProduct(Product product){
-        print(product.name);
         if (Nexus.money < product.price) return;
         Nexus.money -= product.price;
         product.triggerEvent.Invoke(product.value);
@@ -154,13 +152,13 @@ public class Shop : MonoBehaviour
     //     }
     // }
 
-    void addButtonsListener(){
-        GameObject[] WButtons = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
-        foreach (GameObject WButton in WButtons)
-        {
-            print("name"+WButton.name);
-        }
-    }
+    // void addButtonsListener(){
+    //     GameObject[] WButtons = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
+    //     foreach (GameObject WButton in WButtons)
+    //     {
+    //         print("name"+WButton.name);
+    //     }
+    // }
 
     void setPlayerShop(){
         GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());

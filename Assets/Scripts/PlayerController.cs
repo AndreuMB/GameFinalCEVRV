@@ -237,7 +237,6 @@ public class PlayerController : Character
     // }
 
     public void upgradeHealth(int upgradeValue){
-        print("enter upgradeHelath player");
         maxPlayerLife += upgradeValue;
         life = maxPlayerLife;
         OnPlayerLifeStateChange.Invoke(actualLife);

@@ -15,7 +15,7 @@ public class Enemy : Character
     NavMeshAgent agent;
     float rangeToFire;
     RaycastHit raycast;
-    // public static UnityEvent death = new UnityEvent();
+    // public UnityEvent death = new UnityEvent();
     public UnityEvent fireEvent = new UnityEvent();
     Transform lastTarget;
     Animator animator;
@@ -124,16 +124,18 @@ public class Enemy : Character
     }
     // run animation
     void enemyDeath(){
+        // remove tag for spawn to work
+        tag = Tags.UNTAGGED;
         // bool to turn off enemy fire in update
         deathBool = true;
         // stop movement enemy
         agent.isStopped=true;
         // disable enemy collision for bullets and other enemies
         GetComponent<Collider>().enabled=false;
-        // remove tag for spawn to work
-        tag = Tags.UNTAGGED;
         // run animation death
         animator.SetTrigger("death");
+
+        FindObjectOfType<WaveManager>().checkWave();
     }
 
     // event trigger when death animation end

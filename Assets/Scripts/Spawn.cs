@@ -27,7 +27,8 @@ public class Spawn : MonoBehaviour
                 GameObject enemy = enemiesArray[Random.Range(0,enemiesArray.Length)];
                 WaveManager waveManager = GameObject.FindObjectOfType<WaveManager>();
                 GameObject enemyGO = Instantiate(enemy, transform.position, Quaternion.identity);
-                enemyGO.GetComponentInChildren<Enemy>().death.AddListener(waveManager.checkWave);
+                // event death in character class
+                // enemyGO.GetComponentInChildren<Enemy>().death.AddListener(waveManager.checkWave);
                 spawnEnemyEvent.Invoke();
             }
         }
