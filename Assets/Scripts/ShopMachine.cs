@@ -22,5 +22,10 @@ public class ShopMachine : MonoBehaviour
         {
             canvasShop.SetActive(!canvasShop.activeInHierarchy);
         }
+
+        if (playerDistance > 3)
+        {
+            canvasShop.SetActive(false);
+        }
     }
 }

@@ -55,8 +55,6 @@ public abstract class Character : MonoBehaviour
 
     public void takeDamageRayCast(Weapon weapon){
         life = life - weapon.getDamage();
-        print("life " + GetType() + " = " + life);
-
         // if hit player
         if (gameObject.tag == Tags.PLAYER)
         {

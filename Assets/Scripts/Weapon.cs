@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class Weapon : MonoBehaviour
 {
@@ -188,7 +189,24 @@ public class Weapon : MonoBehaviour
 
     void instantiateParticles(RaycastHit hit){
         // set and choose color of particles
-        Color color = Color.blue;
+        Color color;
+
+        if(Enum.TryParse<TagsEnum>(hit.collider.tag, out TagsEnum tagEnum)) return;
+
+        switch (tagEnum)
+        {
+            case TagsEnum.Enemy:
+                color = Color.blue;
+                break;
+            case TagsEnum.Terrain:
+                color = Color.green;
+                break;
+            default:
+                color = Color.blue;
+                break;
+        }
+
+
         if (hit.collider.GetComponentInChildren<MeshRenderer>()){
             Renderer renderer = hit.collider.GetComponentInChildren<MeshRenderer>();
             Texture2D texture2D = renderer.material.mainTexture as Texture2D;
@@ -239,7 +257,6 @@ public class Weapon : MonoBehaviour
         {
             Animator animator = GetComponent<Animator>();
             player.OnReloadWeapon.Invoke(this);
-            print(" 1/weaponData.loadTime" +  1/weaponData.loadTime);
             animator.SetFloat("reloadSpeed", 1/weaponData.loadTime);
             animator.SetTrigger("reload");
         }
