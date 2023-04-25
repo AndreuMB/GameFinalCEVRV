@@ -27,6 +27,7 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         wave = 0;
+        shopRandomize = true;
         Spawn.spawnEnemyEvent.AddListener(spawnCheck);
         // foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         // {

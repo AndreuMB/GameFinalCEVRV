@@ -60,11 +60,21 @@ public class Shop : MonoBehaviour
             GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
             if (weaponSlots.Length == 0) return;
             if (weapons.Length == 0) return;            
-            
+            List<GameObject> weaponsShop = new List<GameObject>();
             foreach (GameObject weaponSlot in weaponSlots)
             {
-                int inx = Random.Range(0,weapons.Length);
-                GameObject weapon = weapons[inx];
+                int inx;
+                GameObject weapon;
+                // weaponsShop = weapon;
+
+                do
+                {
+                    inx = Random.Range(0,weapons.Length);
+                    weapon = weapons[inx];
+                } while (weaponsShop.Find(x => x == weapon));
+
+                weaponsShop.Add(weapon);
+                
                 // weaponsLink.Add(weapon);
                 weaponSlot.GetComponentsInChildren<Text>()[0].text = weapon.name;
                 weaponSlot.GetComponentsInChildren<Text>()[1].text = weapon.GetComponent<Weapon>().weaponData.price.ToString();
