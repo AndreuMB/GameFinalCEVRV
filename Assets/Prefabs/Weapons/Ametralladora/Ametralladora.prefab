@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8403768812815356914
 Transform:
   m_ObjectHideFlags: 0
@@ -196,12 +196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: e038904178bbca743a912a71b2e38638, type: 2}
-  hitEnemyEv:
-    m_PersistentCalls:
-      m_Calls: []
-  hitPlayerEv:
-    m_PersistentCalls:
-      m_Calls: []
   ps: {fileID: 1403344502666796241, guid: 63b8cfb80186f8542b6a035a1ba5fa22, type: 3}
 --- !u!95 &7499766082636370581
 Animator:

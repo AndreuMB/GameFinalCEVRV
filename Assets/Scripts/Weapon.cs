@@ -53,7 +53,7 @@ public class Weapon : MonoBehaviour
         StartCoroutine(checkPlayerMovement());
         // Set weapon default position
         // print("iniTransform = " + iniTransform.position);
-        transform.position = iniTransform.position;
+        // transform.position = iniTransform.position;
     }
 
     void OnDisable() {
@@ -70,7 +70,7 @@ public class Weapon : MonoBehaviour
 
         Animator animator = GetComponent<Animator>();
         animator.enabled = false;
-        transform.localPosition = new Vector3(0,0,0);
+        transform.localPosition = iniTransform.localPosition;
         animator.enabled = true;
         //if(isReloading) StopCoroutine(reloadingCoroutine);
         //StopAllCoroutines();
