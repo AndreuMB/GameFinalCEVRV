@@ -35,7 +35,9 @@ public class Shop : MonoBehaviour
         switch (shopType)
         {
             case ShopTypeEnum.weapons:
-                randomizeWeapons();
+                if(WaveManager.shopRandomize){
+                    randomizeWeapons();
+                }
                 // addButtonsListener();
             break;
             case ShopTypeEnum.player:
@@ -56,34 +58,34 @@ public class Shop : MonoBehaviour
 
     public void randomizeWeapons(){
         // bool WeaponUMR = GameObject.Find("WeaponUM").GetComponent<Machine>().randomizeWeapon;
-        if(WaveManager.shopRandomize){
-            GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
-            if (weaponSlots.Length == 0) return;
-            if (weapons.Length == 0) return;            
-            List<GameObject> weaponsShop = new List<GameObject>();
-            foreach (GameObject weaponSlot in weaponSlots)
+        
+        GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
+        if (weaponSlots.Length == 0) return;
+        if (weapons.Length == 0) return;            
+        List<GameObject> weaponsShop = new List<GameObject>();
+        foreach (GameObject weaponSlot in weaponSlots)
+        {
+            int inx;
+            GameObject weapon;
+            // weaponsShop = weapon;
+
+            do
             {
-                int inx;
-                GameObject weapon;
-                // weaponsShop = weapon;
+                inx = Random.Range(0,weapons.Length);
+                weapon = weapons[inx];
+            } while (weaponsShop.Find(x => x == weapon));
 
-                do
-                {
-                    inx = Random.Range(0,weapons.Length);
-                    weapon = weapons[inx];
-                } while (weaponsShop.Find(x => x == weapon));
+            weaponsShop.Add(weapon);
+            
+            // weaponsLink.Add(weapon);
+            weaponSlot.GetComponentsInChildren<Text>()[0].text = weapon.name;
+            weaponSlot.GetComponentsInChildren<Text>()[1].text = weapon.GetComponent<Weapon>().weaponData.price.ToString();
+            weaponSlot.GetComponent<Button>().onClick.RemoveAllListeners();
+            weaponSlot.GetComponent<Button>().onClick.AddListener(() => buyWeapon(weapon));
 
-                weaponsShop.Add(weapon);
-                
-                // weaponsLink.Add(weapon);
-                weaponSlot.GetComponentsInChildren<Text>()[0].text = weapon.name;
-                weaponSlot.GetComponentsInChildren<Text>()[1].text = weapon.GetComponent<Weapon>().weaponData.price.ToString();
-                weaponSlot.GetComponent<Button>().onClick.RemoveAllListeners();
-                weaponSlot.GetComponent<Button>().onClick.AddListener(() => buyWeapon(weapon));
-
-            }
-            WaveManager.shopRandomize = false;
         }
+        WaveManager.shopRandomize = false;
+        
     }
 
     
@@ -118,8 +120,7 @@ public class Shop : MonoBehaviour
         weaponObj.transform.localPosition = new Vector3(1,0,0);
         weaponObj.transform.localRotation=Quaternion.identity;
         weaponObj.GetComponent<Weapon>().owner = player.GetComponent<PlayerController>();
-        player.selectedIndex = 0;
-        player.weapons[0] = weaponObj.GetComponent<Weapon>();
+        player.weapons[player.selectedIndex] = weaponObj.GetComponent<Weapon>();
         // player.GetComponent<PlayerController>().OnWeaponStateChange.Invoke(weaponObj.GetComponent<Weapon>());
 
 

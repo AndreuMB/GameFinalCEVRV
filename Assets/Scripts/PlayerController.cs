@@ -81,6 +81,9 @@ public class PlayerController : Character
     void Update()
     {
 
+        // if menu open stop player actions
+        if (FindObjectOfType<Shop>() || FindObjectOfType<GameOver>()) return;
+
         PlayerRotation();
         InputRecargar();
         InputDisparar();
@@ -151,8 +154,6 @@ public class PlayerController : Character
 
     void PlayerRotation()
     {
-        // if shop open not move camera
-        if (FindObjectOfType<Shop>()) return;
         
         //Variables donde se captura y guardan las rotaciones
         mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensibilidad;
@@ -210,8 +211,8 @@ public class PlayerController : Character
         }else{
             selectedIndex += a;
         }
-        selectedWeapon.gameObject.SetActive(true);
         OnWeaponStateChange.Invoke(selectedWeapon);
+        selectedWeapon.gameObject.SetActive(true);
     }
 
     void InputCuracion()

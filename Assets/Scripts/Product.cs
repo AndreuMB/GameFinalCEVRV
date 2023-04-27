@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class Product: MonoBehaviour {
-    public new string name;
+public class Product {
+    public string name;
     public int price;
     public int value;
     public bool specialSlot;

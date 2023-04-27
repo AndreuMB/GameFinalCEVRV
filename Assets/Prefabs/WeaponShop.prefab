@@ -209,12 +209,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8930560065447914674, guid: 03a35315994a8d0468b1997112264612, type: 3}
       propertyPath: weapons.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8930560065447914674, guid: 03a35315994a8d0468b1997112264612, type: 3}
       propertyPath: weapons.Array.data[3]
       value: 
-      objectReference: {fileID: 2041228868710159992, guid: 9be43a038900e954b9bd4a99acff1c6f, type: 3}
+      objectReference: {fileID: 5114664517568317502, guid: 568892a50f430344bba2538a55318cb4, type: 3}
+    - target: {fileID: 8930560065447914674, guid: 03a35315994a8d0468b1997112264612, type: 3}
+      propertyPath: weapons.Array.data[4]
+      value: 
+      objectReference: {fileID: 5991288691781884465, guid: 0667380bd0ee0a243af796fb4169bf5c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03a35315994a8d0468b1997112264612, type: 3}
 --- !u!1 &3517563783336756624 stripped
