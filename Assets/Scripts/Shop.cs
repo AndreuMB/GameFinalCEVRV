@@ -13,7 +13,7 @@ public enum ShopTypeEnum
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] GameObject[] weapons;
+    // [SerializeField] GameObject[] weapons;
     bool swR;
     public ShopTypeEnum shopType;
     // [SerializeField] Product upgradeHealth = new Product(2500, 20);
@@ -61,27 +61,37 @@ public class Shop : MonoBehaviour
         
         GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
         if (weaponSlots.Length == 0) return;
-        if (weapons.Length == 0) return;            
-        List<GameObject> weaponsShop = new List<GameObject>();
+        if (products.Length == 0) return;            
+        // List<GameObject> weaponsShop = new List<GameObject>();
+        List<Product> weaponsShop = new List<Product>();
         foreach (GameObject weaponSlot in weaponSlots)
         {
             int inx;
-            GameObject weapon;
+            // GameObject weapon;
+            Product product;
             // weaponsShop = weapon;
+
+            // do
+            // {
+            //     inx = Random.Range(0,weapons.Length);
+            //     weapon = weapons[inx];
+            // } while (weaponsShop.Find(x => x == weapon));
 
             do
             {
-                inx = Random.Range(0,weapons.Length);
-                weapon = weapons[inx];
-            } while (weaponsShop.Find(x => x == weapon));
+                inx = Random.Range(0,products.Length);
+                // weapon = weapons[inx];
+                // weapon = products[inx].productGameobject;
+                product = products[inx];
+            } while (weaponsShop.Exists(x => x == product));
 
-            weaponsShop.Add(weapon);
+            weaponsShop.Add(product);
             
             // weaponsLink.Add(weapon);
-            weaponSlot.GetComponentsInChildren<Text>()[0].text = weapon.name;
-            weaponSlot.GetComponentsInChildren<Text>()[1].text = weapon.GetComponent<Weapon>().weaponData.price.ToString();
+            weaponSlot.GetComponentsInChildren<Text>()[0].text = product.name;
+            weaponSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
             weaponSlot.GetComponent<Button>().onClick.RemoveAllListeners();
-            weaponSlot.GetComponent<Button>().onClick.AddListener(() => buyWeapon(weapon));
+            weaponSlot.GetComponent<Button>().onClick.AddListener(() => buyWeapon(product));
 
         }
         WaveManager.shopRandomize = false;
@@ -94,11 +104,11 @@ public class Shop : MonoBehaviour
     //     // randomizeWeapons();
     // }
 
-    void buyWeapon(GameObject weapon){
-        if (weapon.GetComponent<Weapon>().weaponData.price > Nexus.money) return;
-        Nexus.money -= weapon.GetComponent<Weapon>().weaponData.price;
+    void buyWeapon(Product product){
+        if (product.price > Nexus.money) return;
+        Nexus.money -= product.price;
         // string wname = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
-        GameObject weaponObj = Instantiate(weapon);
+        GameObject weaponObj = Instantiate(product.productGameobject);
         GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
         int weaponIndex = 0;
         // get player weapons
