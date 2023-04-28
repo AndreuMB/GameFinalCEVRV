@@ -68,10 +68,10 @@ public class Weapon : MonoBehaviour
             reloadingCoroutine = null;
         }
 
-        Animator animator = GetComponent<Animator>();
-        animator.enabled = false;
-        transform.localPosition = iniTransform.localPosition;
-        animator.enabled = true;
+        // Animator animator = GetComponent<Animator>();
+        // animator.enabled = false;
+        // transform.localPosition = iniTransform.localPosition;
+        // animator.enabled = true;
         //if(isReloading) StopCoroutine(reloadingCoroutine);
         //StopAllCoroutines();
 
@@ -133,7 +133,8 @@ public class Weapon : MonoBehaviour
         const int STRENGHT = 100;
         if (!isReloading)
         {
-            Animator animator = GetComponent<Animator>();
+            // Animator animator = GetComponent<Animator>();
+            Animator animator = gameObject.GetComponentInParent<Animator>();
             animator.SetTrigger("fire");
             am.Play(weaponData.audioFire);
             GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
@@ -255,10 +256,10 @@ public class Weapon : MonoBehaviour
     {
         if(owner is PlayerController player)
         {
-            Animator animator = GetComponent<Animator>();
+            // Animator animator = GetComponent<Animator>();
             player.OnReloadWeapon.Invoke(this);
-            animator.SetFloat("reloadSpeed", 1/weaponData.loadTime);
-            animator.SetTrigger("reload");
+            // animator.SetFloat("reloadSpeed", 1/weaponData.loadTime);
+            // animator.SetTrigger("reload");
         }
     }
 
@@ -270,7 +271,7 @@ public class Weapon : MonoBehaviour
         }
     }
     IEnumerator checkPlayerMovement() {
-        Animator animator = GetComponent<Animator>();
+        Animator animator = GetComponentInParent<Animator>();
         const float MIN_MOVEMENT = 0.1f;
         while (isActiveAndEnabled)
         {
@@ -279,8 +280,8 @@ public class Weapon : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             actualPos = owner.transform.position;
             float distance = Vector3.Distance(prevPos,actualPos);
-            if (distance<MIN_MOVEMENT) animator.SetBool("run",false);
-            if (distance>=MIN_MOVEMENT) animator.SetBool("run",true);
+            // if (distance<MIN_MOVEMENT) animator.SetBool("run",false);
+            // if (distance>=MIN_MOVEMENT) animator.SetBool("run",true);
         }
         yield break;
         // if(owner.transform.hasChanged) print("character move");
