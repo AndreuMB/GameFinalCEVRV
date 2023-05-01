@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BallestaSO
   m_EditorClassIdentifier: 
   wName: Ballesta
-  bullet: {fileID: 7335763105056745259, guid: 313cf126888bdcb4aaf9e46f436bb506, type: 3}
+  bullet: {fileID: 7335763105056745259, guid: ef52ccca67df5f541afc32f3ee9c8749, type: 3}
   loaderMaxAmmo: 1
   loadTime: 1
   fireRate: 1
@@ -22,4 +22,4 @@ MonoBehaviour:
   zoom: 1
   audioFire: DisparoAuto
   audioReload: RecargaAuto
-  price: 10
+  animatorController: {fileID: 22100000, guid: b0c60bd5269616c43bd3a9f7ca648b1e, type: 2}

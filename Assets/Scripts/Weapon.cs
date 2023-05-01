@@ -29,6 +29,7 @@ public class Weapon : MonoBehaviour
 
     Transform iniTransform;
     AudioManager am;
+    Animator animator;
 
     void Awake()
     {
@@ -44,6 +45,7 @@ public class Weapon : MonoBehaviour
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
         }
         am = FindObjectOfType<AudioManager>();
+        // animator = parentAnimator;
         // print("1/weaponData.fireRate = " + 1/weaponData.fireRate);
         // animator.SetFloat("fireSpeed", 1/weaponData.fireRate);
     }
@@ -51,9 +53,12 @@ public class Weapon : MonoBehaviour
     void OnEnable(){
         //Se activa la corrutina de movimiento del arma
         StartCoroutine(checkPlayerMovement());
+        animator = GetComponentInParent<Animator>();
+        animator.runtimeAnimatorController = weaponData.animatorController;
         // Set weapon default position
-        // print("iniTransform = " + iniTransform.position);
+        // print("iniTransform = " + transform.position);
         // transform.position = iniTransform.position;
+        // print("transformRotation " +name+ " = " + transform.localRotation);
     }
 
     void OnDisable() {
@@ -103,7 +108,7 @@ public class Weapon : MonoBehaviour
 
     public void ReLoad()
     {
-        if (!isReloading) 
+        if (!isReloading)
         {
             reloadingCoroutine = StartCoroutine(load());
         }
@@ -115,7 +120,7 @@ public class Weapon : MonoBehaviour
         if (loaderAmmo <= 0 && !isReloading){
             am.Play("OutAmmo");
             reloadingCoroutine = StartCoroutine(load());
-            
+
         }
         else if (!isReloading)
         {
@@ -134,12 +139,19 @@ public class Weapon : MonoBehaviour
         if (!isReloading)
         {
             // Animator animator = GetComponent<Animator>();
-            Animator animator = gameObject.GetComponentInParent<Animator>();
+            // Animator animator = gameObject.GetComponentInParent<Animator>();
             animator.SetTrigger("fire");
             am.Play(weaponData.audioFire);
-            GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward*OFFSET_BULLET, transform.rotation);
+            // print("bullet transform.position" + transform.position);
+            GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
+            // GameObject instance = Instantiate(weaponData.bullet, transform.position, slotArma.transform.rotation);
+            GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.transform.forward * OFFSET_BULLET, slotArma.transform.rotation);
+            print("weaponData.bullet.name" + weaponData.bullet.name);
+            // GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward * OFFSET_BULLET, transform.rotation);
+            // instance.transform.localPosition = Vector3.zero;
             instance.GetComponent<Bullet>().weapon = this;
-            instance.GetComponent<Rigidbody>().AddForce(transform.forward * STRENGHT, ForceMode.VelocityChange);
+
+            instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * STRENGHT, ForceMode.VelocityChange);
             loaderAmmo--;
             WeaponStateChanged();
             HitEnemy();
@@ -167,11 +179,11 @@ public class Weapon : MonoBehaviour
                     {
                         player.takeDamageRayCast(this);
                         player.OnPlayerLifeStateChange.Invoke(player.actualLife);
-                    } 
+                    }
                     if (nexus) nexus.takeDamageRayCast(this);
 
                 }
- 
+
         }
 
         if (owner.GetType() == typeof(PlayerController))
@@ -185,7 +197,7 @@ public class Weapon : MonoBehaviour
             }
         }
 
-                
+
     }
 
     void instantiateParticles(RaycastHit hit){
@@ -222,7 +234,7 @@ public class Weapon : MonoBehaviour
                 color = texture2D.GetPixel(Mathf.FloorToInt(pCoord.x * tiling.x) , Mathf.FloorToInt(pCoord.y * tiling.y));
             }
         }
-       
+
 
         ParticleSystem psi=Instantiate(ps,hit.point,Quaternion.identity);
         var main = psi.main;
@@ -258,8 +270,8 @@ public class Weapon : MonoBehaviour
         {
             // Animator animator = GetComponent<Animator>();
             player.OnReloadWeapon.Invoke(this);
-            // animator.SetFloat("reloadSpeed", 1/weaponData.loadTime);
-            // animator.SetTrigger("reload");
+            animator.SetFloat("reloadSpeed", 1/weaponData.loadTime);
+            animator.SetTrigger("reload");
         }
     }
 
@@ -271,7 +283,7 @@ public class Weapon : MonoBehaviour
         }
     }
     IEnumerator checkPlayerMovement() {
-        Animator animator = GetComponentInParent<Animator>();
+        // Animator animator = GetComponentInParent<Animator>();
         const float MIN_MOVEMENT = 0.1f;
         while (isActiveAndEnabled)
         {
@@ -280,8 +292,8 @@ public class Weapon : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             actualPos = owner.transform.position;
             float distance = Vector3.Distance(prevPos,actualPos);
-            // if (distance<MIN_MOVEMENT) animator.SetBool("run",false);
-            // if (distance>=MIN_MOVEMENT) animator.SetBool("run",true);
+            if (distance<MIN_MOVEMENT) animator.SetBool("run",false);
+            if (distance>=MIN_MOVEMENT) animator.SetBool("run",true);
         }
         yield break;
         // if(owner.transform.hasChanged) print("character move");

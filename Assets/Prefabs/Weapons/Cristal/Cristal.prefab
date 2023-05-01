@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1073828564796433925}
   - component: {fileID: 8631082880459259092}
-  - component: {fileID: 7664924880423482825}
   m_Layer: 0
   m_Name: Cristal
   m_TagString: Untagged
@@ -26,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073828564796433924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.65, y: 0.3, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48,26 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 906cd40dfc264884f80471db8e919486, type: 2}
   ps: {fileID: 1403344502666796241, guid: 63b8cfb80186f8542b6a035a1ba5fa22, type: 3}
---- !u!95 &7664924880423482825
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073828564796433924}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: b0c60bd5269616c43bd3a9f7ca648b1e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1073828564549181849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81,11 +60,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7209213997247895589, guid: f733b30b695b80346b4ae211922e666b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7209213997247895589, guid: f733b30b695b80346b4ae211922e666b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7209213997247895589, guid: f733b30b695b80346b4ae211922e666b, type: 3}
       propertyPath: m_LocalPosition.z

@@ -108,8 +108,14 @@ public class Shop : MonoBehaviour
         if (product.price > Nexus.money) return;
         Nexus.money -= product.price;
         // string wname = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
-        GameObject weaponObj = Instantiate(product.productGameobject);
+        GameObject weaponPrefab = product.productGameobject;
+        // GameObject weaponObj = Instantiate(product.productGameobject);
         GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
+
+        GameObject weaponObj = Instantiate(weaponPrefab, slotArma.transform.position, Quaternion.identity, slotArma.transform);
+        weaponObj.transform.localPosition = weaponPrefab.transform.position;
+        weaponObj.transform.localRotation = weaponPrefab.transform.rotation;
+        
         int weaponIndex = 0;
         // get player weapons
         
@@ -126,9 +132,9 @@ public class Shop : MonoBehaviour
             }
         }
         Destroy(slotArma.transform.GetChild(weaponIndex).gameObject);
-        weaponObj.transform.parent = slotArma.transform;
-        weaponObj.transform.localPosition = new Vector3(1,0,0);
-        weaponObj.transform.localRotation=Quaternion.identity;
+        // weaponObj.transform.parent = slotArma.transform;
+        // weaponObj.transform.localPosition = new Vector3(1,0,0);
+        // weaponObj.transform.localRotation=Quaternion.identity;
         weaponObj.GetComponent<Weapon>().owner = player.GetComponent<PlayerController>();
         player.weapons[player.selectedIndex] = weaponObj.GetComponent<Weapon>();
         // player.GetComponent<PlayerController>().OnWeaponStateChange.Invoke(weaponObj.GetComponent<Weapon>());
