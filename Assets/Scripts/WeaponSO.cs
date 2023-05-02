@@ -25,5 +25,6 @@ public class WeaponSO : ScriptableObject
     public float zoom = 1;
     public string audioFire = "DisparoAuto";
     public string audioReload = "RecargaAuto";
-    public int price;
+    public RuntimeAnimatorController animatorController;
+    // public int price;
 }

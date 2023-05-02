@@ -21,4 +21,5 @@ public enum TagsEnum
     SlotArma,
     SlotWeaponShop,
     SlotProduct,
+    Terrain
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e90e604fd1654b48952a58aa06d9bb3, type: 3}
+  m_Name: Escopeta
+  m_EditorClassIdentifier: 
+  wName: Escopeta
+  bullet: {fileID: 7335763105056745259, guid: ef52ccca67df5f541afc32f3ee9c8749, type: 3}
+  loaderMaxAmmo: 6
+  loadTime: 6
+  fireRate: 1
+  damage: 120
+  auto: 1
+  zoom: 1
+  audioFire: DisparoAuto
+  audioReload: RecargaAuto
+  animatorController: {fileID: 9100000, guid: 109b10cb052f850418e1b1e0b7ee3e99, type: 2}
