@@ -248,4 +248,9 @@ public class PlayerController : Character
         curas += potionsNumber;
     }
 
+    public void upgradeSpeed(int upgradeValue){
+        speed += upgradeValue;
+        // actualLife = life;
+    }
+
 }

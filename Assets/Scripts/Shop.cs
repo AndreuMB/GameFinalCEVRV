@@ -13,21 +13,29 @@ public enum ShopTypeEnum
 
 public class Shop : MonoBehaviour
 {
-    // [SerializeField] GameObject[] weapons;
     bool swR;
     public ShopTypeEnum shopType;
-    // [SerializeField] Product upgradeHealth = new Product(2500, 20);
-    // [SerializeField] Product upgradeHealth = new Product();
-    // [SerializeField] Product potions = new Product();
     public Product[] products;
     PlayerController player;
-    // public bool shopRandomize;
-    // List<GameObject> weaponsLink = new List<GameObject>();
-    // Start is called before the first frame update
+
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
-        // WaveManager.waveChange.AddListener(randomizeWeapons);
+
+        GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
+        GameObject spSlot = GameObject.FindGameObjectWithTag(TagsEnum.SlotProductSpecial.ToString());
+        foreach (GameObject productSlot in productSlots)
+        {
+            productSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
+            productSlot.GetComponent<Button>().interactable = false;
+        }
+        if (spSlot)
+        {
+            spSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
+            spSlot.GetComponent<Button>().interactable = false;
+        }
+
+        setSpSlot();
         
     }
 
@@ -165,45 +173,53 @@ public class Shop : MonoBehaviour
     public void BuyPotion(int value){
         player.addPotions(value);
     }
+    public void UpgradeSpeed(int value){
+        player.upgradeSpeed(value);
+    }
 
-    
-
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     GameObject player = FindObjectOfType<PlayerController>().gameObject;
-    //     float playerDistance = Vector3.Distance(gameObject.transform.position, player.transform.position);
-    //     if (Input.GetKey(KeyCode.F) && playerDistance < 5)
-    //     {
-            
-    //     }
-    // }
-
-    // void addButtonsListener(){
-    //     GameObject[] WButtons = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
-    //     foreach (GameObject WButton in WButtons)
-    //     {
-    //         print("name"+WButton.name);
-    //     }
-    // }
 
     void setPlayerShop(){
+        // GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
+        // int i = 0;
+        // foreach (GameObject productSlot in productSlots)
+        // {
+        //     if (i >= products.Length) {
+        //         productSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
+        //         productSlot.GetComponent<Button>().interactable = false;
+        //         return;
+        //     }
+
+        //     Product product = products[i];
+
+        //     // if (product.specialSlot)
+        //     // {
+        //     //     GameObject specialSlot = GameObject.FindGameObjectWithTag("SlotProductSpecial");
+        //     // }
+
+        //     productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
+        //     productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
+        //     // UnityEvent prodFunction = products[i].triggerEvent;
+            
+        //     productSlot.GetComponent<Button>().onClick.RemoveAllListeners();
+        //     // productSlot.GetComponent<Button>().onClick.AddListener(() => prodFunction.Invoke());
+        //     productSlot.GetComponent<Button>().onClick.AddListener(() => buyProduct(product));
+        //     productSlot.GetComponent<Button>().interactable = true;
+
+        //     i++;
+        // }
+        // productSlots[0].GetComponentsInChildren<Text>()[0].text = upgradeHealth.name;
+        // productSlots[0].GetComponentsInChildren<Text>()[1].text = upgradeHealth.price.ToString();
+
         GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
         int i = 0;
-        foreach (GameObject productSlot in productSlots)
+        GameObject productSlot;
+        foreach (Product product in products)
         {
-            if (i >= products.Length) {
-                productSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
-                productSlot.GetComponent<Button>().interactable = false;
+            if (i >= productSlots.Length) {
                 return;
             }
 
-            Product product = products[i];
-
-            // if (product.specialSlot)
-            // {
-            //     GameObject specialSlot = GameObject.FindGameObjectWithTag("SlotProductSpecial");
-            // }
+            productSlot = productSlots[i];
 
             productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
             productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
@@ -216,7 +232,25 @@ public class Shop : MonoBehaviour
 
             i++;
         }
-        // productSlots[0].GetComponentsInChildren<Text>()[0].text = upgradeHealth.name;
-        // productSlots[0].GetComponentsInChildren<Text>()[1].text = upgradeHealth.price.ToString();
+    }
+
+    void setSpSlot(){
+        GameObject productSlot;
+        foreach (Product product in products){
+            if (product.specialSlot)
+            {
+                productSlot = GameObject.FindGameObjectWithTag(TagsEnum.SlotProductSpecial.ToString());
+                if(!productSlot) return;
+                productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
+                productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
+                // UnityEvent prodFunction = products[i].triggerEvent;
+                
+                productSlot.GetComponent<Button>().onClick.RemoveAllListeners();
+                // productSlot.GetComponent<Button>().onClick.AddListener(() => prodFunction.Invoke());
+                productSlot.GetComponent<Button>().onClick.AddListener(() => buyProduct(product));
+                productSlot.GetComponent<Button>().interactable = true;
+            }
+
+        }
     }
 }
