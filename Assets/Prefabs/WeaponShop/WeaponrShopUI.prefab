@@ -568,13 +568,25 @@ MonoBehaviour:
         m_Calls: []
     productGameobject: {fileID: 5991288691781884465, guid: 0667380bd0ee0a243af796fb4169bf5c, type: 3}
   - name: Upgrade
-    price: 1200
+    price: 3000
     value: 0
     specialSlot: 1
     triggerEvent:
       m_PersistentCalls:
-        m_Calls: []
-    productGameobject: {fileID: 5991288691781884465, guid: 0667380bd0ee0a243af796fb4169bf5c, type: 3}
+        m_Calls:
+        - m_Target: {fileID: 5959867105500530503}
+          m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+          m_MethodName: UpgradeWeapon
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    productGameobject: {fileID: 0}
 --- !u!1 &3754808023280282148
 GameObject:
   m_ObjectHideFlags: 0
