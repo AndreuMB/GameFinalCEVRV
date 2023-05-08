@@ -13,7 +13,7 @@ public enum ShopTypeEnum
 
 public class Shop : MonoBehaviour
 {
-    bool swR;
+    bool swPS = true;
     public ShopTypeEnum shopType;
     public Product[] products;
     PlayerController player;
@@ -22,20 +22,35 @@ public class Shop : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
 
-        GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
-        GameObject spSlot = GameObject.FindGameObjectWithTag(TagsEnum.SlotProductSpecial.ToString());
-        foreach (GameObject productSlot in productSlots)
+        // GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
+        // GameObject spSlot = GameObject.FindGameObjectWithTag(TagsEnum.SlotProductSpecial.ToString());
+
+        // foreach (GameObject productSlot in productSlots)
+        // {
+        //     // if not from this shop return
+        //     print("gameObject.name 0 = " + gameObject.name);
+        //     if (!productSlot.transform.IsChildOf(transform)) return;
+        //     print("gameObject.name 1 = " + gameObject.name);
+        //     productSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
+        //     productSlot.GetComponent<Button>().interactable = false;
+        // }
+
+        foreach(Transform productSlot in transform.Find("Products"))
         {
             productSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
             productSlot.GetComponent<Button>().interactable = false;
         }
-        if (spSlot)
-        {
-            spSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
-            spSlot.GetComponent<Button>().interactable = false;
-        }
 
-        setSpSlot();
+
+        // if (spSlot)
+        // {
+        //     spSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
+        //     spSlot.GetComponent<Button>().interactable = false;
+        // }
+
+        // setSpSlot();
+
+        // gameObject.SetActive(false);
         
     }
 
@@ -46,11 +61,9 @@ public class Shop : MonoBehaviour
                 if(WaveManager.shopRandomize){
                     randomizeWeapons();
                 }
-                // addButtonsListener();
             break;
             case ShopTypeEnum.player:
-                setPlayerShop();
-                // addButtonsListener();
+                if (swPS) setPlayerShop();
                 break;
         }
         // Time.timeScale = 0;
@@ -67,7 +80,7 @@ public class Shop : MonoBehaviour
     public void randomizeWeapons(){
         // bool WeaponUMR = GameObject.Find("WeaponUM").GetComponent<Machine>().randomizeWeapon;
         
-        GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
+        GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
         if (weaponSlots.Length == 0) return;
         if (products.Length == 0) return;       
         // List<GameObject> weaponsShop = new List<GameObject>();
@@ -84,6 +97,9 @@ public class Shop : MonoBehaviour
             //     inx = Random.Range(0,weapons.Length);
             //     weapon = weapons[inx];
             // } while (weaponsShop.Find(x => x == weapon));
+
+            // if not from this shop return
+            if (!weaponSlot.transform.IsChildOf(transform)) return;
 
             do
             {
@@ -102,6 +118,7 @@ public class Shop : MonoBehaviour
             weaponSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
             weaponSlot.GetComponent<Button>().onClick.RemoveAllListeners();
             weaponSlot.GetComponent<Button>().onClick.AddListener(() => buyWeapon(product));
+            weaponSlot.GetComponent<Button>().interactable = true;
 
         }
         WaveManager.shopRandomize = false;
@@ -154,8 +171,10 @@ public class Shop : MonoBehaviour
             if (product.specialSlot) return;
 
             productSlot = productSlots[i];
+            // if not from this shop return
+            if (!productSlot.transform.IsChildOf(transform)) return;
 
-
+            print("product.name = " + product.name);
             productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
             productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
             
@@ -165,6 +184,7 @@ public class Shop : MonoBehaviour
 
             i++;
         }
+        swPS = false;
     }
 
     void setSpSlot(){
@@ -174,6 +194,8 @@ public class Shop : MonoBehaviour
             {
                 productSlot = GameObject.FindGameObjectWithTag(TagsEnum.SlotProductSpecial.ToString());
                 if(!productSlot) return;
+                // if not from this shop return
+                if (!productSlot.transform.IsChildOf(transform)) return;
                 productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
                 productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
                 // UnityEvent prodFunction = products[i].triggerEvent;
