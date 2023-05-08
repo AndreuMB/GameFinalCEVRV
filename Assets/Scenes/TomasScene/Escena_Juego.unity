@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 311156006}
-  m_IndirectSpecularColor: {r: 0.30648327, g: 0.6878335, b: 1.0775167, a: 1}
+  m_IndirectSpecularColor: {r: 0.11960268, g: 0.11842835, b: 0.15236953, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7651,11 +7651,11 @@ PrefabInstance:
     - target: {fileID: -1385521470242532595, guid: da48204c32194ce4d86aca0731b6c89b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f9c867aae01d3a54c8137c36f48d6770, type: 2}
+      objectReference: {fileID: 2100000, guid: 8ebc77446c7b2104da7535b37b554e87, type: 2}
     - target: {fileID: -1385521470242532595, guid: da48204c32194ce4d86aca0731b6c89b, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: c39cb2dbd5cd9e340b977b50bce5a332, type: 2}
+      objectReference: {fileID: 2100000, guid: 79b7c9ba61603234aafef420b0cce0ab, type: 2}
     - target: {fileID: 919132149155446097, guid: da48204c32194ce4d86aca0731b6c89b, type: 3}
       propertyPath: m_Name
       value: Mesa_Mejoras1_Baja
@@ -16961,11 +16961,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2644749299046136395, guid: 6b099c30853317841b108924391809ac, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659258
+      value: 0.6467898
       objectReference: {fileID: 0}
     - target: {fileID: 2644749299046136395, guid: 6b099c30853317841b108924391809ac, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2588191
+      value: -0.7626683
       objectReference: {fileID: 0}
     - target: {fileID: 2644749299046136395, guid: 6b099c30853317841b108924391809ac, type: 3}
       propertyPath: m_LocalRotation.y
@@ -16977,7 +16977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2644749299046136395, guid: 6b099c30853317841b108924391809ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 30
+      value: -99.4
       objectReference: {fileID: 0}
     - target: {fileID: 2644749299046136395, guid: 6b099c30853317841b108924391809ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
