@@ -119,6 +119,7 @@ public class Shop : MonoBehaviour
         GameObject weaponObj = Instantiate(weaponPrefab, slotArma.transform.position, Quaternion.identity, slotArma.transform);
         weaponObj.transform.localPosition = weaponPrefab.transform.position;
         weaponObj.transform.localRotation = weaponPrefab.transform.rotation;
+        // weaponObj.layer = LayerMask.NameToLayer("Weapon");
         
         Destroy(GetEquipedWeapon().gameObject);
         weaponObj.GetComponent<Weapon>().owner = player.GetComponent<PlayerController>();
