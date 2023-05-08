@@ -23,6 +23,7 @@ public class Nexus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        money = 0;
         StartCoroutine(income());
         OnNexusLifeChange.Invoke(life);
         OnNexusMoneyChange.Invoke(money);

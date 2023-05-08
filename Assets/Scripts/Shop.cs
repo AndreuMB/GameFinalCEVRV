@@ -13,18 +13,20 @@ public enum ShopTypeEnum
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] GameObject[] weapons;
+    // [SerializeField] GameObject[] weapons;
     bool swR;
     public ShopTypeEnum shopType;
     // [SerializeField] Product upgradeHealth = new Product(2500, 20);
     // [SerializeField] Product upgradeHealth = new Product();
     // [SerializeField] Product potions = new Product();
     public Product[] products;
+    PlayerController player;
     // public bool shopRandomize;
     // List<GameObject> weaponsLink = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<PlayerController>();
         // WaveManager.waveChange.AddListener(randomizeWeapons);
         
     }
@@ -33,7 +35,9 @@ public class Shop : MonoBehaviour
         switch (shopType)
         {
             case ShopTypeEnum.weapons:
-                randomizeWeapons();
+                if(WaveManager.shopRandomize){
+                    randomizeWeapons();
+                }
                 // addButtonsListener();
             break;
             case ShopTypeEnum.player:
@@ -41,37 +45,57 @@ public class Shop : MonoBehaviour
                 // addButtonsListener();
                 break;
         }
-        Time.timeScale = 0;
+        // Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
 
     void OnDisable(){
-        Time.timeScale = 1;
+        // Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     public void randomizeWeapons(){
         // bool WeaponUMR = GameObject.Find("WeaponUM").GetComponent<Machine>().randomizeWeapon;
-        if(WaveManager.shopRandomize){
-            GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
-            if (weaponSlots.Length == 0) return;
-            if (weapons.Length == 0) return;            
-            
-            foreach (GameObject weaponSlot in weaponSlots)
-            {
-                int inx = Random.Range(0,weapons.Length);
-                GameObject weapon = weapons[inx];
-                // weaponsLink.Add(weapon);
-                weaponSlot.GetComponentsInChildren<Text>()[0].text = weapon.name;
-                weaponSlot.GetComponentsInChildren<Text>()[1].text = weapon.GetComponent<Weapon>().weaponData.price.ToString();
-                weaponSlot.GetComponent<Button>().onClick.RemoveAllListeners();
-                weaponSlot.GetComponent<Button>().onClick.AddListener(() => buyWeapon(weapon));
+        
+        GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
+        if (weaponSlots.Length == 0) return;
+        if (products.Length == 0) return;            
+        // List<GameObject> weaponsShop = new List<GameObject>();
+        List<Product> weaponsShop = new List<Product>();
+        foreach (GameObject weaponSlot in weaponSlots)
+        {
+            int inx;
+            // GameObject weapon;
+            Product product;
+            // weaponsShop = weapon;
 
-            }
-            WaveManager.shopRandomize = false;
+            // do
+            // {
+            //     inx = Random.Range(0,weapons.Length);
+            //     weapon = weapons[inx];
+            // } while (weaponsShop.Find(x => x == weapon));
+
+            do
+            {
+                inx = Random.Range(0,products.Length);
+                // weapon = weapons[inx];
+                // weapon = products[inx].productGameobject;
+                product = products[inx];
+            } while (weaponsShop.Exists(x => x == product));
+
+            weaponsShop.Add(product);
+            
+            // weaponsLink.Add(weapon);
+            weaponSlot.GetComponentsInChildren<Text>()[0].text = product.name;
+            weaponSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
+            weaponSlot.GetComponent<Button>().onClick.RemoveAllListeners();
+            weaponSlot.GetComponent<Button>().onClick.AddListener(() => buyWeapon(product));
+
         }
+        WaveManager.shopRandomize = false;
+        
     }
 
     
@@ -80,13 +104,18 @@ public class Shop : MonoBehaviour
     //     // randomizeWeapons();
     // }
 
-    void buyWeapon(GameObject weapon){
-        if (weapon.GetComponent<Weapon>().weaponData.price > Nexus.money) return;
-        Nexus.money -= weapon.GetComponent<Weapon>().weaponData.price;
+    void buyWeapon(Product product){
+        if (product.price > Nexus.money) return;
+        Nexus.money -= product.price;
         // string wname = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
-        GameObject weaponObj = Instantiate(weapon);
-        GameObject player = GameObject.FindWithTag("Player");
+        GameObject weaponPrefab = product.productGameobject;
+        // GameObject weaponObj = Instantiate(product.productGameobject);
         GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
+
+        GameObject weaponObj = Instantiate(weaponPrefab, slotArma.transform.position, Quaternion.identity, slotArma.transform);
+        weaponObj.transform.localPosition = weaponPrefab.transform.position;
+        weaponObj.transform.localRotation = weaponPrefab.transform.rotation;
+        
         int weaponIndex = 0;
         // get player weapons
         
@@ -102,14 +131,12 @@ public class Shop : MonoBehaviour
                 // 
             }
         }
-        print("weaponIndex = " + weaponIndex);
         Destroy(slotArma.transform.GetChild(weaponIndex).gameObject);
-        weaponObj.transform.parent = slotArma.transform;
-        weaponObj.transform.localPosition = new Vector3(1,0,0);
-        weaponObj.transform.localRotation=Quaternion.identity;
+        // weaponObj.transform.parent = slotArma.transform;
+        // weaponObj.transform.localPosition = new Vector3(1,0,0);
+        // weaponObj.transform.localRotation=Quaternion.identity;
         weaponObj.GetComponent<Weapon>().owner = player.GetComponent<PlayerController>();
-        player.GetComponent<PlayerController>().selectedIndex = 0;
-        player.GetComponent<PlayerController>().weapons[0] = weaponObj.GetComponent<Weapon>();
+        player.weapons[player.selectedIndex] = weaponObj.GetComponent<Weapon>();
         // player.GetComponent<PlayerController>().OnWeaponStateChange.Invoke(weaponObj.GetComponent<Weapon>());
 
 
@@ -125,20 +152,18 @@ public class Shop : MonoBehaviour
         // player.GetComponent<PlayerController>().weapons[1] = weaponObj.GetComponent<Weapon>();
     }
 
-    public void UpgradeLife(){
-        print("UpgradeLife");
-        // if (Nexus.money < upgradeHealth.price) return;
-        // Nexus.money -= upgradeHealth.price;
-        // PlayerController player = FindObjectOfType<PlayerController>();
-        // player.upgradeHealth(upgradeHealth.value);
+    public void buyProduct(Product product){
+        if (Nexus.money < product.price) return;
+        Nexus.money -= product.price;
+        product.triggerEvent.Invoke(product.value);
     }
 
-    public void BuyPotion(){
-        print("BuyPotion");
-        // if (Nexus.money < potions.price) return;
-        // Nexus.money -= potions.price;
-        // PlayerController player = FindObjectOfType<PlayerController>();
-        // player.addPotions(potions.value);
+    public void UpgradeLife(int value){
+        player.upgradeHealth(value);
+    }
+
+    public void BuyPotion(int value){
+        player.addPotions(value);
     }
 
     
@@ -154,13 +179,13 @@ public class Shop : MonoBehaviour
     //     }
     // }
 
-    void addButtonsListener(){
-        GameObject[] WButtons = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
-        foreach (GameObject WButton in WButtons)
-        {
-            print("name"+WButton.name);
-        }
-    }
+    // void addButtonsListener(){
+    //     GameObject[] WButtons = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
+    //     foreach (GameObject WButton in WButtons)
+    //     {
+    //         print("name"+WButton.name);
+    //     }
+    // }
 
     void setPlayerShop(){
         GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
@@ -172,13 +197,21 @@ public class Shop : MonoBehaviour
                 productSlot.GetComponent<Button>().interactable = false;
                 return;
             }
-            print("i = " + i);
-            print("products[i].triggerEvent = " + products[i].triggerEvent.ToString());
-            productSlot.GetComponentsInChildren<Text>()[0].text = products[i].name;
-            productSlot.GetComponentsInChildren<Text>()[1].text = products[i].price.ToString();
-            UnityEvent prodFunction = products[i].triggerEvent;
+
+            Product product = products[i];
+
+            // if (product.specialSlot)
+            // {
+            //     GameObject specialSlot = GameObject.FindGameObjectWithTag("SlotProductSpecial");
+            // }
+
+            productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
+            productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
+            // UnityEvent prodFunction = products[i].triggerEvent;
+            
             productSlot.GetComponent<Button>().onClick.RemoveAllListeners();
-            productSlot.GetComponent<Button>().onClick.AddListener(() => prodFunction.Invoke());
+            // productSlot.GetComponent<Button>().onClick.AddListener(() => prodFunction.Invoke());
+            productSlot.GetComponent<Button>().onClick.AddListener(() => buyProduct(product));
             productSlot.GetComponent<Button>().interactable = true;
 
             i++;

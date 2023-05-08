@@ -27,6 +27,7 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         wave = 0;
+        shopRandomize = true;
         Spawn.spawnEnemyEvent.AddListener(spawnCheck);
         // foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         // {
@@ -44,13 +45,14 @@ public class WaveManager : MonoBehaviour
 
     void spawnCheck(){
         enemiesScene = GameObject.FindGameObjectsWithTag(Tags.ENEMY).Length;
-        print("spawn = " + spawn);
+
         if (enemiesScene>=maxEnemiesScene || enemiesWave<=enemiesScene)
         {
             spawn = false;
         }else{
             spawn = true;
         }
+        
     }
 
     // void nextWave(){
@@ -73,7 +75,9 @@ public class WaveManager : MonoBehaviour
     }
 
     public void checkWave(){
-        print("enter check wave enemies = " + enemiesWave);
+        // enter check wave when enemy dies
+        print(" checkWave || enemies = " + enemiesWave);
+        // remaining enemies
         enemiesWave--;
         if (enemiesWave<=0)
         {

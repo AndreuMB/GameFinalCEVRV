@@ -22,4 +22,4 @@ MonoBehaviour:
   zoom: 1
   audioFire: DisparoAuto
   audioReload: RecargaPistola
-  price: 700
+  animatorController: {fileID: 9100000, guid: 109b10cb052f850418e1b1e0b7ee3e99, type: 2}
