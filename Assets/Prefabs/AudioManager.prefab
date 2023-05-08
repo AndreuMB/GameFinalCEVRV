@@ -47,7 +47,7 @@ MonoBehaviour:
   sounds:
   - name: Taladro
     clip: {fileID: 8300000, guid: bfd172dc669a60e49b3f95ca558ec8e2, type: 3}
-    volume: 0.1
+    volume: 0
     pitch: 1
     loop: 1
     autoplay: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
     source: {fileID: 0}
     ownerTag: 4
   - name: DisparoAuto
-    clip: {fileID: 8300000, guid: faca17b1784b49549bd248161c73889d, type: 3}
+    clip: {fileID: 8300000, guid: 0902058d14e568b41a7e50d7ee64dd11, type: 3}
     volume: 0.25
     pitch: 1
     loop: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
     source: {fileID: 0}
     ownerTag: 0
   - name: RecargaAuto
-    clip: {fileID: 8300000, guid: c5c76c26940577643b8884c1b6c48d14, type: 3}
+    clip: {fileID: 8300000, guid: 5b89f97de1a6aeb4a81e4668e10ad3ba, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
@@ -134,10 +134,10 @@ MonoBehaviour:
     source: {fileID: 0}
     ownerTag: 5
   - name: Crystal
-    clip: {fileID: 8300000, guid: 9e8077c3bde75a5428644b86806b932c, type: 3}
-    volume: 0.7
+    clip: {fileID: 8300000, guid: a0a09a72f89eaac4690914854b18ac1e, type: 3}
+    volume: 1
     pitch: 1
-    loop: 1
+    loop: 0
     autoplay: 0
     spatialBlend: 0
     minDistance: 0
@@ -178,7 +178,29 @@ MonoBehaviour:
     source: {fileID: 0}
     ownerTag: 0
   - name: SwapWeapon
-    clip: {fileID: 8300000, guid: 975a396d29b79dc40b5538c7b91a2b3c, type: 3}
+    clip: {fileID: 8300000, guid: 43f4692538d0dbd4ead0a8251a3ccd81, type: 3}
+    volume: 0.855
+    pitch: 2
+    loop: 0
+    autoplay: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+    ownerTag: 0
+  - name: BallestaAuto
+    clip: {fileID: 8300000, guid: 1ac3efde9f656b0448bf7539abc4d4c5, type: 3}
+    volume: 0.614
+    pitch: 2
+    loop: 0
+    autoplay: 0
+    spatialBlend: 0
+    minDistance: 0
+    maxDistance: 0
+    source: {fileID: 0}
+    ownerTag: 0
+  - name: RecargaBallesta
+    clip: {fileID: 8300000, guid: 00ba4057ca4700b4cbf72a68a03d70da, type: 3}
     volume: 1
     pitch: 2
     loop: 0
