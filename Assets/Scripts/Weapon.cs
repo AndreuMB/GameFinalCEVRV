@@ -146,7 +146,6 @@ public class Weapon : MonoBehaviour
             GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
             // GameObject instance = Instantiate(weaponData.bullet, transform.position, slotArma.transform.rotation);
             GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.transform.forward * OFFSET_BULLET, slotArma.transform.rotation);
-            print("weaponData.bullet.name" + weaponData.bullet.name);
             // GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward * OFFSET_BULLET, transform.rotation);
             // instance.transform.localPosition = Vector3.zero;
             instance.GetComponent<Bullet>().weapon = this;

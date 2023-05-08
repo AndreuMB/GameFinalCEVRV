@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Bullet : MonoBehaviour
 {
     // public static UnityEvent hit = new UnityEvent();
-    public Weapon weapon;
+    [System.NonSerialized] public Weapon weapon;
     public Character owner => weapon.owner;
 
     // GameObject owner;
@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
     // PROPIEDADES ABREVIADA
     // public float weaponDamage { get; private set; }
 
-    public float weaponDamage;
+    // public float weaponDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -60,11 +60,11 @@ public class Bullet : MonoBehaviour
         yield break;
     }
 
-    public void setWeaponDamage(float weaponDamageSet){
-        weaponDamage = weaponDamageSet;
-    }
+    // public void setWeaponDamage(float weaponDamageSet){
+    //     weaponDamage = weaponDamageSet;
+    // }
 
-    public float getWeaponDamage(){
-        return weaponDamage;
-    }
+    // public float getWeaponDamage(){
+    //     return weaponDamage;
+    // }
 }

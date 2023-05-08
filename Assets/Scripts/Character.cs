@@ -89,16 +89,10 @@ public abstract class Character : MonoBehaviour
     {
         for (int i = 0; i < weapons.Count; i++)
         {
-            // Transform slotWeapon = transform.GetChild(0).GetChild(0);
             // set animator to weapon
-            Transform slotWeapon = transform.Find("Head").transform.Find("SlotArma");
-            // Animator  slotAnimator = slotWeapon.GetComponent<Animator>();
-            // Animator  weaponAnimator = weapons[i].GetComponent<Animator>();
-            // slotAnimator.runtimeAnimatorController = weaponAnimator.runtimeAnimatorController;
-            // Vector3 offsetWeapon = weapons[i].transform.GetChild(0).position;
-            // weapons[i] = Instantiate(weapons[i].gameObject, slotWeapon.position + offsetWeapon, Quaternion.identity, slotWeapon.transform).GetComponent<Weapon>();
-            // print(weapons[i].name);
+            Transform slotWeapon = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString()).transform;
             GameObject weaponPrefab = weapons[i].gameObject;
+            weaponPrefab.layer = LayerMask.NameToLayer("Weapon");
             weapons[i] = Instantiate(weaponPrefab, slotWeapon.transform.position, Quaternion.identity, slotWeapon.transform).GetComponent<Weapon>();
             weapons[i].transform.localPosition = weaponPrefab.transform.position;
             weapons[i].transform.localRotation = weaponPrefab.transform.rotation;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BallestaSO
   m_EditorClassIdentifier: 
   wName: Ballesta
-  bullet: {fileID: 7335763105056745259, guid: ef52ccca67df5f541afc32f3ee9c8749, type: 3}
+  bullet: {fileID: 623024601647049774, guid: 62eda6e89c1b7994e96743daabb338af, type: 3}
   loaderMaxAmmo: 1
   loadTime: 1
   fireRate: 1

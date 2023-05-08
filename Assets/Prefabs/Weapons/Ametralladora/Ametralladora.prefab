@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4625309473510386875}
   - component: {fileID: 7481764568839297137}
   - component: {fileID: 3993779761761343947}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ametralladora
   m_TagString: Untagged
   m_Icon: {fileID: 0}
