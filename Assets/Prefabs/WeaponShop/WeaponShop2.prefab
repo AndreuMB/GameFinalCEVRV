@@ -920,6 +920,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5959867105500530503, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
+      propertyPath: products.Array.data[0].productGameobject
+      value: 
+      objectReference: {fileID: 8994934529158986148, guid: c49331a7acf875f43a650bbd3ac20b21, type: 3}
     - target: {fileID: 6827816868341830252, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
