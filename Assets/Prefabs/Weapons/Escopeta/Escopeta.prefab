@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4008422742516166486}
   - component: {fileID: 352220317190016093}
   - component: {fileID: 7326997781874841486}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Baja_Arma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5598292006163190404}
   - component: {fileID: 3657636944445998516}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Escopeta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 5557840130669701481}
   - component: {fileID: 8448217329705653794}
   - component: {fileID: 4871370062180132172}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Baja_cartuchos.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
