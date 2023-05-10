@@ -13,7 +13,7 @@ public enum ShopTypeEnum
 
 public class Shop : MonoBehaviour
 {
-    bool swR;
+    bool swPS = true;
     public ShopTypeEnum shopType;
     public Product[] products;
     PlayerController player;
@@ -22,78 +22,58 @@ public class Shop : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
 
-        GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
-        GameObject spSlot = GameObject.FindGameObjectWithTag(TagsEnum.SlotProductSpecial.ToString());
-        foreach (GameObject productSlot in productSlots)
+        foreach(Transform productSlot in transform.Find("Products"))
         {
             productSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
             productSlot.GetComponent<Button>().interactable = false;
         }
-        if (spSlot)
-        {
-            spSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
-            spSlot.GetComponent<Button>().interactable = false;
-        }
-
-        setSpSlot();
         
     }
 
     void OnEnable(){
+        setSpSlot();
         switch (shopType)
         {
             case ShopTypeEnum.weapons:
                 if(WaveManager.shopRandomize){
                     randomizeWeapons();
                 }
-                // addButtonsListener();
             break;
             case ShopTypeEnum.player:
-                setPlayerShop();
-                // addButtonsListener();
+                if (swPS) setPlayerShop();
                 break;
         }
-        // Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
 
     void OnDisable(){
-        // Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     public void randomizeWeapons(){
         // bool WeaponUMR = GameObject.Find("WeaponUM").GetComponent<Machine>().randomizeWeapon;
-        
-        GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotWeaponShop.ToString());
+        // foreach(Transform productSlot in transform.Find("Products"))
+        GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
         if (weaponSlots.Length == 0) return;
         if (products.Length == 0) return;       
         // List<GameObject> weaponsShop = new List<GameObject>();
         List<Product> weaponsShop = new List<Product>();
-        foreach (GameObject weaponSlot in weaponSlots)
+        foreach (Transform weaponSlot in transform.Find("Products"))
         {
             int inx;
             // GameObject weapon;
             Product product;
-            // weaponsShop = weapon;
-
-            // do
-            // {
-            //     inx = Random.Range(0,weapons.Length);
-            //     weapon = weapons[inx];
-            // } while (weaponsShop.Find(x => x == weapon));
+            if (weaponSlot.tag == TagsEnum.SlotProductSpecial.ToString()) break;
 
             do
             {
                 inx = Random.Range(0,products.Length);
-                // weapon = weapons[inx];
-                // weapon = products[inx].productGameobject;
                 product = products[inx];
             } while (weaponsShop.Exists(x => x == product));
 
-            if (product.specialSlot) return;
+            if (product.specialSlot) break;
 
             weaponsShop.Add(product);
             
@@ -102,6 +82,7 @@ public class Shop : MonoBehaviour
             weaponSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
             weaponSlot.GetComponent<Button>().onClick.RemoveAllListeners();
             weaponSlot.GetComponent<Button>().onClick.AddListener(() => buyWeapon(product));
+            weaponSlot.GetComponent<Button>().interactable = true;
 
         }
         WaveManager.shopRandomize = false;
@@ -145,16 +126,19 @@ public class Shop : MonoBehaviour
 
 
     void setPlayerShop(){
-        GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
+        // GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
+        Transform productSlots = transform.Find("Products");
         int i = 0;
         GameObject productSlot;
         foreach (Product product in products)
         {
-            if (i >= productSlots.Length) return;
+            if (i >= productSlots.childCount) return;
             if (product.specialSlot) return;
 
-            productSlot = productSlots[i];
-
+            productSlot = productSlots.GetChild(i).gameObject;
+            if (productSlots.tag == TagsEnum.SlotProductSpecial.ToString()) return;
+            // if not from this shop return
+            // if (!productSlot.transform.IsChildOf(transform)) return;
 
             productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
             productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
@@ -165,6 +149,7 @@ public class Shop : MonoBehaviour
 
             i++;
         }
+        swPS = false;
     }
 
     void setSpSlot(){
@@ -174,12 +159,13 @@ public class Shop : MonoBehaviour
             {
                 productSlot = GameObject.FindGameObjectWithTag(TagsEnum.SlotProductSpecial.ToString());
                 if(!productSlot) return;
+                // if not from this shop return
+                if (!productSlot.transform.IsChildOf(transform)) return;
                 productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
                 productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
                 // UnityEvent prodFunction = products[i].triggerEvent;
                 
                 productSlot.GetComponent<Button>().onClick.RemoveAllListeners();
-                // productSlot.GetComponent<Button>().onClick.AddListener(() => prodFunction.Invoke());
                 productSlot.GetComponent<Button>().onClick.AddListener(() => buyProduct(product));
                 productSlot.GetComponent<Button>().interactable = true;
             }
