@@ -267,6 +267,7 @@ MonoBehaviour:
   selectedIndex: 0
   life: 0
   speed: 6
+  slotWeapon: {fileID: 9067318893073456297}
   death:
     m_PersistentCalls:
       m_Calls: []

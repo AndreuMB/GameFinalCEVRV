@@ -12,6 +12,7 @@ public abstract class Character : MonoBehaviour
     [Header("Stats")]
     [SerializeField] protected float life;
     [SerializeField] protected float speed;
+    [SerializeField] Transform slotWeapon;
 
     public UnityEvent death = new UnityEvent();
 
@@ -90,7 +91,8 @@ public abstract class Character : MonoBehaviour
         for (int i = 0; i < weapons.Count; i++)
         {
             // set animator to weapon
-            Transform slotWeapon = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString()).transform;
+            // gameObject.transform.child
+            // Transform slotWeapon = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString()).transform;
             GameObject weaponPrefab = weapons[i].gameObject;
             weaponPrefab.layer = LayerMask.NameToLayer("Weapon");
             weapons[i] = Instantiate(weaponPrefab, slotWeapon.transform.position, Quaternion.identity, slotWeapon.transform).GetComponent<Weapon>();
