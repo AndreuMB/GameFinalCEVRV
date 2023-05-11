@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 311156006}
-  m_IndirectSpecularColor: {r: 0.41345507, g: 0.9578932, b: 1.3696644, a: 1}
+  m_IndirectSpecularColor: {r: 0.41590288, g: 0.92306346, b: 1.3580002, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1795,10 +1795,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn
       objectReference: {fileID: 0}
-    - target: {fileID: 8841399460400380836, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
 --- !u!1001 &201858112
@@ -2622,10 +2618,6 @@ PrefabInstance:
     - target: {fileID: 8841399460400380836, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
       propertyPath: m_Name
       value: Spawn (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8841399460400380836, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
@@ -8025,18 +8017,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 211155895, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
-      propertyPath: m_RendererIndex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9067318893570583666, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
-      propertyPath: speed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9067318893570583667, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9067318893570583670, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -9034,10 +9014,6 @@ PrefabInstance:
     - target: {fileID: 3818672773735820438, guid: 818de81863d2e334298d540999aa7711, type: 3}
       propertyPath: m_Name
       value: PlayerShop2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3818672773735820438, guid: 818de81863d2e334298d540999aa7711, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4590705186221782572, guid: 818de81863d2e334298d540999aa7711, type: 3}
       propertyPath: m_RootOrder
@@ -15004,10 +14980,6 @@ PrefabInstance:
     - target: {fileID: 8841399460400380836, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
       propertyPath: m_Name
       value: Spawn (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8841399460400380836, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
