@@ -63,7 +63,7 @@ Material:
     - _Velocidad_Distorsion: 0.5
     - _Velocidad_Espuma: 1
     m_Colors:
-    - _Color_Agua_Dia: {r: 0.05490196, g: 0.7411765, b: 0.9254903, a: 1}
+    - _Color_Agua_Dia: {r: 0.015686274, g: 0.02124729, b: 0.13333334, a: 1}
     - _Color_Agua_Noche: {r: 0.01223745, g: 0.08430666, b: 0.1037736, a: 1}
     - _Color_Agua_Poco_Profunda: {r: 0.04705883, g: 0.6, b: 0.882353, a: 1}
     - _Color_Agua_Profunda: {r: 0, g: 0.1568628, b: 0.3921569, a: 1}
