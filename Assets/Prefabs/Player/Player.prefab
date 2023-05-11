@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 211155894}
   - component: {fileID: 211155897}
-  - component: {fileID: 211155896}
   - component: {fileID: 211155895}
   m_Layer: 0
   m_Name: WeaponCamera
@@ -78,14 +77,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &211155896
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 211155893}
-  m_Enabled: 1
 --- !u!114 &211155895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9067318893073456297}
   - component: {fileID: 699671316}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SlotArma
   m_TagString: SlotArma
   m_Icon: {fileID: 0}
@@ -276,6 +267,7 @@ MonoBehaviour:
   selectedIndex: 0
   life: 0
   speed: 6
+  slotWeapon: {fileID: 9067318893073456297}
   death:
     m_PersistentCalls:
       m_Calls: []

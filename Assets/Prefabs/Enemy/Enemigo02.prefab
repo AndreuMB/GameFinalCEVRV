@@ -1385,8 +1385,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - {fileID: 8631082880459259092, guid: d5c858cb1f76b864bbb6bd0bda6fe96e, type: 3}
+  selectedIndex: 0
   life: 20
   speed: 0
+  slotWeapon: {fileID: 2163969882584805937}
   death:
     m_PersistentCalls:
       m_Calls: []

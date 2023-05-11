@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1073828564796433925}
   - component: {fileID: 8631082880459259092}
-  - component: {fileID: -5698578631264361595}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Cristal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +155,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 409249285393732489, guid: f733b30b695b80346b4ae211922e666b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7209213997247895589, guid: f733b30b695b80346b4ae211922e666b, type: 3}
       propertyPath: m_RootOrder
@@ -208,7 +207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8018541779455066783, guid: f733b30b695b80346b4ae211922e666b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f733b30b695b80346b4ae211922e666b, type: 3}

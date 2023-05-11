@@ -45,9 +45,6 @@ public class Weapon : MonoBehaviour
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
         }
         am = FindObjectOfType<AudioManager>();
-        // animator = parentAnimator;
-        // print("1/weaponData.fireRate = " + 1/weaponData.fireRate);
-        // animator.SetFloat("fireSpeed", 1/weaponData.fireRate);
     }
 
     void OnEnable(){
@@ -55,10 +52,6 @@ public class Weapon : MonoBehaviour
         StartCoroutine(checkPlayerMovement());
         animator = GetComponentInParent<Animator>();
         animator.runtimeAnimatorController = weaponData.animatorController;
-        // Set weapon default position
-        // print("iniTransform = " + transform.position);
-        // transform.position = iniTransform.position;
-        // print("transformRotation " +name+ " = " + transform.localRotation);
     }
 
     void OnDisable() {
@@ -73,36 +66,11 @@ public class Weapon : MonoBehaviour
             reloadingCoroutine = null;
         }
 
-        // Animator animator = GetComponent<Animator>();
-        // animator.enabled = false;
-        // transform.localPosition = iniTransform.localPosition;
-        // animator.enabled = true;
-        //if(isReloading) StopCoroutine(reloadingCoroutine);
-        //StopAllCoroutines();
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if ((Input.GetMouseButtonDown(0) && auto) || (Input.GetMouseButtonDown(0) && !auto) || enemyFire){
-        //     if (loaderAmmo <= 0){
-        //         StartCoroutine(load());
-        //     }else{
-        //         if (Time.time > fireStart + fireRate) {
-        //             fireStart = Time.time;
-        //             Fire();
-        //         }
-        //     }
-        // }
-
-
-        //TODO: Hacer recarga
-        // if (Input.GetKeyDown(KeyCode.R)){
-        //     StartCoroutine(load());
-        // }
-
 
     }
 
@@ -138,18 +106,11 @@ public class Weapon : MonoBehaviour
         const int STRENGHT = 100;
         if (!isReloading)
         {
-            // Animator animator = GetComponent<Animator>();
-            // Animator animator = gameObject.GetComponentInParent<Animator>();
             animator.SetTrigger("fire");
             am.Play(weaponData.audioFire);
-            // print("bullet transform.position" + transform.position);
-            GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
-            // GameObject instance = Instantiate(weaponData.bullet, transform.position, slotArma.transform.rotation);
-            GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.transform.forward * OFFSET_BULLET, slotArma.transform.rotation);
-            // GameObject instance = Instantiate(weaponData.bullet, transform.position + transform.forward * OFFSET_BULLET, transform.rotation);
-            // instance.transform.localPosition = Vector3.zero;
+            Transform slotArma = owner.GetComponent<Character>().slotWeapon;
+            GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
             instance.GetComponent<Bullet>().weapon = this;
-
             instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * STRENGHT, ForceMode.VelocityChange);
             loaderAmmo--;
             WeaponStateChanged();
@@ -170,8 +131,6 @@ public class Weapon : MonoBehaviour
                 Vector3 fwd = owner.transform.TransformDirection(Vector3.forward);
                 if (Physics.Raycast(owner.transform.position, fwd, out RaycastHit hit, 50))
                 {
-                    // print(hit.collider.gameObject.name + " was hit by enemy!");
-                    // hitPlayerEv.Invoke();
                     hit.collider.gameObject.TryGetComponent<PlayerController>(out PlayerController player);
                     hit.collider.gameObject.TryGetComponent<Nexus>(out Nexus nexus);
                     if (player)
@@ -282,7 +241,6 @@ public class Weapon : MonoBehaviour
         }
     }
     IEnumerator checkPlayerMovement() {
-        // Animator animator = GetComponentInParent<Animator>();
         const float MIN_MOVEMENT = 0.1f;
         while (isActiveAndEnabled)
         {

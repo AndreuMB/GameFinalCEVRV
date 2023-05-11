@@ -24,3 +24,8 @@ public enum TagsEnum
     Terrain,
     SlotProductSpecial
 }
+
+public enum LayerEnum
+{
+    IgnoreCollider
+}

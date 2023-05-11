@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e90e604fd1654b48952a58aa06d9bb3, type: 3}
   m_Name: Cristal
   m_EditorClassIdentifier: 
-  wName: Pistol
+  wName: Cristal
   bullet: {fileID: 7335763105056745259, guid: ef52ccca67df5f541afc32f3ee9c8749, type: 3}
   loaderMaxAmmo: 6
   loadTime: 1
