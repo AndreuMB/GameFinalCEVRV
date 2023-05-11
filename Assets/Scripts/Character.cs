@@ -12,6 +12,7 @@ public abstract class Character : MonoBehaviour
     [Header("Stats")]
     [SerializeField] protected float life;
     [SerializeField] protected float speed;
+    [SerializeField] public Transform slotWeapon;
 
     public UnityEvent death = new UnityEvent();
 
@@ -31,27 +32,10 @@ public abstract class Character : MonoBehaviour
         if (other.gameObject.tag==Tags.BULLET)
         {
             Bullet bullet = other.gameObject.GetComponent<Bullet>();
-            // if isn't friendly fire takeDamage
-            // if(decideDamage(bullet)) takeDamage(bullet);
         }
     }
 
     protected abstract bool decideDamage(Bullet bullet);
-
-    // protected void takeDamage(Bullet bullet){
-    //     // update character life
-    //     life = life - bullet.weapon.getDamage();
-    //     print("Characterlife = " + life);
-    //     if (life <= 0) {
-    //         if (gameObject.tag == Tags.PLAYER)
-    //         {
-    //             GameManager.gameOver();
-    //         }else{
-    //             death.Invoke();
-    //             Destroy(gameObject);
-    //         }
-    //     }
-    // }
 
     public void takeDamageRayCast(Weapon weapon){
         life = life - weapon.getDamage();
@@ -74,26 +58,24 @@ public abstract class Character : MonoBehaviour
                 death.Invoke();
             }
         }
-        // if (life <= 0) {
-        //     if (gameObject.tag == Tags.PLAYER)
-        //     {
-        //         GameManager.gameOver();
-        //     }else{
-        //         death.Invoke();
-        //         // Destroy(gameObject);
-        //     }
-        // }
     }
 
     protected void InstanciaArmas()
     {
         for (int i = 0; i < weapons.Count; i++)
         {
-            // set animator to weapon
-            Transform slotWeapon = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString()).transform;
+
             GameObject weaponPrefab = weapons[i].gameObject;
-            weaponPrefab.layer = LayerMask.NameToLayer("Weapon");
-            weapons[i] = Instantiate(weaponPrefab, slotWeapon.transform.position, Quaternion.identity, slotWeapon.transform).GetComponent<Weapon>();
+            
+            // for player weapon not go through terrain and objects
+            if (gameObject.tag == Tags.PLAYER) {
+                foreach (MeshRenderer item in weaponPrefab.GetComponentsInChildren<MeshRenderer>())
+                {
+                    item.gameObject.layer = LayerMask.NameToLayer("Weapon");
+                }
+            }
+
+            weapons[i] = Instantiate(weaponPrefab, slotWeapon.transform.position, slotWeapon.transform.rotation, slotWeapon.transform).GetComponent<Weapon>();
             weapons[i].transform.localPosition = weaponPrefab.transform.position;
             weapons[i].transform.localRotation = weaponPrefab.transform.rotation;
             weapons[i].owner = this;

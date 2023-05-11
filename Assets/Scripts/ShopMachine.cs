@@ -9,8 +9,8 @@ public class ShopMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shop = FindObjectOfType<Shop>();
-        shop.gameObject.SetActive(false);
+        // shop = FindObjectOfType<Shop>();
+        // shop.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

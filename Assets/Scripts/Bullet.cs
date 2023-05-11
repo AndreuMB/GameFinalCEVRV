@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     // public static UnityEvent hit = new UnityEvent();
     [System.NonSerialized] public Weapon weapon;
     public Character owner => weapon.owner;
+    public bool firstCollision = false;
 
     // GameObject owner;
 
@@ -37,6 +38,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         StartCoroutine(destroyBullet());
+        Physics.IgnoreCollision(GameObject.FindGameObjectWithTag(TagsEnum.Player.ToString()).GetComponent<Collider>(), GetComponent<Collider>());
     }
 
     // Update is called once per frame
@@ -52,6 +54,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             // hit.Invoke();
         }
+        firstCollision = true;
     }
 
     IEnumerator destroyBullet(){
