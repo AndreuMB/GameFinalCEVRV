@@ -147,7 +147,7 @@ public class Weapon : MonoBehaviour
         if (owner.GetType() == typeof(PlayerController))
         {
             if(Physics.Raycast(ray, out RaycastHit hit)){
-                // print(hit.collider.gameObject.name + " was hit by player!");
+                print(hit.collider.gameObject.name + " was hit by player!");
                 hit.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy);
                 if (enemy) enemy.takeDamageRayCast(this);
                 // instantiate particles when hit raycast
