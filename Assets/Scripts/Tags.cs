@@ -22,7 +22,8 @@ public enum TagsEnum
     SlotWeaponShop,
     SlotProduct,
     Terrain,
-    SlotProductSpecial
+    SlotProductSpecial,
+    Death
 }
 
 public enum LayerEnum
