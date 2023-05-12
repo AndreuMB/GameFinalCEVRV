@@ -17,6 +17,7 @@ TagManager:
   - SlotWeaponShop
   - SlotProduct
   - SlotProductSpecial
+  - Death
   layers:
   - Default
   - TransparentFX
