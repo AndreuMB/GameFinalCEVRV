@@ -52,11 +52,13 @@ public abstract class Character : MonoBehaviour
         {
             PlayerController pc = gameObject.GetComponent<PlayerController>();
             Color colorHitCanvas = hitCanvas.GetComponentInChildren<Image>().color;
-            // actual life %
+
+            // actual life % for get HUD opacity
             float lifeP = life * 100 / pc.maxPlayerLife;
             print("lifeP/100 = " + lifeP/100);
-            colorHitCanvas.a = 0.5f - (lifeP/100);
+            colorHitCanvas.a = 0.7f - (lifeP/100);
             hitCanvas.GetComponentInChildren<Image>().color = colorHitCanvas;
+
             gameObject.GetComponentInChildren<CameraShake>().shakecamera();
             if (life <= 0) {
                 GameManager.gameOver();
