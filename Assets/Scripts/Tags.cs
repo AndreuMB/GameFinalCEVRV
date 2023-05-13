@@ -23,7 +23,8 @@ public enum TagsEnum
     SlotProduct,
     Terrain,
     SlotProductSpecial,
-    Death
+    Death,
+    Upgrade
 }
 
 public enum LayerEnum

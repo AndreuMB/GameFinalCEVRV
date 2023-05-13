@@ -26,5 +26,6 @@ public class WeaponSO : ScriptableObject
     public string audioFire = "DisparoAuto";
     public string audioReload = "RecargaAuto";
     public RuntimeAnimatorController animatorController;
+    // public List<GameObject> upgrades;
     // public int price;
 }

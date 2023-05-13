@@ -30,6 +30,7 @@ public class Weapon : MonoBehaviour
     Transform iniTransform;
     AudioManager am;
     Animator animator;
+    public GameObject upgrades;
 
     void Awake()
     {
@@ -45,6 +46,15 @@ public class Weapon : MonoBehaviour
             transform.parent.GetComponent<Enemy>().fireEvent.AddListener(swAutoFire);
         }
         am = FindObjectOfType<AudioManager>();
+        // weaponData.upgrades = new List<GameObject>();
+
+        if (!upgrades) return;
+        foreach (Transform weaponUpgrade in upgrades.transform)
+        {
+            if (!weaponUpgrade) break;
+            // weaponData.upgrades.Add(weaponUpgrade);
+            weaponUpgrade.gameObject.SetActive(false);
+        }
     }
 
     void OnEnable(){

@@ -198,5 +198,14 @@ public class Shop : MonoBehaviour
         GetEquipedWeapon().weaponData.damage += GetEquipedWeapon().weaponData.damage*70/100;
         GetEquipedWeapon().weaponData.loadTime = GetEquipedWeapon().weaponData.loadTime/2;
         print($"damage {GetEquipedWeapon().weaponData.name} = {GetEquipedWeapon().weaponData.damage}");
+        
+        if (!GetEquipedWeapon().upgrades) return;
+        foreach (Transform weaponUpgrade in GetEquipedWeapon().upgrades.transform)
+        {
+            if (!weaponUpgrade.gameObject.activeInHierarchy){
+                weaponUpgrade.gameObject.SetActive(true);
+                return;    
+            } 
+        }
     }
 }
