@@ -20,6 +20,6 @@ MonoBehaviour:
   damage: 20
   auto: 0
   zoom: 1
-  audioFire: DisparoAuto
+  audioFire: DisparoPistola
   audioReload: RecargaPistola
   animatorController: {fileID: 9100000, guid: 109b10cb052f850418e1b1e0b7ee3e99, type: 2}

@@ -29,9 +29,15 @@ public abstract class Character : MonoBehaviour
 
     protected void OnCollisionEnter(Collision other){
         // if GO is a bullet
-        if (other.gameObject.tag==Tags.BULLET)
+        if (other.gameObject.tag==TagsEnum.Bullet.ToString())
         {
             Bullet bullet = other.gameObject.GetComponent<Bullet>();
+        }
+
+        // if character touch death tag instadeath
+        if (other.gameObject.tag==TagsEnum.Death.ToString())
+        {
+            GameManager.gameOver();
         }
     }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.Apple.ReplayKit;
 
 public class UIManager : MonoBehaviour
 {
