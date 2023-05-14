@@ -38,6 +38,7 @@ public class Shop : MonoBehaviour
                 if(WaveManager.shopRandomize){
                     randomizeWeapons();
                 }
+                checkUpgrade();
             break;
             case ShopTypeEnum.player:
                 if (swPS) setPlayerShop();
@@ -180,18 +181,20 @@ public class Shop : MonoBehaviour
 
     Weapon GetEquipedWeapon(){
         GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
-        int weaponIndex = 0;
+        // int weaponIndex = 0;
 
-        // get player weapons
-        for (int i = slotArma.transform.childCount-1; i >= 0; i--)
-        {
-            // find enabled weapon
-            if (slotArma.transform.GetChild(i).gameObject.activeInHierarchy)
-            {
-                weaponIndex = i;
-            }
-        }
-        return slotArma.transform.GetChild(weaponIndex).GetComponent<Weapon>();
+        // // get player weapons
+        // for (int i = slotArma.transform.childCount-1; i >= 0; i--)
+        // {
+        //     // find enabled weapon
+        //     if (slotArma.transform.GetChild(i).gameObject.activeInHierarchy)
+        //     {
+        //         weaponIndex = i;
+        //     }
+        // }
+        // print("weaponIndex = " + weaponIndex);
+        // return slotArma.transform.GetChild(weaponIndex).GetComponent<Weapon>();
+        return slotArma.GetComponentInChildren<Weapon>();
     }
 
     public void UpgradeWeapon(){
@@ -204,6 +207,28 @@ public class Shop : MonoBehaviour
         {
             if (!weaponUpgrade.gameObject.activeInHierarchy){
                 weaponUpgrade.gameObject.SetActive(true);
+                return;    
+            } 
+        }
+    }
+
+    void checkUpgrade(){
+        GameObject productSlot = GameObject.FindGameObjectWithTag(TagsEnum.SlotProductSpecial.ToString());
+        // check spProductSlot exist
+        if(!productSlot) return;
+        // if not from this shop return
+        if (!productSlot.transform.IsChildOf(transform)) return;
+        // set to not interactable by default this way the player can't upgrade the weapon
+        productSlot.GetComponentInChildren<Text>().text = "No Available";
+        productSlot.GetComponent<Button>().interactable = false;
+        // if no upgrades return
+        if (!GetEquipedWeapon().upgrades) return;
+        //if any upgrade not active set btn to interactable
+        foreach (Transform weaponUpgrade in GetEquipedWeapon().upgrades.transform)
+        {
+            if (!weaponUpgrade.gameObject.activeInHierarchy){
+                productSlot.GetComponent<Button>().interactable = true;
+                productSlot.GetComponentInChildren<Text>().text = "UPGRADES";
                 return;    
             } 
         }
