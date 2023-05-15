@@ -113,7 +113,7 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         const int OFFSET_BULLET = 2;
-        const int STRENGHT = 100;
+        const int STRENGHT = 300;
         if (!isReloading)
         {
             animator.SetTrigger("fire");

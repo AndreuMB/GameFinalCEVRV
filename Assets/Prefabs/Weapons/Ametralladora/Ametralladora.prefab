@@ -237,10 +237,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8619816984111670046}
     m_Modifications:
-    - target: {fileID: 116479294993495698, guid: c3e5c50c50c68e348a4ed2a422abe243, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 256963747758598695, guid: c3e5c50c50c68e348a4ed2a422abe243, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -251,11 +247,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 256963747758598695, guid: c3e5c50c50c68e348a4ed2a422abe243, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23
+      value: -0.169
       objectReference: {fileID: 0}
     - target: {fileID: 256963747758598695, guid: c3e5c50c50c68e348a4ed2a422abe243, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.369
       objectReference: {fileID: 0}
     - target: {fileID: 256963747758598695, guid: c3e5c50c50c68e348a4ed2a422abe243, type: 3}
       propertyPath: m_LocalRotation.w
@@ -288,14 +284,6 @@ PrefabInstance:
     - target: {fileID: 638169220323848349, guid: c3e5c50c50c68e348a4ed2a422abe243, type: 3}
       propertyPath: m_Name
       value: mg (mejoras)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2470272104074825499, guid: c3e5c50c50c68e348a4ed2a422abe243, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3711418781766666744, guid: c3e5c50c50c68e348a4ed2a422abe243, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3e5c50c50c68e348a4ed2a422abe243, type: 3}

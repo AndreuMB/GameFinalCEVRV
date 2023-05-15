@@ -189,6 +189,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8841399460400380834, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
   m_PrefabInstance: {fileID: 8841399460275034727}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &607390684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7227311820224368543, guid: f4a91fabf550a02458fbe69fad623018, type: 3}
+  m_PrefabInstance: {fileID: 1018306193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &607390690
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607390684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4349798062964607213, guid: 55698afcdfd22564bb47890c912a6319, type: 3}
 --- !u!1001 &611370642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -570,6 +589,10 @@ PrefabInstance:
     - target: {fileID: 7227311820224368544, guid: f4a91fabf550a02458fbe69fad623018, type: 3}
       propertyPath: farmRate
       value: 10000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7227311820224368545, guid: f4a91fabf550a02458fbe69fad623018, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7227311820224368548, guid: f4a91fabf550a02458fbe69fad623018, type: 3}
       propertyPath: m_RootOrder
