@@ -9,7 +9,10 @@ public class UIManager : MonoBehaviour
 {
 
     TMP_Text vidaPlayer;
+    Slider vidaPlayerBar;
     TMP_Text vidaNexo;
+    Slider vidaNexoBar;
+    Slider pocionesBar;
     TMP_Text dinero;
     TMP_Text numeroOleada;
     TMP_Text municion;
@@ -30,15 +33,24 @@ public class UIManager : MonoBehaviour
         playerController.OnWeaponStateChange.AddListener(UpdateWeaponUI);
         playerController.OnPlayerLifeStateChange.AddListener(UpdatePlayerLifeUI);
         playerController.OnReloadWeapon.AddListener(UpdateReloadProgressBar);
+        playerController.OnPotionsStateChange.AddListener(UpdatePotionsUI);
         nexusRef.OnNexusLifeChange.AddListener(UpdateNexusLifeUI);
         nexusRef.OnNexusMoneyChange.AddListener(UpdateNexusMoneyUI);
         waveRef.OnWaveChange.AddListener(UpdateWaveUI);
 
         vidaPlayer = transform.Find("LifeContainer").Find("VidaPlayer").GetComponent<TMP_Text>();
+        vidaPlayerBar = transform.Find("LifeContainer").Find("PlayerHpContainer").GetComponent<Slider>();
+
+        pocionesBar = transform.Find("LifeContainer").Find("PotionContainer").GetComponent<Slider>();
+
+        //vidaNexo = transform.Find("NexoContainer").Find("VidaNexo").GetComponent<TMP_Text>();
+        vidaNexoBar = transform.Find("LifeContainer").Find("NexusHpContainer").GetComponent<Slider>();
+
         municion = transform.Find("AmmoContainer").Find("Municion").GetComponent<TMP_Text>();
-        numeroOleada = transform.Find("WaveContainer").Find("NumOleada").GetComponent<TMP_Text>();
-        vidaNexo = transform.Find("NexoContainer").Find("VidaNexo").GetComponent<TMP_Text>();
-        dinero = transform.Find("MoneyContainer").Find("Dinero").GetComponent<TMP_Text>();
+
+        numeroOleada = transform.Find("InfoContainer").Find("WaveContainer").Find("NumOleada").GetComponent<TMP_Text>();
+        dinero = transform.Find("InfoContainer").Find("MoneyContainer").Find("Dinero").GetComponent<TMP_Text>();
+
         reloadProgressBar = transform.Find("ReloadProgressBar").GetComponent<Image>();
         
     }
@@ -53,17 +65,26 @@ public class UIManager : MonoBehaviour
     {
         municion.text = arma.ammo.ToString();
     }
-    void UpdateNexusLifeUI(float life)
+    void UpdatePotionsUI(int pociones, int maxPociones)
     {
-        vidaNexo.text = life.ToString();
+        pocionesBar.maxValue = maxPociones;
+        pocionesBar.value = pociones;
+    }
+    void UpdateNexusLifeUI(float life, float maxLife)
+    {
+        //vidaNexo.text = life.ToString();
+        vidaNexoBar.maxValue = maxLife;
+        vidaNexoBar.value = life;
     }
     void UpdateNexusMoneyUI(int money)
     {
         dinero.text = money.ToString();
     }
-    void UpdatePlayerLifeUI(float life)
+    void UpdatePlayerLifeUI(float life, float maxLife)
     {
         vidaPlayer.text = life.ToString();
+        vidaPlayerBar.maxValue = maxLife;
+        vidaPlayerBar.value = life;
     }
     void UpdateWaveUI(string wave)
     {

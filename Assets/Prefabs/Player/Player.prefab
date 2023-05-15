@@ -274,8 +274,7 @@ MonoBehaviour:
       m_Calls: []
   camara: {fileID: 9067318894403790168}
   sensibilidad: 100
-  altura: 5
-  curas: 3
+  maxCuras: 3
   god: 1
   maxPlayerLife: 200
   OnWeaponStateChange:
@@ -285,6 +284,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnPlayerLifeStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPotionsStateChange:
     m_PersistentCalls:
       m_Calls: []
 --- !u!136 &9067318893570583668
