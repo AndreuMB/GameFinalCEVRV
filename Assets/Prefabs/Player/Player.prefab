@@ -286,6 +286,9 @@ MonoBehaviour:
   OnPlayerLifeStateChange:
     m_PersistentCalls:
       m_Calls: []
+  OnPotionsStateChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &9067318893570583668
 CapsuleCollider:
   m_ObjectHideFlags: 0
