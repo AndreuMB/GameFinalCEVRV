@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1073828564796433925}
   - component: {fileID: 8631082880459259092}
+  - component: {fileID: -5698578631264361595}
   m_Layer: 0
   m_Name: Cristal
   m_TagString: Untagged
@@ -45,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383849f62935f29459f24384acc9e86f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: 906cd40dfc264884f80471db8e919486, type: 2}
   ps: {fileID: 1403344502666796241, guid: 63b8cfb80186f8542b6a035a1ba5fa22, type: 3}
+  upgrades: {fileID: 0}
+  weaponDataBase: {fileID: 11400000, guid: 906cd40dfc264884f80471db8e919486, type: 2}
 --- !u!96 &-5698578631264361595
 TrailRenderer:
   serializedVersion: 2

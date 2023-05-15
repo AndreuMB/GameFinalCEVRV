@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour
     }
 
     public void showGameOver(){
+        print("enter showGameOver");
         gameOverBool = true;
         restartMenu.SetActive(true);
         GameObject.Find("Resume").GetComponent<Button>().interactable = false;

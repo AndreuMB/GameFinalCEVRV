@@ -6,7 +6,6 @@ using System;
 
 public class Weapon : MonoBehaviour
 {
-    public WeaponSO weaponData;
     //TODO cambiar float to int
     float loaderAmmo;
     public float ammo => loaderAmmo;
@@ -31,9 +30,12 @@ public class Weapon : MonoBehaviour
     AudioManager am;
     Animator animator;
     public GameObject upgrades;
+    public WeaponSO weaponDataBase;
+    [System.NonSerialized] public WeaponSO weaponData;
 
     void Awake()
     {
+        weaponData = Instantiate(weaponDataBase);
         loaderAmmo = weaponData.loaderMaxAmmo;
         iniTransform = transform;
     }
