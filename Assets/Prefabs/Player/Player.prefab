@@ -268,6 +268,7 @@ MonoBehaviour:
   life: 0
   speed: 7
   slotWeapon: {fileID: 9067318893073456297}
+  hitCanvas: {fileID: 0}
   death:
     m_PersistentCalls:
       m_Calls: []

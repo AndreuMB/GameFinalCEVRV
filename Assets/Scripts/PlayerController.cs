@@ -34,7 +34,7 @@ public class PlayerController : Character
     //Velocidad extra cuando sprintamos
     const float SPRINT_SPEED = 2;
     [SerializeField]
-    float maxPlayerLife;
+    public float maxPlayerLife;
 
     // [SerializeField]
     float movementSpeed;

@@ -27,16 +27,16 @@ public class MenuManager : MonoBehaviour
     void Update() {
         if (Input.GetKeyDown("escape") && !gameOverBool) {
             Canvas[] canvasOvjects = GameObject.FindObjectsOfType<Canvas>();
-            const string HUD = "HUD";
-            foreach (var canvas in canvasOvjects)
-            {
-                if (canvas.gameObject.tag == HUD) break;
+            // const string HUD = "HUD";
+            // foreach (var canvas in canvasOvjects)
+            // {
+            //     if (canvas.gameObject.tag == HUD) break;
 
-                if (canvas.gameObject.activeInHierarchy){
-                    canvas.gameObject.SetActive(false);
-                    return;
-                }
-            }
+            //     if (canvas.gameObject.activeInHierarchy){
+            //         canvas.gameObject.SetActive(false);
+            //         return;
+            //     }
+            // }
 
             isShowing = !restartMenu.activeInHierarchy;
             restartMenu.SetActive(isShowing);

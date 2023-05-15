@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected float life;
     [SerializeField] protected float speed;
     [SerializeField] public Transform slotWeapon;
+    [SerializeField] Canvas hitCanvas;
 
     public UnityEvent death = new UnityEvent();
 
@@ -48,6 +50,15 @@ public abstract class Character : MonoBehaviour
         // if hit player
         if (gameObject.tag == Tags.PLAYER)
         {
+            PlayerController pc = gameObject.GetComponent<PlayerController>();
+            Color colorHitCanvas = hitCanvas.GetComponentInChildren<Image>().color;
+
+            // actual life % for get HUD opacity
+            float lifeP = life * 100 / pc.maxPlayerLife;
+            print("lifeP/100 = " + lifeP/100);
+            colorHitCanvas.a = 0.7f - (lifeP/100);
+            hitCanvas.GetComponentInChildren<Image>().color = colorHitCanvas;
+
             gameObject.GetComponentInChildren<CameraShake>().shakecamera();
             if (life <= 0) {
                 GameManager.gameOver();
