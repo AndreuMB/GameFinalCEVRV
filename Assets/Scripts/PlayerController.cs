@@ -19,10 +19,12 @@ public class PlayerController : Character
     float movimientoX, movimientoZ;
 
     [Header("Stats")]
+    //Pociones de Curacion
     [SerializeField]
-    float altura;
-    [SerializeField]
+    int maxCuras;
     int curas;
+    public int actualCuras => curas;
+    public int maxActualCuras => maxCuras;
     // inmortal
     [SerializeField] bool god;
 
@@ -37,11 +39,13 @@ public class PlayerController : Character
     // [SerializeField]
     float movementSpeed;
 
+    public float maxActualPlayerLife => maxPlayerLife;
     public float actualLife => life;
 
     public UnityEvent<Weapon> OnWeaponStateChange = new UnityEvent<Weapon>();
     public UnityEvent<Weapon> OnReloadWeapon = new UnityEvent<Weapon>();
-    public UnityEvent<float> OnPlayerLifeStateChange = new UnityEvent<float>();
+    public UnityEvent<float, float> OnPlayerLifeStateChange = new UnityEvent<float, float>();
+    public UnityEvent<int, int> OnPotionsStateChange = new UnityEvent<int, int>();
     string mode = "";
     string modeBk = "";
     Vector3 prevPos;
@@ -54,8 +58,8 @@ public class PlayerController : Character
     }
     void Start()
     {
-        life = maxPlayerLife;
-        altura = transform.localScale.y;
+        
+        
 
         //Bloqueo del cursor al centro e invisible cuando el juego esta en primera instancia
         Cursor.lockState = CursorLockMode.Locked;
@@ -67,9 +71,16 @@ public class PlayerController : Character
         //Instancia de Arma
         InstanciaArmas();
         OnWeaponStateChange.Invoke(selectedWeapon);
-        OnPlayerLifeStateChange.Invoke(actualLife);
+
+        //Instanciar vida
+        life = maxPlayerLife;
+        OnPlayerLifeStateChange.Invoke(actualLife, maxPlayerLife);
         StartCoroutine(checkPlayerMovement());
         am = GameObject.FindObjectOfType<AudioManager>();
+
+        //Instanciar curas
+        curas = maxCuras;
+        OnPotionsStateChange.Invoke(actualCuras, maxActualCuras);
     }
 
     void FixedUpdate()
@@ -91,12 +102,6 @@ public class PlayerController : Character
         InputCuracion();
         // InputTienda();
         
-        
-        
-        // if (Input.GetKey(KeyCode.K))
-        // {
-        //     transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y+0.25f, transform.localScale.z);
-        // }
     }
 
     void LateUpdate()
@@ -221,11 +226,10 @@ public class PlayerController : Character
         {
             life = maxPlayerLife;
             curas -= 1;
-            OnPlayerLifeStateChange.Invoke(actualLife);
+            OnPotionsStateChange.Invoke(actualCuras, maxActualCuras);
+            OnPlayerLifeStateChange.Invoke(actualLife, maxPlayerLife);
             print("curas = " + curas);
         }
-
-
     }
 
     // void InputTienda(){
@@ -240,12 +244,14 @@ public class PlayerController : Character
     public void upgradeHealth(int upgradeValue){
         maxPlayerLife += upgradeValue;
         life = maxPlayerLife;
-        OnPlayerLifeStateChange.Invoke(actualLife);
+        OnPlayerLifeStateChange.Invoke(actualLife, maxPlayerLife);
         // actualLife = life;
     }
 
     public void addPotions(int potionsNumber){
         curas += potionsNumber;
+        curas = Mathf.Clamp(curas, 0, maxActualCuras);
+        OnPotionsStateChange.Invoke(actualCuras, maxActualCuras);
     }
 
     public void upgradeSpeed(int upgradeValue){

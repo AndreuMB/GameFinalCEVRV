@@ -136,7 +136,7 @@ public class Weapon : MonoBehaviour
                     if (player)
                     {
                         player.takeDamageRayCast(this);
-                        player.OnPlayerLifeStateChange.Invoke(player.actualLife);
+                        player.OnPlayerLifeStateChange.Invoke(player.actualLife, player.maxActualPlayerLife);
                     }
                     if (nexus) nexus.takeDamageRayCast(this);
 

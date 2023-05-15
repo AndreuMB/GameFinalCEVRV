@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class Nexus : MonoBehaviour
 {
     [SerializeField] 
-    float life = 10000;
+    float maxLife = 10000;
+    float life;
     // life recover x second
     [SerializeField] 
     float regRate = 10;
@@ -18,14 +19,15 @@ public class Nexus : MonoBehaviour
 
     public static int money;
 
-    public UnityEvent<float> OnNexusLifeChange = new UnityEvent<float>();
+    public UnityEvent<float, float> OnNexusLifeChange = new UnityEvent<float, float>();
     public UnityEvent<int> OnNexusMoneyChange = new UnityEvent<int>();
     // Start is called before the first frame update
     void Start()
     {
+        life = maxLife;
         money = 0;
         StartCoroutine(income());
-        OnNexusLifeChange.Invoke(life);
+        OnNexusLifeChange.Invoke(life, maxLife);
         OnNexusMoneyChange.Invoke(money);
         FindObjectOfType<AudioManager>().Play("Taladro");
     }
@@ -49,7 +51,7 @@ public class Nexus : MonoBehaviour
             if (life <= life - regRate)
             {
                 life+= regRate;
-                OnNexusLifeChange.Invoke(life);
+                OnNexusLifeChange.Invoke(life, maxLife);
             }
             yield return new WaitForSeconds(1);
         }
@@ -63,7 +65,7 @@ public class Nexus : MonoBehaviour
             if (bullet.owner.GetType() == typeof(Enemy)) {
                 float damage = bullet.weapon.getDamage();
                 life-=damage;
-                OnNexusLifeChange.Invoke(life);
+                OnNexusLifeChange.Invoke(life, maxLife);
                 if (life <= 0){
                     // Destroy(gameObject);
                     Renderer m_Renderer = GetComponent<Renderer>();
@@ -77,7 +79,7 @@ public class Nexus : MonoBehaviour
     public void takeDamageRayCast(Weapon weapon){
         float damage = weapon.getDamage();
         life-=damage;
-        OnNexusLifeChange.Invoke(life);
+        OnNexusLifeChange.Invoke(life, maxLife);
         if (life <= 0){
             // Destroy(gameObject);
             Renderer m_Renderer = GetComponent<Renderer>();

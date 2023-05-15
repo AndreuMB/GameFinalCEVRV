@@ -114,6 +114,9 @@ public class Shop : MonoBehaviour
 
     public void buyProduct(Product product){
         if (Nexus.money < product.price) return;
+        print(player.actualCuras+ ", "+player.maxActualCuras+", "+product.name);
+        if (product.name.Equals("Potions") && player.actualCuras >= player.maxActualCuras) return;
+        print(product.name + product.value);
         Nexus.money -= product.price;
         product.triggerEvent.Invoke(product.value);
     }
