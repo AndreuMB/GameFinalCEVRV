@@ -17,7 +17,7 @@ MonoBehaviour:
   loaderMaxAmmo: 6
   loadTime: 2
   fireRate: 0.5
-  damage: 20
+  damage: 15
   auto: 0
   zoom: 1
   audioFire: DisparoPistola

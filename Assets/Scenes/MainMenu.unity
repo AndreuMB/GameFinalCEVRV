@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.42038858, g: 0.9869708, b: 1.396033, a: 1}
+  m_IndirectSpecularColor: {r: 0.563376, g: 0.8233585, b: 1.1281315, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1360,7 +1360,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GAME TITLE
+  m_Text: EGONISM
 --- !u!222 &1883883380
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -226,7 +226,7 @@ public class PlayerController : Character
         {
             life = maxPlayerLife;
             curas -= 1;
-            OnPlayerLifeStateChange.Invoke(actualLife,maxPlayerLife);
+            // OnPlayerLifeStateChange.Invoke(actualLife,maxPlayerLife);
             setOpacityHitScren();
             OnPotionsStateChange.Invoke(actualCuras, maxActualCuras);
             OnPlayerLifeStateChange.Invoke(actualLife, maxPlayerLife);
