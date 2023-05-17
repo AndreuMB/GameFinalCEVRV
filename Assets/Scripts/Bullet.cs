@@ -47,14 +47,24 @@ public class Bullet : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision other){
+    void OnCollisionEnter(Collision collision){
         // if (other.gameObject.tag==Tags.ENEMY && gameObject.tag != Tags.BULLET)
-        if (other.gameObject.tag==TagsEnum.Enemy.ToString() || other.gameObject.tag==TagsEnum.Player.ToString() || other.gameObject.tag == TagsEnum.Nexus.ToString())
+        if (collision.gameObject.tag==TagsEnum.Enemy.ToString() || collision.gameObject.tag==TagsEnum.Player.ToString() || collision.gameObject.tag == TagsEnum.Nexus.ToString())
         {
             Destroy(gameObject);
             // hit.Invoke();
+        }else{
+            Rigidbody rb = GetComponent<Rigidbody>();
+            if (!firstCollision)
+            {
+                Vector3 d = rb.velocity.normalized;
+                Vector3 n = collision.contacts[0].normal;
+                Vector3 r = d - 2 * (Vector3.Dot(d, n) * n);
+                rb.velocity = r * 10;
+            }
+            firstCollision = true;
         }
-        firstCollision = true;
+        
     }
 
     IEnumerator destroyBullet(){

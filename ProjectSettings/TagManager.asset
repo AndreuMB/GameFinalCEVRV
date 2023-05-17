@@ -18,6 +18,7 @@ TagManager:
   - SlotProduct
   - SlotProductSpecial
   - Death
+  - Upgrade
   layers:
   - Default
   - TransparentFX

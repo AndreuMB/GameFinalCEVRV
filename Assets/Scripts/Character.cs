@@ -50,15 +50,7 @@ public abstract class Character : MonoBehaviour
         // if hit player
         if (gameObject.tag == Tags.PLAYER)
         {
-            PlayerController pc = gameObject.GetComponent<PlayerController>();
-            Color colorHitCanvas = hitCanvas.GetComponentInChildren<Image>().color;
-
-            // actual life % for get HUD opacity
-            float lifeP = life * 100 / pc.maxPlayerLife;
-            print("lifeP/100 = " + lifeP/100);
-            colorHitCanvas.a = 0.7f - (lifeP/100);
-            hitCanvas.GetComponentInChildren<Image>().color = colorHitCanvas;
-
+            setOpacityHitScren();
             gameObject.GetComponentInChildren<CameraShake>().shakecamera();
             if (life <= 0) {
                 GameManager.gameOver();
@@ -99,5 +91,14 @@ public abstract class Character : MonoBehaviour
             weapons[i].gameObject.SetActive(false);
         }
         weapons[0].gameObject.SetActive(true);
+    }
+    public void setOpacityHitScren(){
+        PlayerController pc = gameObject.GetComponent<PlayerController>();
+        Color colorHitCanvas = hitCanvas.GetComponentInChildren<Image>().color;
+        // actual life % for get HUD opacity
+        float lifeP = life * 100 / pc.maxPlayerLife;
+        print("0.5f - lifeP/100 = " + (0.5f - lifeP/100));
+        colorHitCanvas.a = 0.5f - (lifeP/100);
+        hitCanvas.GetComponentInChildren<Image>().color = colorHitCanvas;
     }
 }

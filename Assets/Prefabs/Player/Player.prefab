@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 9067318893570583666}
   - component: {fileID: 9067318893570583668}
   - component: {fileID: 9067318893570583669}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -276,6 +276,7 @@ MonoBehaviour:
   sensibilidad: 100
   maxCuras: 3
   god: 1
+  SPRINT_SPEED: 5
   maxPlayerLife: 200
   OnWeaponStateChange:
     m_PersistentCalls:

@@ -32,7 +32,7 @@ public class PlayerController : Character
     const float LIMIT_ANGLE = 45;
 
     //Velocidad extra cuando sprintamos
-    const float SPRINT_SPEED = 2;
+    [SerializeField] float SPRINT_SPEED = 2;
     [SerializeField]
     public float maxPlayerLife;
 
@@ -226,6 +226,8 @@ public class PlayerController : Character
         {
             life = maxPlayerLife;
             curas -= 1;
+            // OnPlayerLifeStateChange.Invoke(actualLife,maxPlayerLife);
+            setOpacityHitScren();
             OnPotionsStateChange.Invoke(actualCuras, maxActualCuras);
             OnPlayerLifeStateChange.Invoke(actualLife, maxPlayerLife);
             print("curas = " + curas);
