@@ -230,6 +230,9 @@ MonoBehaviour:
   ps: {fileID: 1403344502666796241, guid: 63b8cfb80186f8542b6a035a1ba5fa22, type: 3}
   upgrades: {fileID: 8318573925885772484}
   weaponDataBase: {fileID: 11400000, guid: e038904178bbca743a912a71b2e38638, type: 2}
+  customShoot:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &8911138699664831065
 PrefabInstance:
   m_ObjectHideFlags: 0

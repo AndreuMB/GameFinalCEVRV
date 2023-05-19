@@ -24,7 +24,8 @@ public enum TagsEnum
     Terrain,
     SlotProductSpecial,
     Death,
-    Upgrade
+    Upgrade,
+    CrossAir,
 }
 
 public enum LayerEnum

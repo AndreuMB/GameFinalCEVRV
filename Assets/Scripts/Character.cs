@@ -97,7 +97,6 @@ public abstract class Character : MonoBehaviour
         Color colorHitCanvas = hitCanvas.GetComponentInChildren<Image>().color;
         // actual life % for get HUD opacity
         float lifeP = life * 100 / pc.maxPlayerLife;
-        print("0.5f - lifeP/100 = " + (0.5f - lifeP/100));
         colorHitCanvas.a = 0.5f - (lifeP/100);
         hitCanvas.GetComponentInChildren<Image>().color = colorHitCanvas;
     }

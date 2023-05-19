@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -346,6 +346,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 938134251, guid: d3629e1b6f4f21248a4339a0fbcef599, type: 3}
+      propertyPath: m_TagString
+      value: CrossAir
+      objectReference: {fileID: 0}
     - target: {fileID: 626153181275509121, guid: d3629e1b6f4f21248a4339a0fbcef599, type: 3}
       propertyPath: title
       value: 
@@ -1243,7 +1247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8952480637878439216, guid: e6cb5ba5df6902948b72d49469ec4c0c, type: 3}
       propertyPath: maxEnemiesScene
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8952480637878439217, guid: e6cb5ba5df6902948b72d49469ec4c0c, type: 3}
       propertyPath: m_Name

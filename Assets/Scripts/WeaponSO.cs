@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Weapon", menuName = "ScriptableObjects/Weapon")]
 public class WeaponSO : ScriptableObject
@@ -27,6 +28,7 @@ public class WeaponSO : ScriptableObject
     public string audioReload = "RecargaAuto";
     public RuntimeAnimatorController animatorController;
     public float maxDistance;
+    public Sprite crossAir; 
     // public List<GameObject> upgrades;
     // public int price;
 }

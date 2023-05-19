@@ -19,6 +19,7 @@ TagManager:
   - SlotProductSpecial
   - Death
   - Upgrade
+  - CrossAir
   layers:
   - Default
   - TransparentFX

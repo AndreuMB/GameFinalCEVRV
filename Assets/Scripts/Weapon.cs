@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using System;
 
@@ -32,6 +33,8 @@ public class Weapon : MonoBehaviour
     public GameObject upgrades;
     public WeaponSO weaponDataBase;
     [System.NonSerialized] public WeaponSO weaponData;
+    
+    public UnityEvent customShoot;
 
     void Awake()
     {
@@ -64,6 +67,11 @@ public class Weapon : MonoBehaviour
         StartCoroutine(checkPlayerMovement());
         animator = GetComponentInParent<Animator>();
         animator.runtimeAnimatorController = weaponData.animatorController;
+        if (weaponData.crossAir) {
+            GameObject crossAir = GameObject.FindGameObjectWithTag(TagsEnum.CrossAir.ToString());
+            print(crossAir.name);
+            crossAir.GetComponent<Image>().sprite = weaponData.crossAir;
+        }
     }
 
     void OnDisable() {
@@ -121,28 +129,17 @@ public class Weapon : MonoBehaviour
             am.Play(weaponData.audioFire);
             Transform slotArma = owner.GetComponent<Character>().slotWeapon;
 
-            if(gameObject.name == "Escopeta(Clone)"){
-                print("escopeta shoot");
-                for (int i = 0; i < 5; i++)
-                {
-                    int limitRotate = 20;
-                    Vector3 randomBullet = new Vector3(UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate));
-                    GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
-                    instance.GetComponent<Bullet>().weapon = this;
-                    instance.transform.Rotate(randomBullet);
-                    instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward  * (STRENGHT-200), ForceMode.VelocityChange);
-                }
-                
-                loaderAmmo=loaderAmmo-2;
+            if(customShoot.GetPersistentEventCount()>0){
+                customShoot.Invoke();
             }else{
                 animator.SetTrigger("fire");
                 GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
                 instance.GetComponent<Bullet>().weapon = this;
                 instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * STRENGHT, ForceMode.VelocityChange);
                 loaderAmmo--;
+                HitEnemy();
             }
-            WeaponStateChanged();            
-            HitEnemy();
+            WeaponStateChanged();
         }
     }
 
@@ -285,8 +282,37 @@ public class Weapon : MonoBehaviour
         // if(!owner.transform.hasChanged) print("character STOP");
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        print("other.tag = " + other.tag);
+    public void ShootgunShoot(){
+        const int OFFSET_BULLET = 2;
+        const int STRENGHT = 300;
+        Transform slotArma = owner.GetComponent<Character>().slotWeapon;
+        for (int i = 0; i < 5; i++)
+        {
+            int limitRotate = 20;
+            Vector3 randomBullet = new Vector3(UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate));
+            GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
+            instance.GetComponent<Bullet>().weapon = this;
+            instance.transform.Rotate(randomBullet);
+            instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward  * (STRENGHT-200), ForceMode.VelocityChange);
+        }
+        
+        loaderAmmo=loaderAmmo-2;
+
+        HitEnemyShotGun();
+    }
+
+    void HitEnemyShotGun(){
+        // DEFAULT raycast player camera
+        Vector3 cameraCenter = Camera.main.transform.position;
+        Vector3 ray = Camera.main.transform.forward;
+        RaycastHit[] hits = Physics.SphereCastAll(cameraCenter, 5, ray, weaponData.maxDistance);
+        foreach (RaycastHit hit in hits)
+        {
+            print(hit.collider.gameObject.name + " was hit by player!");
+            hit.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy);
+            if (enemy) enemy.takeDamageRayCast(this);
+            // instantiate particles when hit raycast
+            instantiateParticles(hit);
+        }
     }
 }
