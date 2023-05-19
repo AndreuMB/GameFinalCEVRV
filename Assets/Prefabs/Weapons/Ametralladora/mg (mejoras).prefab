@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8448340777189807813}
   - component: {fileID: 4737075093140673873}
   - component: {fileID: 926362324407635091}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mejora2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 638169220323848349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 0.07}
+  m_LocalScale: {x: 0.045, y: 0.045, z: 0.045}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6246924557783368626}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 6246924557783368626}
   - component: {fileID: 5091471065778532484}
   - component: {fileID: 1012144553056996843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mejora1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 7062656763805538841}
   - component: {fileID: 230729029829033765}
   - component: {fileID: 6049521895810998105}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mejora3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
