@@ -17,9 +17,10 @@ MonoBehaviour:
   loaderMaxAmmo: 1
   loadTime: 1
   fireRate: 1
-  damage: 70
+  damage: 50
   auto: 0
   zoom: 1
   audioFire: BallestaAuto
   audioReload: RecargaBallesta
   animatorController: {fileID: 22100000, guid: b0c60bd5269616c43bd3a9f7ca648b1e, type: 2}
+  maxDistance: 1000

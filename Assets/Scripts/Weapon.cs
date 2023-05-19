@@ -118,14 +118,30 @@ public class Weapon : MonoBehaviour
         const int STRENGHT = 300;
         if (!isReloading)
         {
-            animator.SetTrigger("fire");
             am.Play(weaponData.audioFire);
             Transform slotArma = owner.GetComponent<Character>().slotWeapon;
-            GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
-            instance.GetComponent<Bullet>().weapon = this;
-            instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * STRENGHT, ForceMode.VelocityChange);
-            loaderAmmo--;
-            WeaponStateChanged();
+
+            if(gameObject.name == "Escopeta(Clone)"){
+                print("escopeta shoot");
+                for (int i = 0; i < 5; i++)
+                {
+                    int limitRotate = 20;
+                    Vector3 randomBullet = new Vector3(UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate));
+                    GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
+                    instance.GetComponent<Bullet>().weapon = this;
+                    instance.transform.Rotate(randomBullet);
+                    instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward  * (STRENGHT-200), ForceMode.VelocityChange);
+                }
+                
+                loaderAmmo=loaderAmmo-2;
+            }else{
+                animator.SetTrigger("fire");
+                GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
+                instance.GetComponent<Bullet>().weapon = this;
+                instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * STRENGHT, ForceMode.VelocityChange);
+                loaderAmmo--;
+            }
+            WeaponStateChanged();            
             HitEnemy();
         }
     }
@@ -141,7 +157,7 @@ public class Weapon : MonoBehaviour
         if (owner.GetType() == typeof(Enemy))
         {
                 Vector3 fwd = owner.transform.TransformDirection(Vector3.forward);
-                if (Physics.Raycast(owner.transform.position, fwd, out RaycastHit hit, 50))
+                if (Physics.Raycast(owner.transform.position, fwd, out RaycastHit hit, weaponData.maxDistance))
                 {
                     hit.collider.gameObject.TryGetComponent<PlayerController>(out PlayerController player);
                     hit.collider.gameObject.TryGetComponent<Nexus>(out Nexus nexus);
@@ -158,7 +174,7 @@ public class Weapon : MonoBehaviour
 
         if (owner.GetType() == typeof(PlayerController))
         {
-            if(Physics.Raycast(ray, out RaycastHit hit)){
+            if(Physics.Raycast(ray, out RaycastHit hit, weaponData.maxDistance)){
                 print(hit.collider.gameObject.name + " was hit by player!");
                 hit.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy);
                 if (enemy) enemy.takeDamageRayCast(this);
@@ -267,5 +283,10 @@ public class Weapon : MonoBehaviour
         yield break;
         // if(owner.transform.hasChanged) print("character move");
         // if(!owner.transform.hasChanged) print("character STOP");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("other.tag = " + other.tag);
     }
 }

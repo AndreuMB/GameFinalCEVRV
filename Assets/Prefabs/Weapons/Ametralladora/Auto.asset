@@ -23,3 +23,4 @@ MonoBehaviour:
   audioFire: DisparoAuto
   audioReload: RecargaAuto
   animatorController: {fileID: 22100000, guid: b0c60bd5269616c43bd3a9f7ca648b1e, type: 2}
+  maxDistance: 1000
