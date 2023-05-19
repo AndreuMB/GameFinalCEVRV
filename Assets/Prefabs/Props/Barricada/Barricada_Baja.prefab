@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7720651007336651943}
   - component: {fileID: 6668310123730899714}
   - component: {fileID: 8894169407246297032}
-  - component: {fileID: 8262778517924245229}
+  - component: {fileID: 105974768066796586}
   m_Layer: 0
   m_Name: Barricada_Baja
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8262778517924245229
-MeshCollider:
+--- !u!65 &105974768066796586
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,7 +94,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6882819150824215949, guid: 8d17de197109e8847b13396073919303, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.54497033, y: 0.23121767, z: 0.018764993}
+  m_Center: {x: 0.00041031858, y: -0.00037965176, z: -0.00007181476}
