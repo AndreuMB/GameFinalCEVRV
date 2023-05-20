@@ -115,9 +115,7 @@ public class Shop : MonoBehaviour
 
     public void buyProduct(Product product){
         if (Nexus.money < product.price) return;
-        print(player.actualCuras+ ", "+player.maxActualCuras+", "+product.name);
         if (product.name.Equals("Potions") && player.actualCuras >= player.maxActualCuras) return;
-        print(product.name + product.value);
         Nexus.money -= product.price;
         product.triggerEvent.Invoke(product.value);
     }
@@ -201,11 +199,12 @@ public class Shop : MonoBehaviour
     }
 
     public void UpgradeWeapon(){
+        if (!GetEquipedWeapon().upgrades) return;
+
         GetEquipedWeapon().weaponData.damage += GetEquipedWeapon().weaponData.damage*70/100;
         GetEquipedWeapon().weaponData.loadTime = GetEquipedWeapon().weaponData.loadTime/2;
         print($"damage {GetEquipedWeapon().weaponData.name} = {GetEquipedWeapon().weaponData.damage}");
-        
-        if (!GetEquipedWeapon().upgrades) return;
+        if (GetEquipedWeapon().weaponData.wName == "Escopeta") GetEquipedWeapon().weaponData.bulletsNumber += 3;
         foreach (Transform weaponUpgrade in GetEquipedWeapon().upgrades.transform)
         {
             if (!weaponUpgrade.gameObject.activeInHierarchy){

@@ -28,7 +28,8 @@ public class WeaponSO : ScriptableObject
     public string audioReload = "RecargaAuto";
     public RuntimeAnimatorController animatorController;
     public float maxDistance;
-    public Sprite crossAir; 
+    public Sprite customCrossAir;
+    public int bulletsNumber;
     // public List<GameObject> upgrades;
     // public int price;
 }

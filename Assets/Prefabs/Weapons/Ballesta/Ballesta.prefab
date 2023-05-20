@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2110512598434082961}
   - component: {fileID: 6766367218896771183}
   - component: {fileID: 3839715573900020258}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CrossbowBod.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7135654968295841174}
   - component: {fileID: 2326915526241603838}
   - component: {fileID: 6701507485848323486}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CrystalBod.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 1000273594954152755}
   - component: {fileID: 186573915039004303}
   - component: {fileID: 8614323156815492649}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Complements.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,3 +299,18 @@ MonoBehaviour:
   ps: {fileID: 1403344502666796241, guid: 63b8cfb80186f8542b6a035a1ba5fa22, type: 3}
   upgrades: {fileID: 0}
   weaponDataBase: {fileID: 11400000, guid: 3cc48c22b4b61754eac6953cc748e1b9, type: 2}
+  customShoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 344883484441964235}
+        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
+        m_MethodName: CrossbowShoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

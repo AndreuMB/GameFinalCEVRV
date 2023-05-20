@@ -16,7 +16,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] public Transform slotWeapon;
     [SerializeField] Canvas hitCanvas;
 
-    public UnityEvent death = new UnityEvent();
+    [System.NonSerialized] public UnityEvent death = new UnityEvent();
 
     void AddWeapon(Weapon weapon)
     {

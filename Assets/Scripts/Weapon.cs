@@ -67,11 +67,7 @@ public class Weapon : MonoBehaviour
         StartCoroutine(checkPlayerMovement());
         animator = GetComponentInParent<Animator>();
         animator.runtimeAnimatorController = weaponData.animatorController;
-        if (weaponData.crossAir) {
-            GameObject crossAir = GameObject.FindGameObjectWithTag(TagsEnum.CrossAir.ToString());
-            print(crossAir.name);
-            crossAir.GetComponent<Image>().sprite = weaponData.crossAir;
-        }
+        setCrossHair();
     }
 
     void OnDisable() {
@@ -286,7 +282,8 @@ public class Weapon : MonoBehaviour
         const int OFFSET_BULLET = 2;
         const int STRENGHT = 300;
         Transform slotArma = owner.GetComponent<Character>().slotWeapon;
-        for (int i = 0; i < 5; i++)
+        print("weaponData.bulletsNumber = " + weaponData.bulletsNumber);
+        for (int i = 0; i < weaponData.bulletsNumber; i++)
         {
             int limitRotate = 20;
             Vector3 randomBullet = new Vector3(UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate));
@@ -308,7 +305,48 @@ public class Weapon : MonoBehaviour
         RaycastHit[] hits = Physics.SphereCastAll(cameraCenter, 5, ray, weaponData.maxDistance);
         foreach (RaycastHit hit in hits)
         {
-            print(hit.collider.gameObject.name + " was hit by player!");
+            hit.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy);
+            if (enemy) enemy.takeDamageRayCast(this);
+            // instantiate particles when hit raycast
+            instantiateParticles(hit);
+        }
+    }
+
+    void setCrossHair(){
+        // if owner not exist or isn't player don't change crosshair
+        if (!owner) return;
+        if (!owner.GetComponent<PlayerController>()) return;
+
+        GameObject crossAir = GameObject.FindGameObjectWithTag(TagsEnum.CrossAir.ToString());
+        if (weaponData.customCrossAir) {
+            crossAir.GetComponent<Image>().sprite = weaponData.customCrossAir;
+            crossAir.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(200,200);
+        }else{
+            GameObject player = GameObject.FindGameObjectWithTag(TagsEnum.Player.ToString());
+            crossAir.GetComponent<Image>().sprite = player.GetComponent<PlayerController>().originalCrossAir;
+            crossAir.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(25,25);
+        }
+    }
+
+    public void CrossbowShoot(){
+        const int OFFSET_BULLET = 2;
+        const int STRENGHT = 300;
+        Transform slotArma = owner.GetComponent<Character>().slotWeapon;
+        animator.SetTrigger("fire");
+        GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
+        instance.GetComponent<Bullet>().weapon = this;
+        instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * STRENGHT, ForceMode.VelocityChange);
+        loaderAmmo--;
+        HitEnemyCrossbow();
+    }
+
+    void HitEnemyCrossbow(){
+        // DEFAULT raycast player camera
+        Vector3 cameraCenter = Camera.main.transform.position;
+        Vector3 ray = Camera.main.transform.forward;
+        RaycastHit[] hits = Physics.RaycastAll(cameraCenter, ray, weaponData.maxDistance);
+        foreach (RaycastHit hit in hits)
+        {
             hit.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy);
             if (enemy) enemy.takeDamageRayCast(this);
             // instantiate particles when hit raycast

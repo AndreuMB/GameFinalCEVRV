@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerController : Character
 {
@@ -42,15 +43,16 @@ public class PlayerController : Character
     public float maxActualPlayerLife => maxPlayerLife;
     public float actualLife => life;
 
-    public UnityEvent<Weapon> OnWeaponStateChange = new UnityEvent<Weapon>();
-    public UnityEvent<Weapon> OnReloadWeapon = new UnityEvent<Weapon>();
-    public UnityEvent<float, float> OnPlayerLifeStateChange = new UnityEvent<float, float>();
-    public UnityEvent<int, int> OnPotionsStateChange = new UnityEvent<int, int>();
+    [System.NonSerialized] public UnityEvent<Weapon> OnWeaponStateChange = new UnityEvent<Weapon>();
+    [System.NonSerialized] public UnityEvent<Weapon> OnReloadWeapon = new UnityEvent<Weapon>();
+    [System.NonSerialized] public UnityEvent<float, float> OnPlayerLifeStateChange = new UnityEvent<float, float>();
+    [System.NonSerialized] public UnityEvent<int, int> OnPotionsStateChange = new UnityEvent<int, int>();
     string mode = "";
     string modeBk = "";
     Vector3 prevPos;
     Vector3 actualPos;
     AudioManager am;
+    public Sprite originalCrossAir;
 
     private void Awake()
     {

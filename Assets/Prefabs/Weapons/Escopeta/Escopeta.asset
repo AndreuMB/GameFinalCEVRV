@@ -17,11 +17,12 @@ MonoBehaviour:
   loaderMaxAmmo: 6
   loadTime: 0.5
   fireRate: 1
-  damage: 120
+  damage: 50
   auto: 1
   zoom: 1
   audioFire: DisparoAuto
   audioReload: RecargaAuto
   animatorController: {fileID: 9100000, guid: 109b10cb052f850418e1b1e0b7ee3e99, type: 2}
   maxDistance: 4
-  crossAir: {fileID: 21300000, guid: 46fb3444bdaec514c81c80a85b37fed2, type: 3}
+  customCrossAir: {fileID: 21300000, guid: be756f79d2746284a9a721acdf550a28, type: 3}
+  bulletsNumber: 6

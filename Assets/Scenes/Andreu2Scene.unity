@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 20ac40abcd9d86f468bfcbdc9c3c5bc5, type: 2}
---- !u!114 &66583697 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 626153180984387351, guid: d3629e1b6f4f21248a4339a0fbcef599, type: 3}
-  m_PrefabInstance: {fileID: 780308093}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &499266519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8841399460400380834, guid: 066c37fa648fdcc44b2455507dc430cd, type: 3}
@@ -170,9 +159,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1667349349}
     - target: {fileID: 9067318893570583666, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
-      propertyPath: weapons.Array.data[0]
+      propertyPath: originalCrossAir
       value: 
-      objectReference: {fileID: 3657636944445998516, guid: 568892a50f430344bba2538a55318cb4, type: 3}
+      objectReference: {fileID: 21300000, guid: 1b5fafc6ab807804ea15ac85a046ca2f, type: 3}
     - target: {fileID: 9067318893570583670, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -346,14 +335,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 938134251, guid: d3629e1b6f4f21248a4339a0fbcef599, type: 3}
-      propertyPath: m_TagString
-      value: CrossAir
-      objectReference: {fileID: 0}
-    - target: {fileID: 626153181275509121, guid: d3629e1b6f4f21248a4339a0fbcef599, type: 3}
-      propertyPath: title
-      value: 
-      objectReference: {fileID: 66583697}
     - target: {fileID: 1572143267472969477, guid: d3629e1b6f4f21248a4339a0fbcef599, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1248,6 +1229,10 @@ PrefabInstance:
     - target: {fileID: 8952480637878439216, guid: e6cb5ba5df6902948b72d49469ec4c0c, type: 3}
       propertyPath: maxEnemiesScene
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952480637878439216, guid: e6cb5ba5df6902948b72d49469ec4c0c, type: 3}
+      propertyPath: enemiesWaveScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8952480637878439217, guid: e6cb5ba5df6902948b72d49469ec4c0c, type: 3}
       propertyPath: m_Name

@@ -921,6 +921,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5959867105500530503, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
+      propertyPath: products.Array.data[4].price
+      value: 4500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959867105500530503, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
       propertyPath: products.Array.data[0].productGameobject
       value: 
       objectReference: {fileID: 8994934529158986148, guid: c49331a7acf875f43a650bbd3ac20b21, type: 3}
