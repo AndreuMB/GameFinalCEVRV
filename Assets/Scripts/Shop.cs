@@ -111,6 +111,7 @@ public class Shop : MonoBehaviour
         Destroy(GetEquipedWeapon().gameObject);
         weaponObj.GetComponent<Weapon>().owner = player.GetComponent<PlayerController>();
         player.weapons[player.selectedIndex] = weaponObj.GetComponent<Weapon>();
+        weaponObj.GetComponent<Weapon>().setCrossHair();
     }
 
     public void buyProduct(Product product){
@@ -160,12 +161,21 @@ public class Shop : MonoBehaviour
     }
 
     void setSpSlot(){
-        GameObject productSlot;
+        GameObject[] productSlots;
+        GameObject productSlot = null;
         foreach (Product product in products){
             if (product.specialSlot)
             {
-                productSlot = GameObject.FindGameObjectWithTag(TagsEnum.SlotProductSpecial.ToString());
-                if(!productSlot) return;
+                productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProductSpecial.ToString());
+                if (productSlots.Length == 0) return;
+                foreach (GameObject productSlot2 in productSlots)
+                {
+                    if (!productSlot2.GetComponent<Button>().interactable){
+                        productSlot = productSlot2;
+                        break;
+                    }
+                }
+                if(productSlot == null) return;
                 // if not from this shop return
                 if (!productSlot.transform.IsChildOf(transform)) return;
                 productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
@@ -176,25 +186,11 @@ public class Shop : MonoBehaviour
                 productSlot.GetComponent<Button>().onClick.AddListener(() => buyProduct(product));
                 productSlot.GetComponent<Button>().interactable = true;
             }
-
         }
     }
 
     Weapon GetEquipedWeapon(){
         GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
-        // int weaponIndex = 0;
-
-        // // get player weapons
-        // for (int i = slotArma.transform.childCount-1; i >= 0; i--)
-        // {
-        //     // find enabled weapon
-        //     if (slotArma.transform.GetChild(i).gameObject.activeInHierarchy)
-        //     {
-        //         weaponIndex = i;
-        //     }
-        // }
-        // print("weaponIndex = " + weaponIndex);
-        // return slotArma.transform.GetChild(weaponIndex).GetComponent<Weapon>();
         return slotArma.GetComponentInChildren<Weapon>();
     }
 

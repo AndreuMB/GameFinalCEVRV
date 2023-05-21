@@ -209,7 +209,7 @@ public class PlayerController : Character
 
     void ChangeWeapon(int a)
     {
-        am.Play("SwapWeapon");
+        am.Play("SwapWeapon", gameObject);
         selectedWeapon.gameObject.SetActive(false);
         if(selectedIndex == 0 && a < 0){
             selectedIndex = weapons.Count-1;

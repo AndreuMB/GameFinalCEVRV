@@ -36,6 +36,8 @@ public class Weapon : MonoBehaviour
     
     public UnityEvent customShoot;
 
+    Vector3 bulletInstantiatePosition;
+
     void Awake()
     {
         weaponData = Instantiate(weaponDataBase);
@@ -82,6 +84,10 @@ public class Weapon : MonoBehaviour
             reloadingCoroutine = null;
         }
 
+        foreach (AudioSource item in GetComponents<AudioSource>())
+        {
+            Destroy(item);
+        }
     }
 
     // Update is called once per frame
@@ -100,7 +106,6 @@ public class Weapon : MonoBehaviour
 
     public void Fire()
     {
-
         if (loaderAmmo <= 0 && !isReloading){
             am.Play("OutAmmo", gameObject);
             reloadingCoroutine = StartCoroutine(load());
@@ -123,13 +128,18 @@ public class Weapon : MonoBehaviour
         if (!isReloading)
         {
             am.Play(weaponData.audioFire,gameObject);
+            animator.SetTrigger("fire");
             Transform slotArma = owner.GetComponent<Character>().slotWeapon;
-
+            if (owner.GetComponent<PlayerController>())
+            {
+                bulletInstantiatePosition = Camera.main.transform.position;   
+            }else{
+                bulletInstantiatePosition = transform.position + slotArma.forward * OFFSET_BULLET;
+            }
             if(customShoot.GetPersistentEventCount()>0){
                 customShoot.Invoke();
             }else{
-                animator.SetTrigger("fire");
-                GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
+                GameObject instance = Instantiate(weaponData.bullet, bulletInstantiatePosition, slotArma.transform.rotation);
                 instance.GetComponent<Bullet>().weapon = this;
                 instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * STRENGHT, ForceMode.VelocityChange);
                 loaderAmmo--;
@@ -274,19 +284,16 @@ public class Weapon : MonoBehaviour
             if (distance>=MIN_MOVEMENT) animator.SetBool("run",true);
         }
         yield break;
-        // if(owner.transform.hasChanged) print("character move");
-        // if(!owner.transform.hasChanged) print("character STOP");
     }
 
     public void ShootgunShoot(){
-        const int OFFSET_BULLET = 2;
         const int STRENGHT = 300;
         Transform slotArma = owner.GetComponent<Character>().slotWeapon;
         for (int i = 0; i < weaponData.bulletsNumber; i++)
         {
             float limitRotate = 3 + weaponData.radius*2f;
             Vector3 randomBullet = new Vector3(UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate));
-            GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
+            GameObject instance = Instantiate(weaponData.bullet, bulletInstantiatePosition, slotArma.transform.rotation);
             instance.GetComponent<Bullet>().weapon = this;
             instance.transform.Rotate(randomBullet);
             instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward  * (STRENGHT-200), ForceMode.VelocityChange);
@@ -315,7 +322,6 @@ public class Weapon : MonoBehaviour
         // if owner not exist or isn't player don't change crosshair
         if (!owner) return;
         if (!owner.GetComponent<PlayerController>()) return;
-
         GameObject crossAir = GameObject.FindGameObjectWithTag(TagsEnum.CrossAir.ToString());
         if (weaponData.customCrossAir) {
             crossAir.GetComponent<Image>().sprite = weaponData.customCrossAir;
@@ -330,11 +336,9 @@ public class Weapon : MonoBehaviour
     }
 
     public void CrossbowShoot(){
-        const int OFFSET_BULLET = 2;
         const int STRENGHT = 300;
         Transform slotArma = owner.GetComponent<Character>().slotWeapon;
-        animator.SetTrigger("fire");
-        GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
+        GameObject instance = Instantiate(weaponData.bullet, bulletInstantiatePosition, slotArma.transform.rotation);
         instance.GetComponent<Bullet>().weapon = this;
         instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * STRENGHT, ForceMode.VelocityChange);
         loaderAmmo--;

@@ -53,9 +53,11 @@ public class AudioManager : MonoBehaviour
         Sound sound = Array.Find(sounds, sound => sound.name == name);
         if (owner != null)
         {
-            print("enter audio owner = " + sound.name);
-            sound.source = owner.AddComponent<AudioSource>();
-            setSource(ref sound.source,sound);
+            if (!owner.GetComponent<AudioSource>() || owner.GetComponent<AudioSource>().name != sound.name)
+            {
+                sound.source = owner.AddComponent<AudioSource>();
+                setSource(ref sound.source,sound);
+            }
         }
         if (sound == null ||sound.source == null) return;
         sound.source.Play();
