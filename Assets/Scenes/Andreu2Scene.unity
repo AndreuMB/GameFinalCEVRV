@@ -162,6 +162,10 @@ PrefabInstance:
       propertyPath: originalCrossAir
       value: 
       objectReference: {fileID: 21300000, guid: 1b5fafc6ab807804ea15ac85a046ca2f, type: 3}
+    - target: {fileID: 9067318893570583666, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 3657636944445998516, guid: 568892a50f430344bba2538a55318cb4, type: 3}
     - target: {fileID: 9067318893570583670, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
       propertyPath: m_RootOrder
       value: 3

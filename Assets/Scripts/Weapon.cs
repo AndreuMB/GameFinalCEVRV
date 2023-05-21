@@ -282,10 +282,9 @@ public class Weapon : MonoBehaviour
         const int OFFSET_BULLET = 2;
         const int STRENGHT = 300;
         Transform slotArma = owner.GetComponent<Character>().slotWeapon;
-        print("weaponData.bulletsNumber = " + weaponData.bulletsNumber);
         for (int i = 0; i < weaponData.bulletsNumber; i++)
         {
-            int limitRotate = 20;
+            float limitRotate = 3 + weaponData.radius*2f;
             Vector3 randomBullet = new Vector3(UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate),UnityEngine.Random.Range(-limitRotate,limitRotate));
             GameObject instance = Instantiate(weaponData.bullet, transform.position + slotArma.forward * OFFSET_BULLET, slotArma.transform.rotation);
             instance.GetComponent<Bullet>().weapon = this;
@@ -302,7 +301,7 @@ public class Weapon : MonoBehaviour
         // DEFAULT raycast player camera
         Vector3 cameraCenter = Camera.main.transform.position;
         Vector3 ray = Camera.main.transform.forward;
-        RaycastHit[] hits = Physics.SphereCastAll(cameraCenter, 5, ray, weaponData.maxDistance);
+        RaycastHit[] hits = Physics.SphereCastAll(cameraCenter, weaponData.radius, ray, weaponData.maxDistance);
         foreach (RaycastHit hit in hits)
         {
             hit.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy);
@@ -312,7 +311,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void setCrossHair(){
+    public void setCrossHair(){
         // if owner not exist or isn't player don't change crosshair
         if (!owner) return;
         if (!owner.GetComponent<PlayerController>()) return;
@@ -320,7 +319,9 @@ public class Weapon : MonoBehaviour
         GameObject crossAir = GameObject.FindGameObjectWithTag(TagsEnum.CrossAir.ToString());
         if (weaponData.customCrossAir) {
             crossAir.GetComponent<Image>().sprite = weaponData.customCrossAir;
-            crossAir.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(200,200);
+            float defaultSize = 45;
+            float crossHairSize = defaultSize * weaponData.radius;
+            crossAir.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(crossHairSize,crossHairSize);
         }else{
             GameObject player = GameObject.FindGameObjectWithTag(TagsEnum.Player.ToString());
             crossAir.GetComponent<Image>().sprite = player.GetComponent<PlayerController>().originalCrossAir;

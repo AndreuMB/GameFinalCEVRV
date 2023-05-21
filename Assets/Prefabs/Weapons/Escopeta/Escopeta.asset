@@ -15,7 +15,7 @@ MonoBehaviour:
   wName: Escopeta
   bullet: {fileID: 7335763105056745259, guid: 313cf126888bdcb4aaf9e46f436bb506, type: 3}
   loaderMaxAmmo: 6
-  loadTime: 0.5
+  loadTime: 4
   fireRate: 1
   damage: 50
   auto: 1
@@ -26,3 +26,4 @@ MonoBehaviour:
   maxDistance: 4
   customCrossAir: {fileID: 21300000, guid: be756f79d2746284a9a721acdf550a28, type: 3}
   bulletsNumber: 6
+  radius: 5

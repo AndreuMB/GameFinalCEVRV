@@ -30,6 +30,7 @@ public class WeaponSO : ScriptableObject
     public float maxDistance;
     public Sprite customCrossAir;
     public int bulletsNumber;
+    public float radius;
     // public List<GameObject> upgrades;
     // public int price;
 }

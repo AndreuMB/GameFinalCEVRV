@@ -203,8 +203,13 @@ public class Shop : MonoBehaviour
 
         GetEquipedWeapon().weaponData.damage += GetEquipedWeapon().weaponData.damage*70/100;
         GetEquipedWeapon().weaponData.loadTime = GetEquipedWeapon().weaponData.loadTime/2;
+        GetEquipedWeapon().weaponData.maxDistance += GetEquipedWeapon().weaponData.maxDistance/2;
         print($"damage {GetEquipedWeapon().weaponData.name} = {GetEquipedWeapon().weaponData.damage}");
-        if (GetEquipedWeapon().weaponData.wName == "Escopeta") GetEquipedWeapon().weaponData.bulletsNumber += 3;
+        if (GetEquipedWeapon().weaponData.wName == "Escopeta"){
+            GetEquipedWeapon().weaponData.bulletsNumber += 3;
+            GetEquipedWeapon().weaponData.radius -= GetEquipedWeapon().weaponData.radius*20/100;
+            GetEquipedWeapon().setCrossHair();
+        }
         foreach (Transform weaponUpgrade in GetEquipedWeapon().upgrades.transform)
         {
             if (!weaponUpgrade.gameObject.activeInHierarchy){
