@@ -61,6 +61,7 @@ public abstract class Character : MonoBehaviour
         if (gameObject.tag == Tags.ENEMY)
         {
             AudioManager am = FindObjectOfType<AudioManager>();
+            print("play hitmarker");
             am.Play("Hitmarker");
             if (life <= 0) {
                 Nexus.money += WaveManager.moneyDropByEnemies;

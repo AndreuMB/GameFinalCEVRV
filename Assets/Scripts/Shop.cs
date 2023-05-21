@@ -66,7 +66,7 @@ public class Shop : MonoBehaviour
             int inx;
             // GameObject weapon;
             Product product;
-            if (weaponSlot.tag == TagsEnum.SlotProductSpecial.ToString()) break;
+            if (weaponSlot.tag == TagsEnum.SlotProductSpecial.ToString()) continue;
 
             do
             {
@@ -74,7 +74,7 @@ public class Shop : MonoBehaviour
                 product = products[inx];
             } while (weaponsShop.Exists(x => x == product));
 
-            if (product.specialSlot) break;
+            if (product.specialSlot) continue;
 
             weaponsShop.Add(product);
             

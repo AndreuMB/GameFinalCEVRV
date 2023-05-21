@@ -21,10 +21,11 @@ public class AudioManager : MonoBehaviour
         
         foreach (Sound sound in sounds)
         {
+            // if (sound.selfCall) continue;
             // if (!sound.owner) sound.owner = gameObject;
             if (sound.ownerTag != TagsEnum.Untagged){
                 // if tag not exist return
-                if (GameObject.FindGameObjectsWithTag(sound.ownerTag.ToString()).Length == 0) return;
+                if (GameObject.FindGameObjectsWithTag(sound.ownerTag.ToString()).Length == 0) continue;
                 foreach (GameObject owner in GameObject.FindGameObjectsWithTag(sound.ownerTag.ToString()))
                 {
                     sound.source = owner.AddComponent<AudioSource>();
@@ -48,8 +49,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void Play(string name){
+    public void Play(string name, GameObject owner = null){
         Sound sound = Array.Find(sounds, sound => sound.name == name);
+        if (owner != null)
+        {
+            print("enter audio owner = " + sound.name);
+            sound.source = owner.AddComponent<AudioSource>();
+            setSource(ref sound.source,sound);
+        }
         if (sound == null ||sound.source == null) return;
         sound.source.Play();
     }

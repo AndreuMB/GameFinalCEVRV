@@ -19,6 +19,7 @@ public class Sound
     [HideInInspector]
     public AudioSource source;
     public TagsEnum ownerTag;
+    // public bool selfCall;
 
     // Start is called before the first frame update
     void Start()

@@ -47,7 +47,7 @@ MonoBehaviour:
   sounds:
   - name: Taladro
     clip: {fileID: 8300000, guid: bfd172dc669a60e49b3f95ca558ec8e2, type: 3}
-    volume: 0
+    volume: 0.05
     pitch: 1
     loop: 1
     autoplay: 0
@@ -62,9 +62,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     autoplay: 0
-    spatialBlend: 0
+    spatialBlend: 1
     minDistance: 0
-    maxDistance: 0
+    maxDistance: 40
     source: {fileID: 0}
     ownerTag: 0
   - name: DisparoPistola
@@ -73,9 +73,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     autoplay: 0
-    spatialBlend: 0
+    spatialBlend: 1
     minDistance: 0
-    maxDistance: 0
+    maxDistance: 40
     source: {fileID: 0}
     ownerTag: 0
   - name: RecargaAuto
@@ -84,9 +84,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     autoplay: 0
-    spatialBlend: 0
+    spatialBlend: 1
     minDistance: 0
-    maxDistance: 0
+    maxDistance: 40
     source: {fileID: 0}
     ownerTag: 0
   - name: RecargaPistola
@@ -95,9 +95,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     autoplay: 0
-    spatialBlend: 0
+    spatialBlend: 1
     minDistance: 0
-    maxDistance: 0
+    maxDistance: 40
     source: {fileID: 0}
     ownerTag: 0
   - name: OutAmmo
@@ -106,9 +106,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     autoplay: 0
-    spatialBlend: 0
+    spatialBlend: 1
     minDistance: 0
-    maxDistance: 0
+    maxDistance: 40
     source: {fileID: 0}
     ownerTag: 0
   - name: ThemeMM
@@ -139,9 +139,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     autoplay: 0
-    spatialBlend: 0
+    spatialBlend: 1
     minDistance: 0
-    maxDistance: 0
+    maxDistance: 40
     source: {fileID: 0}
     ownerTag: 0
   - name: Hitmarker
@@ -183,9 +183,9 @@ MonoBehaviour:
     pitch: 2
     loop: 0
     autoplay: 0
-    spatialBlend: 0
+    spatialBlend: 1
     minDistance: 0
-    maxDistance: 0
+    maxDistance: 40
     source: {fileID: 0}
     ownerTag: 0
   - name: BallestaAuto
@@ -194,9 +194,9 @@ MonoBehaviour:
     pitch: 2
     loop: 0
     autoplay: 0
-    spatialBlend: 0
+    spatialBlend: 1
     minDistance: 0
-    maxDistance: 0
+    maxDistance: 40
     source: {fileID: 0}
     ownerTag: 0
   - name: RecargaBallesta
@@ -205,8 +205,8 @@ MonoBehaviour:
     pitch: 2
     loop: 0
     autoplay: 0
-    spatialBlend: 0
+    spatialBlend: 1
     minDistance: 0
-    maxDistance: 0
+    maxDistance: 40
     source: {fileID: 0}
     ownerTag: 0

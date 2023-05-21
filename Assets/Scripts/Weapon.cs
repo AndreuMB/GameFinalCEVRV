@@ -102,7 +102,7 @@ public class Weapon : MonoBehaviour
     {
 
         if (loaderAmmo <= 0 && !isReloading){
-            am.Play("OutAmmo");
+            am.Play("OutAmmo", gameObject);
             reloadingCoroutine = StartCoroutine(load());
 
         }
@@ -122,7 +122,7 @@ public class Weapon : MonoBehaviour
         const int STRENGHT = 300;
         if (!isReloading)
         {
-            am.Play(weaponData.audioFire);
+            am.Play(weaponData.audioFire,gameObject);
             Transform slotArma = owner.GetComponent<Character>().slotWeapon;
 
             if(customShoot.GetPersistentEventCount()>0){
@@ -224,7 +224,7 @@ public class Weapon : MonoBehaviour
         //Si ya existe la recarga o tenemos la balas maximas salimos de la corutina
         if (isReloading) yield break;
         if (loaderAmmo==weaponData.loaderMaxAmmo) yield break;
-        am.Play(weaponData.audioReload);
+        am.Play(weaponData.audioReload,gameObject);
         WeaponReload();
         yield return new WaitForSeconds(weaponData.loadTime);
         loaderAmmo = weaponData.loaderMaxAmmo;
