@@ -193,7 +193,7 @@ public class Weapon : MonoBehaviour
         // set and choose color of particles
         Color color;
 
-        if(Enum.TryParse<TagsEnum>(hit.collider.tag, out TagsEnum tagEnum)) return;
+        if(!Enum.TryParse<TagsEnum>(hit.collider.tag, out TagsEnum tagEnum)) return;
 
         switch (tagEnum)
         {
@@ -212,15 +212,20 @@ public class Weapon : MonoBehaviour
         if (hit.collider.GetComponentInChildren<MeshRenderer>()){
             Renderer renderer = hit.collider.GetComponentInChildren<MeshRenderer>();
             Texture2D texture2D = renderer.material.mainTexture as Texture2D;
-            Vector2 pCoord = hit.textureCoord;
-            if (!texture2D) return;
-            pCoord.x *= texture2D.width;
-            pCoord.y *= texture2D.height;
+            if (texture2D){
+                Vector2 pCoord = hit.textureCoord;
+                pCoord.x *= texture2D.width;
+                pCoord.y *= texture2D.height;
 
-            if (texture2D.isReadable)
-            {
-                Vector2 tiling = renderer.material.mainTextureScale;
-                color = texture2D.GetPixel(Mathf.FloorToInt(pCoord.x * tiling.x) , Mathf.FloorToInt(pCoord.y * tiling.y));
+                if (texture2D.isReadable)
+                {
+                    Vector2 tiling = renderer.material.mainTextureScale;
+                    color = texture2D.GetPixel(Mathf.FloorToInt(pCoord.x * tiling.x) , Mathf.FloorToInt(pCoord.y * tiling.y));
+                }else{
+                    texture2D = duplicateTexture(texture2D);
+                    Vector2 tiling = renderer.material.mainTextureScale;
+                    color = texture2D.GetPixel(Mathf.FloorToInt(pCoord.x * tiling.x) , Mathf.FloorToInt(pCoord.y * tiling.y));
+                }
             }
         }
 
@@ -228,6 +233,13 @@ public class Weapon : MonoBehaviour
         ParticleSystem psi=Instantiate(ps,hit.point,Quaternion.identity);
         var main = psi.main;
         main.startColor = color;
+        foreach (ParticleSystem ps in psi.GetComponentsInChildren<ParticleSystem>())
+        {
+            print("ps.name = " + ps.name);
+            main = ps.main;
+            main.startColor = color;
+            print("ps.color = " + color);
+        }
     }
 
     IEnumerator load(){
@@ -358,4 +370,23 @@ public class Weapon : MonoBehaviour
             instantiateParticles(hit);
         }
     }
+
+    Texture2D duplicateTexture(Texture2D source){
+        RenderTexture renderTex = RenderTexture.GetTemporary(
+                    source.width,
+                    source.height,
+                    0,
+                    RenderTextureFormat.Default,
+                    RenderTextureReadWrite.Linear);
+
+        Graphics.Blit(source, renderTex);
+        RenderTexture previous = RenderTexture.active;
+        RenderTexture.active = renderTex;
+        Texture2D readableText = new Texture2D(source.width, source.height);
+        readableText.ReadPixels(new Rect(0, 0, renderTex.width, renderTex.height), 0, 0);
+        readableText.Apply();
+        RenderTexture.active = previous;
+        RenderTexture.ReleaseTemporary(renderTex);
+        return readableText;
+ }
 }
