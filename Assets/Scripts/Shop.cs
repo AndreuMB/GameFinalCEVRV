@@ -27,11 +27,11 @@ public class Shop : MonoBehaviour
             productSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
             productSlot.GetComponent<Button>().interactable = false;
         }
+        setSpSlot();
         
     }
 
     void OnEnable(){
-        setSpSlot();
         switch (shopType)
         {
             case ShopTypeEnum.weapons:
@@ -112,6 +112,7 @@ public class Shop : MonoBehaviour
         weaponObj.GetComponent<Weapon>().owner = player.GetComponent<PlayerController>();
         player.weapons[player.selectedIndex] = weaponObj.GetComponent<Weapon>();
         weaponObj.GetComponent<Weapon>().setCrossHair();
+        checkUpgrade();
     }
 
     public void buyProduct(Product product){
@@ -191,6 +192,7 @@ public class Shop : MonoBehaviour
 
     Weapon GetEquipedWeapon(){
         GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
+        print("slotArma = " + slotArma.transform.parent.name);
         return slotArma.GetComponentInChildren<Weapon>();
     }
 
@@ -213,6 +215,7 @@ public class Shop : MonoBehaviour
                 return;    
             } 
         }
+        checkUpgrade();
     }
 
     void checkUpgrade(){
@@ -220,12 +223,13 @@ public class Shop : MonoBehaviour
         // check spProductSlot exist
         if(!productSlot) return;
         // if not from this shop return
-        if (!productSlot.transform.IsChildOf(transform)) return;
+        // if (!productSlot.transform.IsChildOf(transform.Find("Products").transform)) return;
         // set to not interactable by default this way the player can't upgrade the weapon
         productSlot.GetComponentInChildren<Text>().text = "No Available";
         productSlot.GetComponent<Button>().interactable = false;
         // if no upgrades return
-        if (!GetEquipedWeapon().upgrades) return;
+        if (!GetEquipedWeapon() || !GetEquipedWeapon().upgrades) return;
+        print("is not coming return");
         //if any upgrade not active set btn to interactable
         foreach (Transform weaponUpgrade in GetEquipedWeapon().upgrades.transform)
         {
