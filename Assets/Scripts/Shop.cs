@@ -13,7 +13,6 @@ public enum ShopTypeEnum
 
 public class Shop : MonoBehaviour
 {
-    bool swPS = true;
     public ShopTypeEnum shopType;
     public Product[] products;
     PlayerController player;
@@ -24,10 +23,16 @@ public class Shop : MonoBehaviour
 
         foreach(Transform productSlot in transform.Find("Products"))
         {
+            // if not from this shop return
+            if (!productSlot.transform.IsChildOf(transform.Find("Products"))) continue;
             productSlot.GetComponentsInChildren<Text>()[0].text = "No Stock";
             productSlot.GetComponent<Button>().interactable = false;
         }
         setSpSlot();
+        if (shopType == ShopTypeEnum.player)
+        {
+            setPlayerShop();
+        }
         
     }
 
@@ -41,7 +46,6 @@ public class Shop : MonoBehaviour
                 checkUpgrade();
             break;
             case ShopTypeEnum.player:
-                if (swPS) setPlayerShop();
                 break;
         }
         Cursor.lockState = CursorLockMode.Confined;
@@ -54,8 +58,6 @@ public class Shop : MonoBehaviour
     }
 
     public void randomizeWeapons(){
-        // bool WeaponUMR = GameObject.Find("WeaponUM").GetComponent<Machine>().randomizeWeapon;
-        // foreach(Transform productSlot in transform.Find("Products"))
         GameObject[] weaponSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
         if (weaponSlots.Length == 0) return;
         if (products.Length == 0) return;       
@@ -66,6 +68,9 @@ public class Shop : MonoBehaviour
             int inx;
             // GameObject weapon;
             Product product;
+            // if not from this shop return
+            if (!weaponSlot.transform.IsChildOf(transform.Find("Products"))) continue;
+            // if is a special/reserved slot return
             if (weaponSlot.tag == TagsEnum.SlotProductSpecial.ToString()) continue;
 
             do
@@ -93,10 +98,10 @@ public class Shop : MonoBehaviour
     void buyWeapon(Product product){
         if (product.price > Nexus.money) return;
         Nexus.money -= product.price;
-        // string wname = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
         GameObject weaponPrefab = product.productGameobject;
-        // GameObject weaponObj = Instantiate(product.productGameobject);
-        GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
+        GameObject slotArma = GetEquipedWeapon().transform.parent.gameObject;
+
+        DestroyImmediate(GetEquipedWeapon().gameObject);
 
         GameObject weaponObj = Instantiate(weaponPrefab, slotArma.transform.position, Quaternion.identity, slotArma.transform);
         weaponObj.transform.localPosition = weaponPrefab.transform.position;
@@ -108,7 +113,6 @@ public class Shop : MonoBehaviour
             item.gameObject.layer = LayerMask.NameToLayer("Weapon");
         }
 
-        Destroy(GetEquipedWeapon().gameObject);
         weaponObj.GetComponent<Weapon>().owner = player.GetComponent<PlayerController>();
         player.weapons[player.selectedIndex] = weaponObj.GetComponent<Weapon>();
         weaponObj.GetComponent<Weapon>().setCrossHair();
@@ -135,19 +139,20 @@ public class Shop : MonoBehaviour
 
 
     void setPlayerShop(){
-        // GameObject[] productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProduct.ToString());
         Transform productSlots = transform.Find("Products");
         int i = 0;
         GameObject productSlot;
         foreach (Product product in products)
         {
             if (i >= productSlots.childCount) return;
-            if (product.specialSlot) return;
+            if (product.specialSlot) continue;
 
             productSlot = productSlots.GetChild(i).gameObject;
-            if (productSlots.tag == TagsEnum.SlotProductSpecial.ToString()) return;
+            print("productSlot = " + productSlot);
             // if not from this shop return
-            // if (!productSlot.transform.IsChildOf(transform)) return;
+            if (!productSlot.transform.IsChildOf(transform.Find("Products"))) continue;
+
+            if (productSlots.tag == TagsEnum.SlotProductSpecial.ToString()) continue;
 
             productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
             productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
@@ -155,10 +160,10 @@ public class Shop : MonoBehaviour
             productSlot.GetComponent<Button>().onClick.RemoveAllListeners();
             productSlot.GetComponent<Button>().onClick.AddListener(() => buyProduct(product));
             productSlot.GetComponent<Button>().interactable = true;
+            print("end = " + productSlot);
 
             i++;
         }
-        swPS = false;
     }
 
     void setSpSlot(){
@@ -178,7 +183,7 @@ public class Shop : MonoBehaviour
                 }
                 if(productSlot == null) return;
                 // if not from this shop return
-                if (!productSlot.transform.IsChildOf(transform)) return;
+                if (!productSlot.transform.IsChildOf(transform.Find("Products"))) continue;
                 productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
                 productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
                 // UnityEvent prodFunction = products[i].triggerEvent;
@@ -191,9 +196,7 @@ public class Shop : MonoBehaviour
     }
 
     Weapon GetEquipedWeapon(){
-        GameObject slotArma = GameObject.FindGameObjectWithTag(TagsEnum.SlotArma.ToString());
-        print("slotArma = " + slotArma.transform.parent.name);
-        return slotArma.GetComponentInChildren<Weapon>();
+        return player ? player.GetComponentInChildren<Weapon>() : null;
     }
 
     public void UpgradeWeapon(){
@@ -212,7 +215,7 @@ public class Shop : MonoBehaviour
         {
             if (!weaponUpgrade.gameObject.activeInHierarchy){
                 weaponUpgrade.gameObject.SetActive(true);
-                return;    
+                break;
             } 
         }
         checkUpgrade();
@@ -228,8 +231,8 @@ public class Shop : MonoBehaviour
         productSlot.GetComponentInChildren<Text>().text = "No Available";
         productSlot.GetComponent<Button>().interactable = false;
         // if no upgrades return
-        if (!GetEquipedWeapon() || !GetEquipedWeapon().upgrades) return;
-        print("is not coming return");
+        if (!GetEquipedWeapon()) return;
+        if (!GetEquipedWeapon().upgrades) return;
         //if any upgrade not active set btn to interactable
         foreach (Transform weaponUpgrade in GetEquipedWeapon().upgrades.transform)
         {

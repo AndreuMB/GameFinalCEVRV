@@ -218,8 +218,8 @@ public class PlayerController : Character
         }else{
             selectedIndex += a;
         }
-        OnWeaponStateChange.Invoke(selectedWeapon);
         selectedWeapon.gameObject.SetActive(true);
+        OnWeaponStateChange.Invoke(selectedWeapon);
     }
 
     void InputCuracion()

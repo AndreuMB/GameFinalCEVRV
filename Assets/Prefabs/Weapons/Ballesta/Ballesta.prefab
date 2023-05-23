@@ -368,7 +368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5607478950182649844, guid: 0317e139ffe8e4849be2b3632aca478b, type: 3}
       propertyPath: m_Name
-      value: mejora_Ballesta
+      value: mejoras_Ballesta
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0317e139ffe8e4849be2b3632aca478b, type: 3}

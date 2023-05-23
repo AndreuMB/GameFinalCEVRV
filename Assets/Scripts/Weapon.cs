@@ -43,6 +43,14 @@ public class Weapon : MonoBehaviour
         weaponData = Instantiate(weaponDataBase);
         loaderAmmo = weaponData.loaderMaxAmmo;
         iniTransform = transform;
+        
+        if (!upgrades) return;
+        foreach (Transform weaponUpgrade in upgrades.transform)
+        {
+            if (!weaponUpgrade) break;
+            // weaponData.upgrades.Add(weaponUpgrade);
+            weaponUpgrade.gameObject.SetActive(false);
+        }
     }
 
     // Start is called before the first frame update
@@ -55,13 +63,7 @@ public class Weapon : MonoBehaviour
         am = FindObjectOfType<AudioManager>();
         // weaponData.upgrades = new List<GameObject>();
 
-        if (!upgrades) return;
-        foreach (Transform weaponUpgrade in upgrades.transform)
-        {
-            if (!weaponUpgrade) break;
-            // weaponData.upgrades.Add(weaponUpgrade);
-            weaponUpgrade.gameObject.SetActive(false);
-        }
+        
     }
 
     void OnEnable(){
@@ -235,10 +237,8 @@ public class Weapon : MonoBehaviour
         main.startColor = color;
         foreach (ParticleSystem ps in psi.GetComponentsInChildren<ParticleSystem>())
         {
-            print("ps.name = " + ps.name);
             main = ps.main;
             main.startColor = color;
-            print("ps.color = " + color);
         }
     }
 
