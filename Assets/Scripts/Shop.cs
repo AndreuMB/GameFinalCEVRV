@@ -77,9 +77,9 @@ public class Shop : MonoBehaviour
             {
                 inx = Random.Range(0,products.Length);
                 product = products[inx];
-            } while (weaponsShop.Exists(x => x == product));
+            } while (weaponsShop.Exists(x => x == product) || product.specialSlot);
 
-            if (product.specialSlot) continue;
+            // if (product.specialSlot) continue;
 
             weaponsShop.Add(product);
             

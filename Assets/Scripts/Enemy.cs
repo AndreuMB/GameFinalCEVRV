@@ -123,7 +123,7 @@ public class Enemy : Character
         yield break;
     }
     // run animation
-    void enemyDeath(){
+    public void enemyDeath(){
         // remove tag for spawn to work
         tag = Tags.UNTAGGED;
         // bool to turn off enemy fire in update

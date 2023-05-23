@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 7227311820224368548}
   - component: {fileID: 7227311820224368547}
   - component: {fileID: 7227311820224368546}
-  - component: {fileID: 7227311820224368545}
   - component: {fileID: 7227311820224368544}
+  - component: {fileID: 607390690}
   m_Layer: 0
   m_Name: Nexus
   m_TagString: Nexus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 40
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7227311820224368548
 Transform:
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7227311820224368545
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7227311820224368543}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.09, y: 0.2, z: 0.2}
-  m_Center: {x: 0, y: -0.06, z: -0.06}
 --- !u!114 &7227311820224368544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ef18ec4a40d084eb6d959798cc0511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 10000
+  maxLife: 10000
   regRate: 10
   farmRate: 5
   nexus2Material: {fileID: 2100000, guid: 6d29be06eeb5cda4b869c4011e0cbef1, type: 2}
@@ -120,3 +107,17 @@ MonoBehaviour:
   OnNexusMoneyChange:
     m_PersistentCalls:
       m_Calls: []
+--- !u!64 &607390690
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7227311820224368543}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4349798062964607213, guid: 55698afcdfd22564bb47890c912a6319, type: 3}
