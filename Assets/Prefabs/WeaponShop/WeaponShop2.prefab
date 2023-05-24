@@ -796,53 +796,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7244468896451474763}
     m_Modifications:
-    - target: {fileID: 379170174303458395, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1.5216064
-      objectReference: {fileID: 0}
-    - target: {fileID: 794863355930812445, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 1489061927595537844, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 1872412922098737843, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1996689775040943863, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2123784452555217997, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2935678544936939929, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 2971048556710618880, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
       propertyPath: m_Name
       value: WeaponrShopUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 2971048556710618880, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754808023280282148, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489618004133816919, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107348761908105992, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5168315949900290054, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
       propertyPath: m_Pivot.x
@@ -927,54 +883,6 @@ PrefabInstance:
     - target: {fileID: 5168315949900290054, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5959867105500530503, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: products.Array.data[4].price
-      value: 4500
-      objectReference: {fileID: 0}
-    - target: {fileID: 5959867105500530503, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: products.Array.data[0].productGameobject
-      value: 
-      objectReference: {fileID: 8994934529158986148, guid: c49331a7acf875f43a650bbd3ac20b21, type: 3}
-    - target: {fileID: 6827816868341830252, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7000397223076205967, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7194755857071463778, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_TagString
-      value: SlotProduct
-      objectReference: {fileID: 0}
-    - target: {fileID: 7194755857071463778, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7255584401685821033, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7357109480763633391, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8055010112994967750, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8068957389444344470, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8103404122749847213, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 8381482530706219244, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}

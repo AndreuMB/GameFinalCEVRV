@@ -209,7 +209,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &3848825076398393298
 RectTransform:
@@ -385,7 +385,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &8833907004579538194
 RectTransform:
@@ -467,7 +467,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1553841793735064927
 RectTransform:
@@ -719,7 +719,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &1870407923268773528
 RectTransform:
@@ -801,7 +801,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &5168315949900290054
 RectTransform:
@@ -912,13 +912,13 @@ MonoBehaviour:
   shopType: 0
   products:
   - name: Ametralladora
-    price: 600
+    price: 800
     value: 0
     specialSlot: 0
     triggerEvent:
       m_PersistentCalls:
         m_Calls: []
-    productGameobject: {fileID: 5991288691781884465, guid: 0667380bd0ee0a243af796fb4169bf5c, type: 3}
+    productGameobject: {fileID: 8994934529158986148, guid: c49331a7acf875f43a650bbd3ac20b21, type: 3}
   - name: Cristal
     price: 500
     value: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
         m_Calls: []
     productGameobject: {fileID: 1073828564796433924, guid: d5c858cb1f76b864bbb6bd0bda6fe96e, type: 3}
   - name: Pistola
-    price: 300
+    price: 500
     value: 0
     specialSlot: 0
     triggerEvent:
@@ -944,7 +944,7 @@ MonoBehaviour:
         m_Calls: []
     productGameobject: {fileID: 5114664517568317502, guid: 568892a50f430344bba2538a55318cb4, type: 3}
   - name: Ballesta
-    price: 1200
+    price: 3500
     value: 0
     specialSlot: 0
     triggerEvent:
@@ -1084,7 +1084,7 @@ GameObject:
   m_TagString: SlotProduct
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &8149368854043726369
 RectTransform:
@@ -1287,7 +1287,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &7653204511241753784
 RectTransform:
@@ -1444,7 +1444,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &7476150861023224136
 RectTransform:
@@ -1846,7 +1846,7 @@ GameObject:
   m_TagString: SlotProduct
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &4004868423663183155
 RectTransform:
@@ -1969,7 +1969,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &3789785129568609799
 RectTransform:
@@ -2049,10 +2049,10 @@ GameObject:
   - component: {fileID: 771487661458390644}
   m_Layer: 5
   m_Name: Item3
-  m_TagString: SlotWeaponShop
+  m_TagString: SlotProduct
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 0
 --- !u!224 &279390003625423079
 RectTransform:
@@ -2175,7 +2175,7 @@ GameObject:
   m_TagString: SlotProductSpecial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &5088572504894561532
 RectTransform:
@@ -2299,7 +2299,7 @@ GameObject:
   m_TagString: SlotProductSpecial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &6579795848989844508
 RectTransform:
@@ -2405,19 +2405,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7039875720372331187}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5959867105500530503}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: randomizeWeapons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7511492015417169406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2453,7 +2441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1.5215454, y: 0}
+  m_AnchoredPosition: {x: -1.5216064, y: 0}
   m_SizeDelta: {x: 117.06879, y: 58.534195}
   m_Pivot: {x: 0.7275177, y: 0.26405498}
 --- !u!222 &2706982636422554484
@@ -2586,7 +2574,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &199057402356359657
 RectTransform:
@@ -2666,7 +2654,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &9106018667344128988
 RectTransform:
@@ -2746,7 +2734,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &5086591831630742491
 RectTransform:
@@ -2829,7 +2817,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &2860294594888877581
 RectTransform:
