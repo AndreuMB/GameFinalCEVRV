@@ -796,6 +796,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7244468896451474763}
     m_Modifications:
+    - target: {fileID: 379170174303458395, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.5216064
+      objectReference: {fileID: 0}
     - target: {fileID: 794863355930812445, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -803,6 +807,10 @@ PrefabInstance:
     - target: {fileID: 1489061927595537844, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872412922098737843, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1996689775040943863, guid: 8f1a94ef67eab914a9145d5c243bbde6, type: 3}
       propertyPath: m_StaticEditorFlags

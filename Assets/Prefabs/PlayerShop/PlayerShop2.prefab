@@ -205,9 +205,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4198033063040003077, guid: 4ef3276fd0b673a4b99aedfdd057f806, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -30.799927
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951008236925551099, guid: 4ef3276fd0b673a4b99aedfdd057f806, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 28.700073
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951008236925551099, guid: 4ef3276fd0b673a4b99aedfdd057f806, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13.595093
+      objectReference: {fileID: 0}
+    - target: {fileID: 5261996967273184811, guid: 4ef3276fd0b673a4b99aedfdd057f806, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 28.700073
+      objectReference: {fileID: 0}
     - target: {fileID: 7131851780977903449, guid: 4ef3276fd0b673a4b99aedfdd057f806, type: 3}
       propertyPath: m_Name
       value: PlayerShopUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043624237291039174, guid: 4ef3276fd0b673a4b99aedfdd057f806, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -30.799927
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ef3276fd0b673a4b99aedfdd057f806, type: 3}
