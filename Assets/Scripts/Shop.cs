@@ -148,7 +148,6 @@ public class Shop : MonoBehaviour
             if (product.specialSlot) continue;
 
             productSlot = productSlots.GetChild(i).gameObject;
-            print("productSlot = " + productSlot);
             // if not from this shop return
             if (!productSlot.transform.IsChildOf(transform.Find("Products"))) continue;
 
@@ -160,7 +159,6 @@ public class Shop : MonoBehaviour
             productSlot.GetComponent<Button>().onClick.RemoveAllListeners();
             productSlot.GetComponent<Button>().onClick.AddListener(() => buyProduct(product));
             productSlot.GetComponent<Button>().interactable = true;
-            print("end = " + productSlot);
 
             i++;
         }
