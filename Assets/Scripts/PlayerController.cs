@@ -102,7 +102,7 @@ public class PlayerController : Character
         InputDisparar();
         InputCambiarArma();
         InputCuracion();
-        // InputTienda();
+        InputInteract();
         
     }
 
@@ -236,15 +236,6 @@ public class PlayerController : Character
         }
     }
 
-    // void InputTienda(){
-    //     if(Input.GetKeyDown(KeyCode.F))
-    //     {
-    //         life = maxPlayerLife;
-    //         curas -= 1;
-    //         OnPlayerLifeStateChange.Invoke(actualLife);
-    //     }
-    // }
-
     public void upgradeHealth(int upgradeValue){
         maxPlayerLife += upgradeValue;
         life = maxPlayerLife;
@@ -261,6 +252,34 @@ public class PlayerController : Character
     public void upgradeSpeed(int upgradeValue){
         speed += upgradeValue;
         // actualLife = life;
+    }
+
+    void interactiveRay(){
+        Vector3 cameraCenter = Camera.main.ViewportToScreenPoint(Vector3.one * .5f);
+        Ray ray = Camera.main.ScreenPointToRay(cameraCenter);
+
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+
+        const float MAXDISTANCE = 5;
+        print("enter interactive ray");
+
+        if (Physics.Raycast(ray, out RaycastHit hit, MAXDISTANCE))
+        {
+            print("enter raycast = " + hit.collider.tag);
+            if (hit.collider.tag == TagsEnum.CrystalBox.ToString())
+            {
+                print("enter raycast tag2");
+                Nexus.money += hit.collider.GetComponent<CrystalBox>().moneyBox;
+                Destroy(hit.collider.gameObject);
+            }
+        }
+    }
+
+    void InputInteract(){
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            interactiveRay();
+        }
     }
 
 }

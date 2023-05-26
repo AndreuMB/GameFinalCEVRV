@@ -21,6 +21,7 @@ TagManager:
   - Upgrade
   - CrossAir
   - Terrain
+  - CrystalBox
   layers:
   - Default
   - TransparentFX
