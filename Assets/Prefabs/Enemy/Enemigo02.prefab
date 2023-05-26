@@ -1389,9 +1389,7 @@ MonoBehaviour:
   life: 20
   speed: 0
   slotWeapon: {fileID: 2163969882584805937}
-  death:
-    m_PersistentCalls:
-      m_Calls: []
+  hitCanvas: {fileID: 0}
   fireEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1836,7 +1834,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d2626589a68add4ab5940cb99979376, type: 2}
+  - {fileID: 2100000, guid: 149fa07aba0ad5e448da3e1918f6c517, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
