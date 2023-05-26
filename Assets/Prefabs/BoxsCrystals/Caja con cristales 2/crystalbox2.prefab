@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 562945388629844456}
   - component: {fileID: 8166286013329356433}
   m_Layer: 0
-  m_Name: caja con cristales 2 Baja
+  m_Name: crystalbox2
   m_TagString: CrystalBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
