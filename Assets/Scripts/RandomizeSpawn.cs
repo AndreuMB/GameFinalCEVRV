@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RandomizeSpawn : MonoBehaviour
 {
+    [SerializeField] bool singleInstance;
     // Start is called before the first frame update
     void Start()
     {
