@@ -53,6 +53,8 @@ public class PlayerController : Character
     Vector3 actualPos;
     AudioManager am;
     public Sprite originalCrossAir;
+    GameObject InteractInfo;
+    GameObject HealthInfo;
 
     private void Awake()
     {
@@ -83,6 +85,11 @@ public class PlayerController : Character
         //Instanciar curas
         curas = maxCuras;
         OnPotionsStateChange.Invoke(actualCuras, maxActualCuras);
+
+        InteractInfo = GameObject.Find("InteractInfo");
+        HealthInfo = GameObject.Find("HealthInfo");
+        
+        GameManager.gameOverEv.AddListener(disableHealthInfo);
     }
 
     void FixedUpdate()
@@ -103,6 +110,8 @@ public class PlayerController : Character
         InputCambiarArma();
         InputCuracion();
         InputInteract();
+        interactiveInfo();
+        InfoHealth();
         
     }
 
@@ -232,7 +241,6 @@ public class PlayerController : Character
             setOpacityHitScren();
             OnPotionsStateChange.Invoke(actualCuras, maxActualCuras);
             OnPlayerLifeStateChange.Invoke(actualLife, maxPlayerLife);
-            print("curas = " + curas);
         }
     }
 
@@ -260,7 +268,7 @@ public class PlayerController : Character
 
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
 
-        const float MAXDISTANCE = 5;
+        const float MAXDISTANCE = 2;
 
         if (Physics.Raycast(ray, out RaycastHit hit, MAXDISTANCE))
         {
@@ -277,6 +285,39 @@ public class PlayerController : Character
         {
             interactiveRay();
         }
+    }
+
+    void interactiveInfo(){
+        Vector3 cameraCenter = Camera.main.ViewportToScreenPoint(Vector3.one * .5f);
+        Ray ray = Camera.main.ScreenPointToRay(cameraCenter);
+
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+
+        const float MAXDISTANCE = 2;
+
+        if (Physics.Raycast(ray, out RaycastHit hit, MAXDISTANCE))
+        {
+            if (hit.collider.tag == TagsEnum.CrystalBox.ToString() || hit.collider.tag == TagsEnum.Shop.ToString())
+            {
+                InteractInfo.SetActive(true);
+                return;
+            }
+        }
+
+        InteractInfo.SetActive(false);
+    }
+
+    public void InfoHealth(){
+        if (life < maxPlayerLife*40/100 && WaveManager.wave < 5)
+        {
+            HealthInfo.SetActive(true);
+        }else{
+            HealthInfo.SetActive(false);
+        }
+    }
+
+    void disableHealthInfo(){
+        HealthInfo.SetActive(false);
     }
 
 }

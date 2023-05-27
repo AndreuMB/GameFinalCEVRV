@@ -27,6 +27,7 @@ public enum TagsEnum
     Upgrade,
     CrossAir,
     CrystalBox,
+    Shop
 }
 
 public enum LayerEnum
