@@ -22,6 +22,8 @@ public class WaveManager : MonoBehaviour
 
     //Evento para actualizar el HUD
     [System.NonSerialized] public UnityEvent<string> OnWaveChange = new UnityEvent<string>();
+    public static UnityEvent OnBossTime = new UnityEvent();
+
     NumbersToRoman romanConverter = new NumbersToRoman();
     // Start is called before the first frame update
     void Start()
@@ -64,6 +66,7 @@ public class WaveManager : MonoBehaviour
     IEnumerator nextWave(){
         wave++;
         if (wave%5 == 0) shopRandomize = true;
+        if (wave%2 == 0) OnBossTime.Invoke();
         enemiesLife+=10;
         OnWaveChange.Invoke(romanConverter.IntToRoman(wave));
         yield return new WaitForSeconds(secBtwWaves);

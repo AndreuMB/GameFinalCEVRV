@@ -68,6 +68,19 @@ public abstract class Character : MonoBehaviour
                 death.Invoke();
             }
         }
+
+        //if hit boss
+        if (gameObject.tag == Tags.BOSS)
+        {
+            AudioManager am = FindObjectOfType<AudioManager>();
+            print("play hitmarker");
+            am.Play("Hitmarker");
+            if (life <= 0)
+            {
+                Nexus.money += WaveManager.moneyDropByEnemies;
+                death.Invoke();
+            }
+        }
     }
 
     protected void InstanciaArmas()

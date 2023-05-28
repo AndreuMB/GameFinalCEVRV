@@ -175,7 +175,17 @@ public class Weapon : MonoBehaviour
                 instantiateParticles(hit);
             }
         }
-
+        if (owner.GetType() == typeof(PlayerController))
+        {
+            if (Physics.Raycast(ray, out RaycastHit hit, weaponData.maxDistance))
+            {
+                print(hit.collider.gameObject.name + " was hit by player!");
+                hit.collider.gameObject.TryGetComponent<BossLogic>(out BossLogic enemy);
+                if (enemy) enemy.takeDamageRayCast(this);
+                // instantiate particles when hit raycast
+                instantiateParticles(hit);
+            }
+        }
 
     }
 

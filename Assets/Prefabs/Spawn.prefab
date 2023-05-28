@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesArray:
   - {fileID: 6245557111849199661, guid: 9b7c0702ddddaa442986dce0c52ffaf2, type: 3}
+  boss: {fileID: 1132918536834363442, guid: 9a52d37f8dda2e645b61d0d57e15f16a, type: 3}
   minSecondsSpawn: 3
   maxSecondsSpawn: 5

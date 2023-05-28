@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Spawn : MonoBehaviour
 {
     [SerializeField] GameObject[] enemiesArray;
+    
     // min seconds enemies wait to appear in a spawn
     [SerializeField] float minSecondsSpawn;
     // max seconds enemies wait to appear in a spawn
@@ -39,4 +40,6 @@ public class Spawn : MonoBehaviour
     {
         
     }
+
+    
 }

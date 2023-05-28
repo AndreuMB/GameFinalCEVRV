@@ -263,4 +263,10 @@ public class PlayerController : Character
         // actualLife = life;
     }
 
+    public void takeBossDamage()
+    {
+        life = life / 2 - 10;
+        life = Mathf.Clamp(life, 0, maxActualPlayerLife);
+        OnPlayerLifeStateChange.Invoke(actualLife, maxPlayerLife);
+    }
 }
