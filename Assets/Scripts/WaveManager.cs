@@ -79,7 +79,6 @@ public class WaveManager : MonoBehaviour
 
     public void checkWave(){
         // enter check wave when enemy dies
-        // print(" checkWave || enemies = " + enemiesWave);
         // remaining enemies
         enemiesWave--;
         if (enemiesWave<=0)

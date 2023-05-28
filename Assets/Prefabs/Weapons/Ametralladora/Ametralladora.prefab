@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383849f62935f29459f24384acc9e86f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 1403344502666796241, guid: 63b8cfb80186f8542b6a035a1ba5fa22, type: 3}
+  ps: {fileID: 5780187364365050607, guid: f40868a2ba802fd498347b8e1b7ecf4b, type: 3}
   upgrades: {fileID: 8318573925885772484}
   weaponDataBase: {fileID: 11400000, guid: e038904178bbca743a912a71b2e38638, type: 2}
   customShoot:

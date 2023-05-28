@@ -17,10 +17,13 @@ MonoBehaviour:
   loaderMaxAmmo: 6
   loadTime: 2
   fireRate: 0.5
-  damage: 10
-  auto: 0
+  damage: 20
+  auto: 1
   zoom: 1
   audioFire: Crystal
   audioReload: RecargaAuto
   animatorController: {fileID: 22100000, guid: b0c60bd5269616c43bd3a9f7ca648b1e, type: 2}
   maxDistance: 1000
+  customCrossAir: {fileID: 0}
+  bulletsNumber: 0
+  radius: 0

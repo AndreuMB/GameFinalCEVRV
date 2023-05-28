@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7345949325294631353}
   - component: {fileID: 5935135630106031644}
   - component: {fileID: 8482847798816604886}
-  - component: {fileID: 7459023454009065989}
   - component: {fileID: 2209205186411389097}
   - component: {fileID: 8452601264311419227}
+  - component: {fileID: 765691273857559491}
   m_Layer: 0
   m_Name: caja_con_cristales_Baja
   m_TagString: Untagged
@@ -87,20 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7459023454009065989
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7978651555673187075}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3550047163644196060, guid: b683da535dd8e984187383c434aa66dc, type: 3}
 --- !u!108 &2209205186411389097
 Light:
   m_ObjectHideFlags: 0
@@ -183,3 +169,16 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!65 &765691273857559491
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978651555673187075}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.028752897, y: 0.021859387, z: 0.04061795}
+  m_Center: {x: -0.00000263574, y: 0.003173397, z: -0.00015644824}

@@ -53,6 +53,8 @@ public class PlayerController : Character
     Vector3 actualPos;
     AudioManager am;
     public Sprite originalCrossAir;
+    GameObject InteractInfo;
+    GameObject HealthInfo;
 
     private void Awake()
     {
@@ -83,6 +85,11 @@ public class PlayerController : Character
         //Instanciar curas
         curas = maxCuras;
         OnPotionsStateChange.Invoke(actualCuras, maxActualCuras);
+
+        InteractInfo = GameObject.Find("InteractInfo");
+        HealthInfo = GameObject.Find("HealthInfo");
+        
+        GameManager.gameOverEv.AddListener(disableHealthInfo);
     }
 
     void FixedUpdate()
@@ -102,7 +109,9 @@ public class PlayerController : Character
         InputDisparar();
         InputCambiarArma();
         InputCuracion();
-        // InputTienda();
+        InputInteract();
+        interactiveInfo();
+        InfoHealth();
         
     }
 
@@ -209,7 +218,7 @@ public class PlayerController : Character
 
     void ChangeWeapon(int a)
     {
-        am.Play("SwapWeapon");
+        am.Play("SwapWeapon", gameObject);
         selectedWeapon.gameObject.SetActive(false);
         if(selectedIndex == 0 && a < 0){
             selectedIndex = weapons.Count-1;
@@ -218,8 +227,8 @@ public class PlayerController : Character
         }else{
             selectedIndex += a;
         }
-        OnWeaponStateChange.Invoke(selectedWeapon);
         selectedWeapon.gameObject.SetActive(true);
+        OnWeaponStateChange.Invoke(selectedWeapon);
     }
 
     void InputCuracion()
@@ -232,18 +241,8 @@ public class PlayerController : Character
             setOpacityHitScren();
             OnPotionsStateChange.Invoke(actualCuras, maxActualCuras);
             OnPlayerLifeStateChange.Invoke(actualLife, maxPlayerLife);
-            print("curas = " + curas);
         }
     }
-
-    // void InputTienda(){
-    //     if(Input.GetKeyDown(KeyCode.F))
-    //     {
-    //         life = maxPlayerLife;
-    //         curas -= 1;
-    //         OnPlayerLifeStateChange.Invoke(actualLife);
-    //     }
-    // }
 
     public void upgradeHealth(int upgradeValue){
         maxPlayerLife += upgradeValue;
@@ -269,4 +268,62 @@ public class PlayerController : Character
         life = Mathf.Clamp(life, 0, maxActualPlayerLife);
         OnPlayerLifeStateChange.Invoke(actualLife, maxPlayerLife);
     }
+    void interactiveRay(){
+        Vector3 cameraCenter = Camera.main.ViewportToScreenPoint(Vector3.one * .5f);
+        Ray ray = Camera.main.ScreenPointToRay(cameraCenter);
+
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+
+        const float MAXDISTANCE = 2;
+
+        if (Physics.Raycast(ray, out RaycastHit hit, MAXDISTANCE))
+        {
+            if (hit.collider.tag == TagsEnum.CrystalBox.ToString())
+            {
+                Nexus.money += hit.collider.GetComponent<CrystalBox>().moneyBox;
+                Destroy(hit.collider.gameObject);
+            }
+        }
+    }
+
+    void InputInteract(){
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            interactiveRay();
+        }
+    }
+
+    void interactiveInfo(){
+        Vector3 cameraCenter = Camera.main.ViewportToScreenPoint(Vector3.one * .5f);
+        Ray ray = Camera.main.ScreenPointToRay(cameraCenter);
+
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+
+        const float MAXDISTANCE = 2;
+
+        if (Physics.Raycast(ray, out RaycastHit hit, MAXDISTANCE))
+        {
+            if (hit.collider.tag == TagsEnum.CrystalBox.ToString() || hit.collider.tag == TagsEnum.Shop.ToString())
+            {
+                InteractInfo.SetActive(true);
+                return;
+            }
+        }
+
+        InteractInfo.SetActive(false);
+    }
+
+    public void InfoHealth(){
+        if (life < maxPlayerLife*40/100 && WaveManager.wave < 5)
+        {
+            HealthInfo.SetActive(true);
+        }else{
+            HealthInfo.SetActive(false);
+        }
+    }
+
+    void disableHealthInfo(){
+        HealthInfo.SetActive(false);
+    }
+
 }

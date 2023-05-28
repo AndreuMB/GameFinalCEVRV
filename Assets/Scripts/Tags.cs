@@ -28,6 +28,8 @@ public enum TagsEnum
     Death,
     Upgrade,
     CrossAir,
+    CrystalBox,
+    Shop
 }
 
 public enum LayerEnum

@@ -91,7 +91,6 @@ public class Nexus : MonoBehaviour
     IEnumerator income(){
         while (isActiveAndEnabled)
         {
-            // print(money = money);
             money+= actualFarmRate;
             OnNexusMoneyChange.Invoke(money);
             yield return new WaitForSeconds(1);
