@@ -5,13 +5,13 @@ using UnityEngine.AI;
 
 public class BossLogic : Character
 {
-    public float followDistance = 5f; // Distancia de seguimiento
+    public float followDistance = 5f;
     public GameObject attackPrefab;
-    public GameObject warningPrefab;// Prefab del ataque
-    public Animator animator; // Referencia al Animator
+    public GameObject warningPrefab;
+    public Animator animator; 
 
-    private Transform player; // Referencia al jugador
-    private bool isAttacking = false; // Variable para controlar el estado de ataque
+    private Transform player;
+    private bool isAttacking = false; 
 
     NavMeshAgent agent;
     GameObject aviso;
@@ -20,7 +20,7 @@ public class BossLogic : Character
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform; // Buscar al jugador por la etiqueta "Player"
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         death.AddListener(BossDeath);
     }
@@ -31,7 +31,7 @@ public class BossLogic : Character
 
         if (!isAttacking)
         {
-            transform.LookAt(player); // Mirar hacia el jugador
+            transform.LookAt(player);
             agent.SetDestination(player.position);
             // Seguir al jugador hasta la distancia establecida
             if (distanceToPlayer <= followDistance)
@@ -49,13 +49,12 @@ public class BossLogic : Character
         }
     }
 
-    // Método llamado desde el script de animación de ataque
     public void AttackEvent()
     {
         
         if (aviso != null)
         {
-            ataque = Instantiate(attackPrefab, aviso.transform.position, Quaternion.identity); // Instanciar el Prefab del ataque
+            ataque = Instantiate(attackPrefab, aviso.transform.position, Quaternion.identity);
             Destroy(aviso);
         }
         Destroy(ataque, tiempoVisual);
