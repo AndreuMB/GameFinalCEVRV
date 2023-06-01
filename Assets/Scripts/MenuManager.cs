@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour
             foreach (var canvas in canvasOvjects)
             {
                 // if the canvas is the HUD does nothing
-                if (canvas.gameObject.tag == HUD) break;
+                if (canvas.gameObject.tag == HUD) continue;
 
                 if (canvas.gameObject.activeInHierarchy){
                     canvas.gameObject.SetActive(false);

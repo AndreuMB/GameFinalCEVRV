@@ -44,8 +44,9 @@ public class Shop : MonoBehaviour
                     randomizeWeapons();
                 }
                 checkUpgrade();
-            break;
+                break;
             case ShopTypeEnum.player:
+                setSpSlot();
                 break;
         }
         Cursor.lockState = CursorLockMode.Confined;
@@ -151,7 +152,7 @@ public class Shop : MonoBehaviour
             // if not from this shop return
             if (!productSlot.transform.IsChildOf(transform.Find("Products"))) continue;
 
-            if (productSlots.tag == TagsEnum.SlotProductSpecial.ToString()) continue;
+            if (productSlot.tag == TagsEnum.SlotProductSpecial.ToString()) continue;
 
             productSlot.GetComponentsInChildren<Text>()[0].text = product.name;
             productSlot.GetComponentsInChildren<Text>()[1].text = product.price.ToString();
@@ -172,8 +173,10 @@ public class Shop : MonoBehaviour
             {
                 productSlots = GameObject.FindGameObjectsWithTag(TagsEnum.SlotProductSpecial.ToString());
                 if (productSlots.Length == 0) return;
+                // foreach all spSlots
                 foreach (GameObject productSlot2 in productSlots)
                 {
+                    // get spSlot btn not interactable
                     if (!productSlot2.GetComponent<Button>().interactable){
                         productSlot = productSlot2;
                         break;

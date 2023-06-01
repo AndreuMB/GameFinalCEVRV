@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 3c91213112d3aeb4d9a56c2a71dc7cbb
+  m_OcclusionCullingData: {fileID: 36300000, guid: 6a75907aacb17e74bae2430d999d02fd, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.551
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 311156006}
-  m_IndirectSpecularColor: {r: 0.07009749, g: 0.06778228, b: 0.08449341, a: 0.551}
+  m_IndirectSpecularColor: {r: 0.1222794, g: 0.33793104, b: 0.51322144, a: 0.551}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -26043,6 +26043,10 @@ PrefabInstance:
     - target: {fileID: 5867112109336244787, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067318893570583666, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
+      propertyPath: maxPlayerLife
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 9067318893570583670, guid: 212b39ed03415b644b2cc65e8af7c631, type: 3}
       propertyPath: m_RootOrder
@@ -64522,6 +64526,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nexus
       objectReference: {fileID: 0}
+    - target: {fileID: 7227311820224368544, guid: f4a91fabf550a02458fbe69fad623018, type: 3}
+      propertyPath: farmRate
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7227311820224368548, guid: f4a91fabf550a02458fbe69fad623018, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -64849,10 +64857,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1572571861}
     m_Modifications:
-    - target: {fileID: 8053094434346856433, guid: 53a21b61e6705654cba9c12a2bdbe9ba, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7451362335084700915, guid: e483d56b9b2b5ae458c2580ef1cb1a4d, type: 3}
       propertyPath: m_RootOrder
       value: 183
@@ -64916,6 +64920,10 @@ PrefabInstance:
     - target: {fileID: 7792175392235896393, guid: e483d56b9b2b5ae458c2580ef1cb1a4d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053094434346856433, guid: 53a21b61e6705654cba9c12a2bdbe9ba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e483d56b9b2b5ae458c2580ef1cb1a4d, type: 3}
