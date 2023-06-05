@@ -17,7 +17,7 @@ public class WaveManager : MonoBehaviour
     int enemiesWave;
     int enemiesScene;
     public static float enemiesLife = 10;
-    public static int moneyDropByEnemies = 50;
+    // public static int moneyDropByEnemies = 50;
     public static bool shopRandomize = true;
 
     //Evento para actualizar el HUD

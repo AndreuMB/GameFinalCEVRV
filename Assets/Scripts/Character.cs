@@ -47,6 +47,7 @@ public abstract class Character : MonoBehaviour
 
     public void takeDamageRayCast(Weapon weapon){
         life = life - weapon.getDamage();
+        int increment = 1 + WaveManager.wave/10;
         // if hit player
         if (gameObject.tag == Tags.PLAYER)
         {
@@ -63,7 +64,7 @@ public abstract class Character : MonoBehaviour
             AudioManager am = FindObjectOfType<AudioManager>();
             am.Play("Hitmarker");
             if (life <= 0) {
-                Nexus.money += WaveManager.moneyDropByEnemies;
+                Nexus.money += gameObject.GetComponent<Enemy>().moneyDrop*increment;
                 death.Invoke();
             }
         }
@@ -72,11 +73,10 @@ public abstract class Character : MonoBehaviour
         if (gameObject.tag == Tags.BOSS)
         {
             AudioManager am = FindObjectOfType<AudioManager>();
-            print("play hitmarker");
             am.Play("Hitmarker");
             if (life <= 0)
             {
-                Nexus.money += WaveManager.moneyDropByEnemies;
+                Nexus.money += gameObject.GetComponent<BossLogic>().moneyDrop*increment;
                 death.Invoke();
             }
         }

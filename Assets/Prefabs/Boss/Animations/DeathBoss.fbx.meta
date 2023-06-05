@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 075a6cfc166f19b419fdd48fb4982ea0
+guid: b71452abff5065c42afcb47d45c22e4e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -17,7 +17,13 @@ ModelImporter:
     removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'mixamorig:LeftUpLeg'
+      : position error = 4.329874 mm\n\t'mixamorig:LeftLeg' : position error = 8.921439
+      mm\n\t'mixamorig:LeftFoot' : position error = 7.782340 mm\n\t'mixamorig:RightUpLeg'
+      : position error = 4.225156 mm\n\t'mixamorig:RightLeg' : position error = 8.993514
+      mm\n\t'mixamorig:RightFoot' : position error = 7.543821 mm\n\t'mixamorig:RightToeBase'
+      : position error = 3.835888 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -33,22 +39,22 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Ataque_1
+      name: Death
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 334
+      lastFrame: 109
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
@@ -56,7 +62,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: endDeathAnimation
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7cd74df8a7e28d245b8e31bae6c904ac, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

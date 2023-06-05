@@ -17,7 +17,8 @@ public class BossLogic : Character
     GameObject aviso;
     GameObject ataque;
     float tiempoVisual = 1.5f;
-
+    public int moneyDrop = 500;
+    bool deathBool = false;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -27,11 +28,19 @@ public class BossLogic : Character
 
     private void Update()
     {
+        if (deathBool){
+            if (aviso != null)
+            {
+                Destroy(aviso);
+            }
+            return;
+        }
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         if (!isAttacking)
         {
             transform.LookAt(player);
+            transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
             agent.SetDestination(player.position);
             // Seguir al jugador hasta la distancia establecida
             if (distanceToPlayer <= followDistance)
@@ -62,7 +71,7 @@ public class BossLogic : Character
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer > followDistance)
         {
-            // Si estamos fuera del rango de ataque, volver a la animación Idle
+            // Si estamos fuera del rango de ataque, volver a la animaciï¿½n Idle
             
             animator.SetBool("IsAttacking", false);
             animator.SetBool("IsIdle", true);
@@ -70,7 +79,7 @@ public class BossLogic : Character
         }
         else
         {
-            // Si seguimos en rango, repetir la animación de ataque
+            // Si seguimos en rango, repetir la animaciï¿½n de ataque
             animator.SetBool("IsAttacking", true);
         }
     }
@@ -83,12 +92,21 @@ public class BossLogic : Character
 
     void BossDeath()
     {
+        deathBool = true;
         // remove tag for spawn to work
         tag = Tags.UNTAGGED;
         // stop movement enemy
         agent.isStopped = true;
         // disable enemy collision for bullets and other enemies
         GetComponent<Collider>().enabled = false;
+        // Destroy(gameObject);
+        animator.SetTrigger("death");
+        // FindObjectOfType<WaveManager>().checkWave();
+    }
+
+    // event trigger when death animation end
+    public void endDeathAnimation()
+    {
         Destroy(gameObject);
     }
 }

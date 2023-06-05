@@ -19,6 +19,7 @@ public class Enemy : Character
     public UnityEvent fireEvent = new UnityEvent();
     Transform lastTarget;
     Animator animator;
+    public int moneyDrop = 70;
     bool deathBool = false;
     // [SerializeField] float weaponDamage = 10;
     // Start is called before the first frame update
