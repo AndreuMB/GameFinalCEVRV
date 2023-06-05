@@ -1444,7 +1444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons: []
   selectedIndex: 0
-  life: 10
+  life: 500
   speed: 10
   slotWeapon: {fileID: 587872064911922254}
   hitCanvas: {fileID: 0}
